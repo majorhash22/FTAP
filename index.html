@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111619">
+  <meta name="description" content="FTAP — Full-Time Adulting, Part-Time Gaming. Competitive queues, social hangouts, and friendships beyond the screen.">
+  <title>FTAP | Full-Time Adulting, Part-Time Gaming</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preload" as="image" href="assets/gamingbg.png">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="community.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#home" aria-label="FTAP home"><span class="brand-name"><span class="brand-ft">FT</span><span class="brand-ap">AP</span></span></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span class="menu-lines" aria-hidden="true"></span><span class="menu-label">Menu</span></button>
+      <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+        <a href="#community">Community</a><a href="#events">Events</a><a href="#gallery">Gallery</a><a href="#rules">Rules</a>
+        <button class="button button-outline nav-join" type="button" data-join>Join Discord</button>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <img class="hero-art" src="assets/gamingbg.png" width="1672" height="941" alt="" fetchpriority="high">
+      <div class="hero-edge" aria-hidden="true"></div>
+      <div class="container hero-content">
+        <h1 id="hero-title"><span>Full-Time</span><span>Adulting.</span><span class="accent">Part-Time</span><span class="accent">Gaming.</span></h1>
+        <p class="hero-lead">Clock-out. Login. G!</p>
+        <p class="hero-description">Minsan laro, minsan kwentuhan, minsan inuman, madalas bardagulan. Basta wag kang Jollibee pwede ka dito.</p>
+        <div class="hero-actions"><a class="button button-primary" href="#community">Meet the Tropa</a><a class="button button-outline" href="#events">Gaming Events</a></div>
+      </div>
+    </section>
+
+    <section class="notice-board container" id="announcements" aria-labelledby="notice-title">
+      <div class="centered-heading reveal"><h2 id="notice-title">The Notice Board</h2><p class="section-label">Announcements</p></div>
+      <div id="announcement-list" class="announcements-grid reveal">
+        <article class="announcement"><img class="announcement-art" src="assets/vault.jpg" alt="" width="1920" height="1080" loading="lazy"><div><p class="section-label">Community</p><h3>Welcome to FTAP</h3><p>Pag umay ka na sa buhay sa labas, tara! pasok agad sa disc.</p></div></article>
+        <article class="announcement"><img class="announcement-art" src="assets/civilwar-banner.png" alt="" width="1280" height="960" loading="lazy"><div><p class="section-label">Around the server</p><h3>Your community, in one place</h3><p>Meet the crew, find the next event, and catch up on what's latest.</p></div></article>
+      </div>
+    </section>
+
+    <section class="about-section section container" id="about" aria-labelledby="about-title">
+      <div class="about-intro reveal"><div><p class="section-label red-label">About FTAP</p><h2 id="about-title">Bardagulan na may konting Tropahan</h2><span class="red-rule" aria-hidden="true"></span></div><p class="about-description"></p></div>
+      <div class="values reveal"><article><h3>Play for Fun</h3><p>Minsan nasosobrahan sa fun. Damay losestreak tuloy.</p></article><article><h3>Respect the people</h3><p>Bardagulan pero may boundary, wag kang tanga ka.</p></article><article><h3>Real life first</h3><p>Wag ka puro laro, touch some grass. Bawal dito adik!</p></article></div>
+    </section>
+
+    <section class="community-section section" id="community" aria-labelledby="community-title">
+      <div class="container"><div class="section-heading reveal"><div><p class="section-label red-label">Meet the Tropa</p><h2 id="community-title">The people<br>behind the party.</h2></div><button class="button button-outline" type="button" data-apply>Introduce yourself</button></div>
+        <div id="member-list" class="member-list reveal"><div class="roster-empty"><div class="roster-wordmark" aria-hidden="true"><strong class="brand-lettering"><span class="brand-ft">FT</span><span class="brand-ap">AP</span></strong><span class="roster-description">Full-Time Adulting<br>Part-Time Gaming</span></div><div><h3>The roster is warming up.</h3><p>Member spotlights are coming soon.<br>Your next teammate is already part of the story.</p></div></div></div>
+      </div>
+    </section>
+
+    <section class="events-section section container" id="events" aria-labelledby="events-title">
+      <div class="events-intro reveal"><p class="section-label red-label">Gaming Events</p><h2 id="events-title">Sali ka, wag kang KJ. Pariticapate ka din konti, babaho yan.</h2><p>Our annual year-end Dota 2 tournament brings everyone together. Yearly balagbagan to pre! Watch Discord for this year’s schedule and details.</p><button class="button button-outline" type="button" data-join>Open Discord</button></div>
+      <div class="events-feature reveal">
+        <section class="event-carousel" id="event-carousel" aria-label="Year-End Civil War highlights" aria-roledescription="carousel" tabindex="0">
+          <div class="event-slides">
+            <article class="event-slide tournament-slide" id="civil-war-slide" role="group" aria-roledescription="slide" aria-label="1 of 2: Year-End Civil War">
+              <img class="tournament-art" src="assets/civilwar-banner.png" width="2048" height="768" alt="" loading="lazy">
+              <div class="tournament-copy"><p class="section-label">Annual Dota 2 tournament</p><h3>Year-End<br>Civil War</h3><p class="tournament-description">Wala munang tropa-tropa.<br>A year-end showdown for bragging rights.</p><p class="tournament-schedule"><span class="schedule-mark" aria-hidden="true"></span>Dates to be announced</p></div>
+            </article>
+            <article class="event-slide champions-slide" id="champions-slide" role="group" aria-roledescription="slide" aria-label="2 of 2: Last year's champions, Smoke Spammers">
+              <div class="champions-header"><p class="champions-kicker section-label">Last year’s champions</p><p class="champions-competition">Year-End Civil War · Dota 2</p></div>
+              <div class="champions-main"><div class="champions-logo"><img src="assets/smokespammers.png" width="1007" height="938" alt="Smoke Spammers team logo: a purple smoke bottle and team name." loading="lazy"></div><div class="champions-copy"><h3>Smoke <br>Spammers</h3><p class="champions-callout">Season 1 Champions<br>Binalagbag lahat ng sumubok.</p></div></div>
+              <div class="champions-lineup"><p class="lineup-label section-label">The winning five</p><ul class="champions-roster"><li>Bryan</li><li>Jayries</li><li>Jhim</li><li>Lloyd</li><li>Den</li></ul></div>
+            </article>
+          </div>
+          <div class="carousel-controls"><div class="carousel-pagination"><button class="carousel-dot" type="button" aria-label="Show Year-End Civil War" aria-controls="civil-war-slide" aria-pressed="true"><span aria-hidden="true"></span></button><button class="carousel-dot" type="button" aria-label="Show last year’s champions" aria-controls="champions-slide" aria-pressed="false"><span aria-hidden="true"></span></button><p class="carousel-position" role="status" aria-live="polite" aria-atomic="true">1 / 2 · Year-End Civil War</p></div><div class="carousel-arrows"><button class="carousel-arrow" type="button" data-carousel-previous aria-label="Previous gaming event slide">←</button><button class="carousel-arrow" type="button" data-carousel-next aria-label="Next gaming event slide">→</button></div></div>
+        </section>
+        <div id="event-list" class="event-list" hidden></div>
+      </div>
+    </section>
+
+    <section class="gallery-section section" id="gallery" aria-labelledby="gallery-title"><div class="container"><div class="section-heading reveal"><div><p class="section-label red-label">Community Gallery</p><h2 id="gallery-title">The good games.<br>The great memories.</h2></div></div><div id="gallery-list" class="gallery-grid reveal"></div><noscript><figure class="gallery-fallback"><img src="assets/hero.png" alt="An armored adventurer facing a glowing red portal."><figcaption>Into the next game — original FTAP community artwork.</figcaption></figure></noscript></div></section>
+
+    <section class="rules-section section container" id="rules" aria-labelledby="rules-title"><div class="rules-intro reveal"><p class="section-label red-label">The Community Code</p><h2 id="rules-title">Good teammates.<br>Better people.</h2><span class="red-rule" aria-hidden="true"></span><p>A little respect goes a long way.<br>In the game. In the server. In real life.</p></div><ol id="rules-list" class="rules-list reveal"><li><h3>Respect the person.</h3><p>Treat everyone like a teammate.</p></li><li><h3>Compete without the toxicity.</h3><p>Play to win. Keep personal attacks out.</p></li><li><h3>Keep it in the right channel.</h3><p>Give conversations and game invites the right home.</p></li><li><h3>Protect each other's privacy.</h3><p>Ask before sharing private messages or photos.</p></li><li><h3>Skip the spam.</h3><p>No scams, unsolicited promotions, or repeated pings.</p></li><li><h3>Let real life come first.</h3><p>Nobody owes the queue their time.</p></li></ol></section>
+
+    <section class="support-section section container"><div class="staff-section reveal" id="staff"><p class="section-label red-label">Staff</p><h2 id="staff-title">The people<br>keeping it together.</h2><div id="staff-list"><p>Staff introductions are coming soon.<br>For now, reach out to a moderator in Discord.</p></div></div><div class="faq-section reveal" id="faq"><p class="section-label red-label">Questions</p><h2>Before you queue.</h2><div id="faq-list"><details><summary>Malalakas ba mga tao jan?</summary><p>Malalakas. Malalakas mang-asar.</p></details><details><summary>Pag washed-up na gameplay ko or lowskilled ako pwede ba ko dito?</summary><p>Tara, sama ka na sa listahan.</p></details></div></div></section>
+
+    <section class="join-section section" id="join" aria-labelledby="join-title"><div class="container join-inner reveal"><div><p class="section-label red-label">Your next party</p><h2 id="join-title">There’s a place<br>in the party for you.</h2><p>Clock-out. Login. G!</p></div><div class="join-actions"><button class="button button-primary" type="button" data-join>Join Discord</button><button class="text-button" type="button" data-apply>Prepare your introduction <span aria-hidden="true">↗</span></button></div></div></section>
+  </main>
+  <footer class="site-footer container"><div><a class="footer-brand" href="#home" aria-label="FTAP home"><span class="brand-ft">FT</span><span class="brand-ap">AP</span></a><p>Full-Time Adulting, Part-Time Gaming</p></div><nav aria-label="Footer navigation"><a href="#about">About</a><a href="#staff">Staff</a><a href="#faq">FAQ</a><button class="footer-link" type="button" data-apply>Applications</button></nav><span class="footer-meta"><span class="footer-note">Clock-out. Login. G!</span><span class="developer-credit">Developed by <a href="https://waorigin.ca" target="_blank" rel="noopener noreferrer">WA Origin</a></span></span></footer>
+
+  <dialog id="join-dialog" aria-labelledby="join-dialog-title" class="dialog compact-dialog"><button class="dialog-close" type="button" aria-label="Close dialog">×</button><p class="section-label red-label">FTAP Discord</p><h2 id="join-dialog-title">The invite is<br>on its way.</h2><p>The community invite will be available here soon. If you’re already in the server, head to Discord and find the party.</p><button class="button button-primary" type="button" data-dialog-apply>Prepare an introduction</button></dialog>
+
+  <dialog id="content-dialog" aria-labelledby="content-dialog-title" class="dialog compact-dialog"><button class="dialog-close" type="button" aria-label="Close dialog">×</button><p id="content-dialog-category" class="section-label red-label"></p><h2 id="content-dialog-title"></h2><div id="content-dialog-body" class="dialog-body"></div><div id="content-dialog-actions" class="dialog-actions"></div></dialog>
+
+  <dialog id="application-dialog" aria-labelledby="application-title" class="dialog application-dialog"><button class="dialog-close" type="button" aria-label="Close dialog">×</button><p class="section-label red-label">Introductions & Applications</p><h2 id="application-title">Every party starts<br>with a hello.</h2><p class="dialog-description">Prepare a message to share in Discord. Nothing is sent automatically.</p><form id="application-form"><div class="form-grid"><label>Discord display name<input name="name" required maxlength="80" autocomplete="nickname" placeholder="What should we call you?"></label><label>Favorite games<input name="games" required maxlength="140" placeholder="Dota 2, or whatever you’re playing"></label><label>Your usual play time<input name="availability" required maxlength="140" placeholder="Evenings, weekends, when life allows"></label><label>Your play style<select name="playstyle"><option>Competitive</option><option>Casual</option><option>A bit of both</option><option>Here for the hangouts</option></select></label></div><label>A little about you<textarea name="intro" required rows="3" maxlength="1200" placeholder="Your main role, your hobbies, or how you found FTAP…"></textarea></label><button class="button button-primary" type="submit">Create my message</button></form><div id="application-result" hidden><p id="application-instructions">Your message is ready. Copy it and share it in Discord.</p><label for="application-message">Your introduction</label><textarea id="application-message" rows="9" readonly></textarea><div class="dialog-actions"><button id="copy-application" class="button button-primary" type="button">Copy message</button><button id="download-application" class="button button-outline" type="button">Download .txt</button><button id="edit-application" class="text-button" type="button">Edit details</button></div><p id="copy-status" class="status-text" role="status"></p></div></dialog>
+
+  <dialog id="gallery-dialog" aria-labelledby="gallery-dialog-title" class="dialog gallery-dialog"><button class="dialog-close" type="button" aria-label="Close gallery">×</button><img id="gallery-dialog-image" src="assets/hero.png" alt=""><div class="gallery-caption"><div><p id="gallery-dialog-category" class="section-label red-label"></p><h2 id="gallery-dialog-title"></h2><p id="gallery-dialog-caption"></p></div><div id="gallery-controls"><button id="gallery-previous" class="gallery-control" type="button" aria-label="Previous image">←</button><span id="gallery-position"></span><button id="gallery-next" class="gallery-control" type="button" aria-label="Next image">→</button></div></div></dialog>
+  <noscript><p class="noscript-note">Enable JavaScript for the full gallery, member profiles, and introduction form. Community information is available above.</p></noscript>
+</body>
+</html>
