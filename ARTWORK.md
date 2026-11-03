@@ -1,5 +1,13 @@
 # FTAP original artwork
 
+## Interactive trophy
+
+The trophy geometry, brushed-metal textures, engraving textures, and assets/trophy-front.svg are original code-created artwork inspired by FTAP's supplied front and back shield photographs and engraving reference. The model is a simplified interpretation. It does not embed or alter those reference photographs, and it uses no generated bitmap assets. The champion year, team, and player names come from the website's existing champion article.
+
+The local Three.js rendering library is MIT-licensed; its license and source notes are preserved in assets/vendor/. See TROPHY.md for interaction details and verification limits.
+
+## Original community artwork
+
 `assets/hero.png` was created with the built-in OpenAI image-generation tool for this website. It is original fantasy art and does not depict actual FTAP members or an actual game screenshot. This original image contains no Dota characters or logos. It remains in the community gallery; the hero now uses FTAP’s supplied gaming background. The original image is 1672 × 941 pixels.
 
 Prompt:

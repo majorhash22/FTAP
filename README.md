@@ -1,5 +1,7 @@
 # FTAP — Full-Time Adulting, Part-Time Gaming
 
+The interactive trophy room is documented in [TROPHY.md](TROPHY.md), including controls, engraving edits, local assets, tests, and verification limits.
+
 ## Open the website
 
 Extract the entire ZIP first. Open `index.html` in a modern browser. No installation, build step, account, or internet connection is needed for the website itself. Keep the files and folders together.
@@ -39,6 +41,8 @@ FTAP-Website/
   styles.css       Layout, colors, typography, animation, mobile styles
   app.js           Content rendering, dialogs, profiles, gallery, applications
   community.js     Your editable content and Discord invite
+  trophy.js        Procedural 3D trophy, engraving and viewer controls
+  trophy.css       Trophy room and full-screen viewer layout
   assets/
     hero.png       Original cinematic FTAP artwork
     favicon.svg    Small FTAP favicon

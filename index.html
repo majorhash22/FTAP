@@ -9,8 +9,10 @@
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="preload" as="image" href="assets/gamingbg.png">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="trophy.css">
   <script defer src="community.js"></script>
   <script defer src="app.js"></script>
+  <script defer src="trophy.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -19,7 +21,7 @@
       <a class="brand" href="#home" aria-label="FTAP home"><span class="brand-name"><span class="brand-ft">FT</span><span class="brand-ap">AP</span></span></a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span class="menu-lines" aria-hidden="true"></span><span class="menu-label">Menu</span></button>
       <nav id="site-nav" class="site-nav" aria-label="Main navigation">
-        <a href="#community">Community</a><a href="#events">Events</a><a href="#gallery">Gallery</a><a href="#rules">Rules</a>
+        <a href="#community">Community</a><a href="#events">Events</a><a href="#trophy">Trophy</a><a href="#gallery">Gallery</a><a href="#rules">Rules</a>
         <button class="button button-outline nav-join" type="button" data-join>Join Discord</button>
       </nav>
     </div>
@@ -271,6 +273,27 @@
       </div>
     </section>
 
+    <section class="trophy-section section" id="trophy" aria-labelledby="trophy-title">
+      <div class="container trophy-section-inner">
+        <div class="trophy-intro reveal">
+          <p class="section-label trophy-eyebrow">The trophy room · <span data-trophy-year>2025</span></p>
+          <h2 id="trophy-title">The champions’<br><span>trophy.</span></h2>
+          <p class="trophy-team" data-trophy-team>Smoke Spammers</p>
+          <p class="trophy-description">Season 1 champions. Bragging rights, set in metal.<br>Turn it over. The winning five are engraved on the back.</p>
+          <button class="button button-outline trophy-open-button" type="button" data-trophy-open>Inspect the trophy</button>
+          <div class="trophy-roll-call"><p class="section-label">Names in the silver</p><ul data-trophy-players><li>Bryan</li><li>Jayries</li><li>Jhim</li><li>Lloyd</li><li>Den</li></ul></div>
+        </div>
+        <div class="trophy-showcase reveal">
+          <button class="trophy-preview" type="button" data-trophy-open aria-label="Open the Smoke Spammers trophy in a full-screen viewer">
+            <span class="trophy-preview-label section-label">360° trophy</span>
+            <span class="trophy-preview-stage" id="trophy-preview-stage"><img class="trophy-preview-fallback" src="assets/trophy-front.svg" width="600" height="620" alt="" loading="lazy"></span>
+            <span class="trophy-preview-caption">Explore the trophy <span class="trophy-expand-icon" aria-hidden="true"></span></span>
+          </button>
+          <p class="trophy-preview-hint">Open to rotate, zoom, and read the engraving.</p>
+        </div>
+      </div>
+    </section>
+
     <section class="gallery-section section" id="gallery" aria-labelledby="gallery-title"><div class="container"><div class="section-heading reveal"><div><p class="section-label red-label">Community Gallery</p><h2 id="gallery-title">The good games.<br>The great memories.</h2></div></div><div id="gallery-list" class="gallery-grid reveal"></div><noscript><figure class="gallery-fallback"><img src="assets/hero.png" alt="An armored adventurer facing a glowing red portal."><figcaption>Into the next game — original FTAP community artwork.</figcaption></figure></noscript></div></section>
 
     <section class="rules-section section container" id="rules" aria-labelledby="rules-title"><div class="rules-intro reveal"><p class="section-label red-label">The Community Code</p><h2 id="rules-title">Good teammates.<br>Better people.</h2><span class="red-rule" aria-hidden="true"></span><p>A little respect goes a long way.<br>In the game. In the server. In real life.</p></div><ol id="rules-list" class="rules-list reveal"><li><h3>Respect the person.</h3><p>Treat everyone like a teammate.</p></li><li><h3>Compete without the toxicity.</h3><p>Play to win. Keep personal attacks out.</p></li><li><h3>Keep it in the right channel.</h3><p>Give conversations and game invites the right home.</p></li><li><h3>Protect each other's privacy.</h3><p>Ask before sharing private messages or photos.</p></li><li><h3>Skip the spam.</h3><p>No scams, unsolicited promotions, or repeated pings.</p></li><li><h3>Let real life come first.</h3><p>Nobody owes the queue their time.</p></li></ol></section>
@@ -288,6 +311,25 @@
   <dialog id="application-dialog" aria-labelledby="application-title" class="dialog application-dialog"><button class="dialog-close" type="button" aria-label="Close dialog">×</button><p class="section-label red-label">Introductions & Applications</p><h2 id="application-title">Every party starts<br>with a hello.</h2><p class="dialog-description">Prepare a message to share in Discord. Nothing is sent automatically.</p><form id="application-form"><div class="form-grid"><label>Discord display name<input name="name" required maxlength="80" autocomplete="nickname" placeholder="What should we call you?"></label><label>Favorite games<input name="games" required maxlength="140" placeholder="Dota 2, or whatever you’re playing"></label><label>Your usual play time<input name="availability" required maxlength="140" placeholder="Evenings, weekends, when life allows"></label><label>Your play style<select name="playstyle"><option>Competitive</option><option>Casual</option><option>A bit of both</option><option>Here for the hangouts</option></select></label></div><label>A little about you<textarea name="intro" required rows="3" maxlength="1200" placeholder="Your main role, your hobbies, or how you found FTAP…"></textarea></label><button class="button button-primary" type="submit">Create my message</button></form><div id="application-result" hidden><p id="application-instructions">Your message is ready. Copy it and share it in Discord.</p><label for="application-message">Your introduction</label><textarea id="application-message" rows="9" readonly></textarea><div class="dialog-actions"><button id="copy-application" class="button button-primary" type="button">Copy message</button><button id="download-application" class="button button-outline" type="button">Download .txt</button><button id="edit-application" class="text-button" type="button">Edit details</button></div><p id="copy-status" class="status-text" role="status"></p></div></dialog>
 
   <dialog id="gallery-dialog" aria-labelledby="gallery-dialog-title" class="dialog gallery-dialog"><button class="dialog-close" type="button" aria-label="Close gallery">×</button><img id="gallery-dialog-image" src="assets/hero.png" alt=""><div class="gallery-caption"><div><p id="gallery-dialog-category" class="section-label red-label"></p><h2 id="gallery-dialog-title"></h2><p id="gallery-dialog-caption"></p></div><div id="gallery-controls"><button id="gallery-previous" class="gallery-control" type="button" aria-label="Previous image">←</button><span id="gallery-position"></span><button id="gallery-next" class="gallery-control" type="button" aria-label="Next image">→</button></div></div></dialog>
-  <noscript><p class="noscript-note">Enable JavaScript for the full gallery, member profiles, and introduction form. Community information is available above.</p></noscript>
+  <noscript><p class="noscript-note">Enable JavaScript for the trophy viewer, full gallery, member profiles, and introduction form. Community information is available above.</p></noscript>
+  <dialog id="trophy-dialog" class="dialog trophy-dialog" aria-labelledby="trophy-viewer-title">
+    <header class="trophy-viewer-header">
+      <div><p class="section-label trophy-eyebrow"><span data-trophy-year>2025</span> · Season 1 champions</p><h2 id="trophy-viewer-title" data-trophy-team>Smoke Spammers</h2></div>
+      <button class="dialog-close trophy-close" type="button" aria-label="Close trophy viewer">×</button>
+    </header>
+    <div id="trophy-stage" class="trophy-stage" tabindex="0" role="group" aria-label="Interactive championship trophy" aria-describedby="trophy-controls-help trophy-accessible-engraving">
+      <img id="trophy-flat-image" class="trophy-flat-image" src="assets/trophy-front.svg" width="600" height="620" alt="Front of a bronze championship shield with silver swirls.">
+      <p id="trophy-loading" class="trophy-loading" role="status">Opening the trophy…</p>
+    </div>
+    <footer class="trophy-viewer-footer">
+      <div class="trophy-toolbar">
+        <div class="trophy-view-controls" role="group" aria-label="Trophy views"><button type="button" data-trophy-view="front" aria-pressed="true">Front</button><button type="button" data-trophy-view="back" aria-pressed="false">Engraving</button><button type="button" id="trophy-reset">Reset view</button></div>
+        <div class="trophy-zoom-controls" role="group" aria-label="Trophy zoom"><button type="button" id="trophy-zoom-out" aria-label="Zoom out">−</button><output id="trophy-zoom-value" aria-live="off">100%</output><button type="button" id="trophy-zoom-in" aria-label="Zoom in">+</button></div>
+      </div>
+      <p id="trophy-controls-help">Drag to rotate · Scroll or pinch to zoom · Arrow keys to turn · Esc to close</p>
+      <p id="trophy-view-status" class="visually-hidden" role="status" aria-live="polite">Front view</p>
+      <p id="trophy-accessible-engraving" class="visually-hidden">Engraved: 2025, Smoke Spammers, Bryan, Jayries, Jhim, Lloyd, and Den.</p>
+    </footer>
+  </dialog>
 </body>
 </html>

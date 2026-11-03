@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 620" fill="none">
+  <defs>
+    <linearGradient id="bronze" x1="80" y1="40" x2="520" y2="560" gradientUnits="userSpaceOnUse"><stop stop-color="#d1b477"/><stop offset=".23" stop-color="#6b502d"/><stop offset=".48" stop-color="#aa8750"/><stop offset=".73" stop-color="#3f2c18"/><stop offset="1" stop-color="#aa8552"/></linearGradient>
+    <linearGradient id="silver" x1="130" y1="140" x2="450" y2="440" gradientUnits="userSpaceOnUse"><stop stop-color="#e3dfd1"/><stop offset=".35" stop-color="#88877e"/><stop offset=".55" stop-color="#d0ccc0"/><stop offset="1" stop-color="#55544f"/></linearGradient>
+    <radialGradient id="dark"><stop stop-color="#302c28"/><stop offset="1" stop-color="#111414"/></radialGradient>
+    <pattern id="etch" width="18" height="18" patternUnits="userSpaceOnUse"><path d="m0 8 8-8m-4 18L18 4M9 18l9-9" stroke="#242626" stroke-opacity=".18"/></pattern>
+    <path id="shell" d="M300 28C432 28 550 125 554 256c2 40-44 15-64 57-19 39-18 126-35 162-65 43-245 43-310 0-17-36-16-123-35-162-20-42-66-17-64-57C50 125 168 28 300 28Z"/>
+    <path id="blade" d="M284 115c94-18 183 50 161 139-10 42-61 48-75 81-22-25-6-57 12-80 38-50-18-112-98-140Z"/>
+  </defs>
+  <use href="#shell" fill="#17120d" stroke="#22180d" stroke-width="20" transform="translate(0 12)"/>
+  <use href="#shell" fill="url(#bronze)" stroke="#c5a26b" stroke-width="3"/>
+  <use href="#shell" fill="url(#dark)" stroke="#3d2c1a" stroke-width="3" transform="translate(300 272) scale(.89) translate(-300 -272)"/>
+  <use href="#shell" stroke="#c4a36c" stroke-opacity=".7" stroke-width="2" transform="translate(300 272) scale(.96) translate(-300 -272)"/>
+  <g fill="url(#silver)" stroke="#37332b" stroke-width="3"><use href="#blade"/><use href="#blade" transform="rotate(120 300 278)"/><use href="#blade" transform="rotate(240 300 278)"/></g>
+  <g fill="url(#etch)"><use href="#blade"/><use href="#blade" transform="rotate(120 300 278)"/><use href="#blade" transform="rotate(240 300 278)"/></g>
+  <g stroke="url(#bronze)" stroke-width="7"><circle cx="300" cy="278" r="53"/><circle cx="300" cy="278" r="35"/></g>
+  <path d="M285 249c43-17 67 35 28 55 6-15-1-27-14-30 7 12 0 22-12 26-22-15-24-35-2-51Z" fill="url(#bronze)" stroke="#c0a16c" stroke-width="2"/>
+  <g fill="url(#bronze)" stroke="#d4b77f" stroke-width="2"><circle cx="76" cy="264" r="16"/><circle cx="524" cy="264" r="16"/><circle cx="173" cy="440" r="16"/><circle cx="427" cy="440" r="16"/></g>
+  <path d="M261 69c0-37 78-37 78 0l-10 12h-58l-10-12Z" fill="url(#bronze)" stroke="#b99b68" stroke-width="2"/>
+  <path d="m293 57 18 0-8 11h-10Z" fill="#27231d"/>
+  <path d="M252 494c24-29 72-29 96 0m-84-2c23 19 49 19 72 0" stroke="url(#bronze)" stroke-width="9" stroke-linecap="round"/>
+</svg>
