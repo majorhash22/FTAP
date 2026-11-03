@@ -191,7 +191,7 @@
   if (carousel) {
     const slides = [...carousel.querySelectorAll('.event-slide')];
     const dots = [...carousel.querySelectorAll('.carousel-dot')];
-    const titles = ['Year-End Civil War', 'Smoke Spammers'];
+    const titles = ['Year-End Civil War', '2025 · Smoke Spammers'];
     let current = 0;
     function showEventSlide(index) {
       current = (index + slides.length) % slides.length;

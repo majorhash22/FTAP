@@ -94,3 +94,74 @@
 .developer-credit a{color:var(--text);border-bottom:1px solid #626a6e;transition:color .2s,border-color .2s}
 .developer-credit a:hover{color:var(--accent-bright);border-color:var(--accent-bright)}
 @media(max-width:800px){.footer-meta{align-items:flex-start}}
+
+/* Tournament links sit directly below Meet the Tropa and its member roster. */
+.hero-teams-link{display:inline-flex;align-items:center;gap:16px;min-height:44px;margin-top:12px;font-size:13px;color:var(--text);border-bottom:1px solid #a9adb050;transition:color .2s,border-color .2s}
+.hero-teams-link span,.tournament-lineup-link span{color:var(--accent-bright)}
+.hero-teams-link:hover,.tournament-lineup-link:hover{color:var(--accent-bright);border-color:var(--accent-bright)}
+.community-teams-link{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-top:22px;padding:22px 28px;border-left:2px solid var(--accent);background:var(--surface);transition:background .2s}
+.community-teams-link:hover{background:#22282c}
+.community-teams-link .section-label{display:block;font-size:10px;color:var(--accent-bright);margin-bottom:5px}
+.community-teams-link strong{font-family:var(--serif);font-weight:400;font-size:clamp(20px,2vw,27px);line-height:1.3}
+.quick-link-arrow{font-size:30px;color:var(--accent-bright);flex-shrink:0}
+.events-intro strong{color:var(--text);font-weight:600}
+.tournament-schedule{color:var(--text);font-size:15px}
+.tournament-lineup-link{display:inline-flex;align-items:center;gap:15px;min-height:44px;margin-top:12px;font-size:12px;border-bottom:1px solid #a9adb050;transition:color .2s,border-color .2s}
+
+/* A championship year, a victory call and a restrained gold glow. */
+.champions-slide{background:radial-gradient(ellipse at 20% 45%,#d0b0770f,transparent 65%),#15191d;box-shadow:inset 0 3px 0 #d0b077}
+.champions-header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.champions-year{font-family:var(--serif);font-size:42px;line-height:1;color:var(--champion-gold);letter-spacing:-.04em}
+.champions-victory{color:var(--champion-gold);font-size:9px;letter-spacing:.16em;margin-bottom:11px}
+.champions-callout{margin-top:17px;font-size:13px;line-height:1.7}
+.champions-callout strong{color:var(--text);font-size:14px;font-weight:600}
+.champions-lineup>.lineup-label:before{content:'★';margin-right:9px}
+
+/* The main tournament roster uses FTAP's existing type, surfaces and accents. */
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+.tournament-teams-section{--champion-gold:#d0b077;padding-block:clamp(80px,9vw,140px);border-top:2px solid var(--accent);background:radial-gradient(ellipse at 90% 0%,#c5473609,transparent 45%),#101518}
+.teams-intro{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:60px;align-items:end}
+.teams-intro .red-label{font-size:11px}
+#teams-title{font-size:clamp(48px,6.8vw,92px);line-height:.98;letter-spacing:-.035em}
+#teams-title span{color:var(--accent)}
+.teams-lead{font-size:16px;line-height:1.8;margin-top:26px;max-width:53ch}
+.teams-date{padding:12px 0 12px 40px;border-left:1px solid var(--border)}
+.teams-date>.section-label{color:var(--text);font-size:11px}
+.teams-date-days{display:flex;align-items:baseline;gap:8px;font-family:var(--serif);color:var(--text);font-size:clamp(48px,5.1vw,74px);line-height:1.3;letter-spacing:-.05em}
+.teams-date-days>span[aria-hidden]{color:var(--accent);font-size:.6em}
+.teams-date>p:last-child{font-size:12px;margin-top:6px}
+.teams-bar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;margin-top:54px;padding-block:20px;border-top:1px solid var(--border)}
+.teams-bar>.section-label{font-size:10px;color:var(--muted);letter-spacing:.16em}
+.teams-bar>.section-label>span{margin-inline:12px;color:var(--accent-bright)}
+.champions-legend{display:flex;align-items:center;flex-wrap:wrap;gap:10px;font-size:12px}
+.tournament-teams-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.tournament-team{min-width:0;border:1px solid var(--border);background:linear-gradient(145deg,#1c2226,#14191d);border-top:2px solid #62686b}
+.team-header{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:26px 28px 22px;border-bottom:1px solid var(--border)}
+.team-header .section-label{font-size:9px;letter-spacing:.18em;color:var(--muted)}
+.team-header h3{font-family:var(--serif);font-size:30px;line-height:1.2;font-weight:400;text-transform:uppercase;letter-spacing:.01em;margin-top:5px}
+.team-letter{font-family:var(--serif);font-size:64px;line-height:1;color:#a9adb040}
+.team-players{list-style:none;margin:0;padding:10px 24px 18px}
+.team-player{padding:15px 4px;border-bottom:1px solid #3a414580;min-height:83px}
+.team-player:last-child{border-bottom:0}
+.player-heading{display:flex;align-items:center;flex-wrap:wrap;gap:5px 9px;min-height:25px}
+.player-name{font-size:17px;font-weight:600;line-height:1.4;overflow-wrap:anywhere}
+.captain-badge,.reserve-badge{font-size:8px;line-height:1.7;text-transform:uppercase;letter-spacing:.1em;color:var(--accent-bright);font-weight:600}
+.champion-badge{display:inline-flex;align-items:center;gap:5px;white-space:nowrap;color:var(--champion-gold);font-size:8px;font-weight:600;line-height:1.7;letter-spacing:.05em;text-transform:uppercase;border:1px solid #d0b07755;padding:2px 6px}
+.champion-badge:before{content:'★';font-size:10px}
+.player-details{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:5px 10px;font-size:12px;line-height:1.5;margin-top:5px;color:var(--muted)}
+.player-rank{display:inline-flex;align-items:center;gap:6px;font-size:10px;color:#b6babc}
+.player-rank:before{content:'';width:5px;height:5px;background:var(--rank-color);transform:rotate(45deg)}
+.rank-crusader{--rank-color:#7499b6}.rank-archon{--rank-color:#59ab73}.rank-legend{--rank-color:#d78e57}.rank-ancient{--rank-color:#56aff0}.rank-divine{--rank-color:#cf7ee1}.rank-immortal{--rank-color:#ee7c7c}
+.returning-champion{position:relative;background:linear-gradient(90deg,#d0b07712,transparent);margin-inline:-8px;padding-inline:12px}
+.returning-champion:before{content:'';position:absolute;left:0;top:16px;bottom:16px;width:2px;background:var(--champion-gold)}
+.returning-champion .player-name{color:var(--champion-gold)}
+.reserve-player{border-top:1px dashed #62686b;padding-top:16px;margin-top:4px}
+.reserve-badge{color:var(--muted)}
+.teams-closing{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:18px;margin-top:32px;font-size:14px}
+.teams-closing a{display:inline-flex;gap:18px;align-items:center;min-height:44px;font-size:12px;color:var(--text)}
+.teams-closing a:hover,.teams-closing a span{color:var(--accent-bright)}
+@media(min-width:801px) and (max-width:1100px){.champions-victory{font-size:8px}.champions-callout{font-size:11px;padding-left:10px}.champions-callout strong{font-size:12px}.champions-year{font-size:36px}}
+@media(max-width:1100px){.tournament-teams-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}.teams-intro{gap:32px}.teams-date{padding-left:28px}}
+@media(max-width:800px){.teams-intro{grid-template-columns:1fr;gap:32px}.teams-date{border-left:2px solid var(--accent);padding:0 0 0 22px}.teams-date-days{font-size:52px;line-height:1.15;margin-top:5px}.teams-date>p:last-child{margin-top:8px}.teams-bar{margin-top:36px;gap:14px}.team-header{padding:22px}.team-players{padding-inline:18px}.tournament-teams-section{padding-block:80px}}
+@media(max-width:600px){.tournament-teams-grid{grid-template-columns:1fr;gap:22px}.team-header{padding:24px 26px}.team-players{padding-inline:24px}.player-name{font-size:18px}.player-details{font-size:13px}.player-rank{font-size:11px}.champion-badge{font-size:9px}.captain-badge,.reserve-badge{font-size:9px}.team-player{min-height:86px}.teams-closing{margin-top:24px}}
+@media(max-width:480px){.community-teams-link{padding:18px;gap:16px}.community-teams-link .section-label{font-size:8px;letter-spacing:.15em}.community-teams-link strong{font-size:20px}.quick-link-arrow{font-size:26px}.tournament-schedule{font-size:14px}.champions-header{text-align:left}.champions-year{font-size:36px}.champions-victory{font-size:8px;margin-bottom:9px}.champions-callout{margin-top:10px;font-size:12px;line-height:1.6}.champions-callout strong{font-size:13px}.champions-kicker{font-size:9px;letter-spacing:.1em}.champions-competition{font-size:9px}.champions-main{grid-template-rows:145px auto;gap:10px}.champions-logo{height:145px;width:156px}.champions-logo img{max-height:145px}.teams-intro .red-label{font-size:9px;max-width:30ch;line-height:1.9}.teams-lead{font-size:14px;margin-top:22px}.teams-lead br{display:none}.teams-bar>.section-label{font-size:9px}.teams-bar>.section-label>span{margin-inline:9px}.champions-legend{font-size:11px;gap:8px}.teams-closing{font-size:13px}.tournament-teams-section{padding-block:70px}}

@@ -83,7 +83,7 @@ Fresh desktop concepts were created for the hero/notice board, about/community, 
 
 The visual review corrected the opening headline scale and notice-board position, and the image review corrected the gallery height. The hero introduces no extra badge or eyebrow. The requested FTAP name, tagline, primary navigation, and hero actions are preserved.
 
-Intentional differences from generated concepts: built-in Georgia and Segoe UI/Arial keep the package offline; a separate original production artwork is used; unrequested navigation and decorative copy invented in supporting concepts are omitted; the gallery includes explicitly labeled FTAP artwork until real community images are supplied. Supporting sections use more vertical space and an expanded gallery as part of one continuous page; decorative background art is concentrated in the hero and gallery. Member spotlights, staff names, counts, and exact tournament dates remain unset. The annual tournament and the previous champion lineup are now provided by FTAP. These are deliberate content and portability choices.
+Intentional differences from generated concepts: built-in Georgia and Segoe UI/Arial keep the package offline; a separate original production artwork is used; unrequested navigation and decorative copy invented in supporting concepts are omitted; the gallery includes explicitly labeled FTAP artwork until real community images are supplied. Supporting sections use more vertical space and an expanded gallery as part of one continuous page; decorative background art is concentrated in the hero and gallery. Member spotlights, staff names, and community member counts remain unset. FTAP has supplied the tournament dates, team lineups, and previous champions. These are deliberate content and portability choices.
 
 ## Community copy update
 
@@ -94,11 +94,11 @@ This update was checked at 1280, 390, and 320 pixels. The fixed navigation, anch
 
 ## Year-End Civil War and supplied images
 
-The Gaming Events section contains a two-slide carousel: the annual Year-End Civil War Dota 2 tournament, followed by last year’s champions, Smoke Spammers. The champion lineup is Bryan, Jayries, Jhim, Lloyd, and Den. No tournament date, prize, or registration details have been invented. Dates are marked “to be announced.”
+The Gaming Events section contains a two-slide carousel: the annual Year-End Civil War Dota 2 tournament on December 26–27, 2026, followed by the 2025 champions, Smoke Spammers. The champion lineup is Bryan, Jayries, Jhim, Lloyd, and Den. The current tournament year is 2026, following the supplied 2025 championship year. Match times, prizes, and registration details remain unspecified.
 
 Use the arrows or dots to switch slides. Left/right arrow keys also work while the carousel or its controls have focus. Touch swipes are supported. Slides change with a brief animation, which is disabled when reduced motion is requested. The carousel does not rotate automatically. With JavaScript disabled, both spotlights remain visible as stacked articles.
 
-Edit the two articles inside `#event-carousel` in `index.html` to change the tournament or champion copy. Edit `announcements[].image` and `imagePosition` in `community.js` to change the announcement pictures or crops. Dated future events can still be added to `events` in `community.js`; they appear below the carousel. The Discord invite remains ready for you to fill in later.
+Edit the two articles inside `#event-carousel` in `index.html` to change the tournament or champion copy. Edit the six articles inside `#tournament-teams` to change tournament rosters, captains, roles, ranks, or substitutes. Dates also appear in the events introduction, the community quick link, and the team section date display. Edit `announcements[].image` and `imagePosition` in `community.js` to change the announcement pictures or crops. Dated future events can still be added to `events` in `community.js`; they appear below the carousel. The Discord invite remains ready for you to fill in later.
 
 The hero uses `assets/gamingbg.png`. The welcome announcement uses `assets/vault.jpg`; the community hub announcement and the Year-End Civil War event use `assets/civilwar-banner.png`. The champion slide uses `assets/smokespammers.png`. The earlier generated `assets/hero.png` remains in the gallery.
 
@@ -119,3 +119,11 @@ The champion presentation was checked at 1536, 1024, 390, and 320 pixels in the 
 The welcome and community hub announcement summaries now use the supplied follow-up wording. Both the JavaScript settings and HTML fallback were updated. The footer credits “Developed by WA Origin” with a link to `https://waorigin.ca`, visible on desktop and phones. The link opens in a new tab. This package also retains the latest championship presentation and replacement Smoke Spammers image.
 
 The new copy and footer were checked in the in-app browser at 1280, 390, and 320 pixels. Both announcement summaries matched the supplied text, the WA Origin link had the correct destination, and the credit stayed visible without horizontal page overflow. The welcome announcement still opened its details dialog. No browser warnings or errors were observed. The external WA Origin page was not opened.
+
+## 2025 champions and 2026 tournament teams
+
+The champion spotlight now displays 2025 prominently, with stronger victory copy and gold accents that retain the site's charcoal, ivory, red, and serif styling. The tournament date is December 26–27, 2026. No start time or timezone is assumed, and the date does not depend on the visitor's timezone.
+
+The larger team section sits between Gaming Events and Community Gallery. It contains Teams A–F and all 32 supplied players, including six captains, player roles and ranks, and sixth men Pardun and Lowell. Zoro, Den, and Yeeeeez have gold names and visible “2025 Champ” badges. A legend explains the badges. Quick links below the hero actions and the Meet the Tropa roster lead to the section; the tournament slide links there as well. The lineups use native HTML, so they remain readable without JavaScript.
+
+Chrome browser checks covered rendered widths of 320, 390, approximately 768 and 1024, and 1440 pixels. The team grid switched between one, two, and three columns without horizontal overflow or content overflow. The champion slide fit at phone and desktop sizes; carousel dots, arrows, and keyboard switching worked. All six roster counts (5, 5, 5, 5, 6, 6), the three champion labels, and the hero quick-link target were checked. JavaScript syntax and Git whitespace checks passed; no browser warnings or errors were observed. Screenshot capture failed in the connected browser, so this update was verified through rendered DOM content and element measurements rather than a completed visual screenshot review.
