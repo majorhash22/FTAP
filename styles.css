@@ -67,7 +67,7 @@
 .champions-logo{width:100%;max-width:264px;height:auto;max-height:none;aspect-ratio:1007/938;margin:auto;display:block}
 .champions-logo img{width:100%;height:auto;max-height:none;object-fit:contain}
 .champions-copy{min-width:0;text-align:left}
-.champions-copy h3{font-size:clamp(30px,3vw,46px);margin:0;line-height:1.06;letter-spacing:-.025em}
+.champions-copy h3{color:#9974ae;font-size:clamp(30px,3vw,46px);margin:0;line-height:1.06;letter-spacing:-.025em}
 .champions-victory{color:var(--champion-gold);font-size:9px;letter-spacing:.13em;margin-bottom:12px}
 .champions-callout{font-size:13px;line-height:1.8;color:#d0cbc3;border-left:2px solid var(--accent);padding-left:14px;margin-top:18px}
 .champions-callout strong{color:var(--text);font-size:14px;font-weight:600}
