@@ -2,7 +2,11 @@
 
 ## Interactive trophy
 
-The trophy geometry, brushed-metal textures, engraving textures, and assets/trophy-front.svg are original code-created artwork inspired by FTAP's supplied front and back shield photographs and engraving reference. The model is a simplified interpretation. It does not embed or alter those reference photographs, and it uses no generated bitmap assets. The champion year, team, and player names come from the website's existing champion article.
+The Aegis uses detailed front and back artwork created with the built-in image_gen tool from FTAP's supplied three-view reference. The unchanged transparent PNGs are assets/aegis-front-detailed.png and assets/aegis-back-detailed.png. The complete prompts are preserved in assets/aegis-art-prompts.md.
+
+The front alpha outline is traced into the actual 3D body, with a thin bronze edge, raised central boss and studs, and shallow surface displacement. The artwork supplies the intricate silver relief and bronze filigree. The year, team and player names are painted into the back's color and bump maps at runtime. The older code-drawn assets/trophy-front.svg is retained as a legacy asset and is no longer the live preview.
+
+tools/build-aegis-art.cjs preserves the PNG bytes while producing geometry metadata and embedded copies for direct file opening. HTTP pages load the PNGs normally; the embedded copies are loaded only for file-origin pages. This is a reference-inspired, texture-mapped model, rather than an exact sculpted game asset.
 
 The local Three.js rendering library is MIT-licensed; its license and source notes are preserved in assets/vendor/. See TROPHY.md for interaction details and verification limits.
 

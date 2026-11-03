@@ -8,8 +8,9 @@ const vm = require('node:vm');
 const root = path.resolve(__dirname, '..');
 const source = fs.readFileSync(path.join(root, 'trophy.js'), 'utf8');
 const library = fs.readFileSync(path.join(root, 'assets/vendor/three-trophy.min.js'), 'utf8');
+const shapeSource = fs.readFileSync(path.join(root, 'assets/aegis-shape.js'), 'utf8');
 
-function fixture({ noWebGL = false } = {}) {
+function fixture({ noWebGL = false, protocol = 'file' } = {}) {
   const nodes = new Map(), allNodes = [], contexts = [], renderers = [], frames = new Map(), resizeCallbacks = [];
   let frameId = 0, time = 0, context;
   let stageSize = { width: 1200, height: 600 };
@@ -56,7 +57,7 @@ function fixture({ noWebGL = false } = {}) {
     constructor() {
       super('canvas');
       const ctx = {
-        texts: [], fillRect() {}, beginPath() {}, moveTo() {}, lineTo() {}, stroke() {},
+        texts: [], drawnImages: [], drawImage(image) { this.drawnImages.push(image); }, fillRect() {}, beginPath() {}, moveTo() {}, lineTo() {}, stroke() {},
         bezierCurveTo() {}, arc() {}, translate() {}, rotate() {}, save() {}, restore() {},
         putImageData() {}, createPattern() { return {}; }, createImageData(w, h) { return { data: new Uint8ClampedArray(w * h * 4) }; },
         createRadialGradient() { return { addColorStop() {} }; },
@@ -64,6 +65,7 @@ function fixture({ noWebGL = false } = {}) {
         fillText(text) { this.texts.push(text); }
       };
       this.getContext = () => ctx;
+      this.toDataURL = () => 'data:image/png;base64,' + Buffer.from(ctx.texts.join('')).toString('base64');
       contexts.push(ctx);
     }
   }
@@ -88,7 +90,7 @@ function fixture({ noWebGL = false } = {}) {
   const year = new Element('span'); year.textContent = '2025';
   const names = ['BRYAN', 'JAYRIES', 'JHIM', 'LLOYD', 'DEN'].map(name => { const el = new Element('li'); el.textContent = name; return el; });
   const document = {
-    currentScript: { src: 'file:///ftap/trophy.js' }, activeElement: open, head: new Element('head'),
+    currentScript: { src: protocol === 'file' ? 'file:///ftap/trophy.js' : 'http://localhost/trophy.js' }, activeElement: open, head: new Element('head'),
     createElement: tag => tag === 'canvas' ? new Canvas() : new Element(tag),
     querySelector: selector => selector === '.champions-copy h3' ? team : selector === '.champions-year' ? year : nodes.get(selector),
     querySelectorAll: selector => ({
@@ -111,12 +113,19 @@ function fixture({ noWebGL = false } = {}) {
     console, document, URL, performance: { now: () => time }, Uint8ClampedArray,
     requestAnimationFrame: callback => { frames.set(++frameId, callback); return frameId; },
     cancelAnimationFrame: id => frames.delete(id),
+    Image: class {
+      constructor() { this.width = this.height = this.naturalWidth = this.naturalHeight = 1254; }
+      set src(value) { this.value = value; queueMicrotask(() => this.onload?.()); }
+      get src() { return this.value; }
+    },
     ResizeObserver: class { constructor(callback) { resizeCallbacks.push(callback); } observe() {} },
     IntersectionObserver: class { constructor(callback) { this.callback = callback; } observe() {} disconnect() {} }
   });
   context.window = context;
   context.devicePixelRatio = 1;
   context.matchMedia = () => ({ matches: true });
+  vm.runInContext(shapeSource, context, { filename: 'aegis-shape.js' });
+  context.FTAPAegisTextures = { front: 'data:image/png;base64,front', back: 'data:image/png;base64,back' };
   vm.runInContext(library, context, { filename: 'three-trophy.min.js' });
   context.FTAPThree = {
     ...context.FTAPThree,
@@ -168,8 +177,10 @@ test('builds finite, dimensional geometry and paints the champion engraving', as
   assert.equal(app.renderers.length, 1);
   const meshes = [];
   app.renderers[0].scene.traverse(object => { if (object.isMesh) meshes.push(object); });
-  assert.ok(meshes.length > 25, 'the model should have actual frame and face detail');
-  let minZ = Infinity, maxZ = -Infinity, positionCount = 0;
+  assert.ok(meshes.length > 15, 'the model should have dimensional edge, boss and stud details');
+  const model = app.renderers[0].scene.children.find(object => object.isGroup);
+  model.quaternion.identity();
+  let minZ = Infinity, maxZ = -Infinity, minX = Infinity, maxX = -Infinity, positionCount = 0;
   app.renderers[0].scene.updateMatrixWorld(true);
   for (const mesh of meshes) {
     const position = mesh.geometry.getAttribute('position');
@@ -178,13 +189,37 @@ test('builds finite, dimensional geometry and paints the champion engraving', as
     const normal = mesh.geometry.getAttribute('normal');
     for (const value of normal.array) assert.ok(Number.isFinite(value), 'mesh normals must remain finite');
     mesh.geometry.computeBoundingBox();
-    minZ = Math.min(minZ, mesh.geometry.boundingBox.min.z + mesh.position.z);
-    maxZ = Math.max(maxZ, mesh.geometry.boundingBox.max.z + mesh.position.z);
+    const box = mesh.geometry.boundingBox;
+    for (const x of [box.min.x, box.max.x]) for (const y of [box.min.y, box.max.y]) for (const z of [box.min.z, box.max.z]) {
+      const point = mesh.position.clone().set(x, y, z).applyMatrix4(mesh.matrixWorld);
+      minZ = Math.min(minZ, point.z); maxZ = Math.max(maxZ, point.z);
+      minX = Math.min(minX, point.x); maxX = Math.max(maxX, point.x);
+    }
   }
   assert.ok(positionCount > 10000);
-  assert.ok(maxZ - minZ > 0.3, 'the trophy should have depth');
+  assert.ok(maxZ - minZ > 0.1, 'the trophy should have physical depth');
+  assert.ok((maxZ - minZ) / (maxX - minX) < 0.08, 'the edge and relief should keep the reference thin profile');
+  const face = meshes.find(mesh => mesh.name === 'Aegis front relief');
+  assert.ok(face.material.map.image.src.includes('data:image/png'), 'the detailed artwork must be used on the visible front');
+  assert.ok(face.material.alphaTest > 0, 'the trophy image must not render as a rectangular card');
   const paintedText = app.contexts.map(ctx => ctx.texts.join('').replace(/\s+/g, ' '));
   assert.ok(paintedText.some(text => text.includes('2025 / SMOKE SPAMMERS') && ['BRYAN', 'JAYRIES', 'JHIM', 'LLOYD', 'DEN'].every(name => text.includes(name))), 'the engraved texture should contain the year, team and all five names');
+});
+
+test('HTTP pages load local PNG artwork while direct-file copies preserve the original pixels', async () => {
+  const app = fixture({ protocol: 'http' });
+  app.open.fire('click'); await app.settle();
+  const meshes = [];
+  app.renderers[0].scene.traverse(mesh => { if (mesh.isMesh) meshes.push(mesh); });
+  const face = meshes.find(mesh => mesh.name === 'Aegis front relief');
+  assert.equal(face.material.map.image.src, 'http://localhost/assets/aegis-front-detailed.png');
+  const embedded = { window: {} };
+  vm.runInNewContext(fs.readFileSync(path.join(root, 'assets/aegis-local-textures.js'), 'utf8'), embedded);
+  for (const side of ['front', 'back']) {
+    const original = fs.readFileSync(path.join(root, 'assets/aegis-' + side + '-detailed.png'));
+    const copy = Buffer.from(embedded.window.FTAPAegisTextures[side].split(',')[1], 'base64');
+    assert.deepEqual(copy, original, 'file-view artwork must preserve the original PNG bytes');
+  }
 });
 
 test('opens, turns, zooms within limits, resets and restores the preview on close', async () => {
@@ -223,6 +258,18 @@ test('opens, turns, zooms within limits, resets and restores the preview on clos
   assert.equal(app.renderers.length, 1, 'opening again must reuse the renderer');
 });
 
+test('selecting the engraved back during loading keeps that view when 3D becomes ready', async () => {
+  const app = fixture();
+  app.open.fire('click');
+  app.back.fire('click');
+  assert.ok(app.flat.src.endsWith('assets/aegis-back-detailed.png'));
+  await app.settle();
+  assert.equal(app.stage.classList.contains('is-ready'), true);
+  assert.equal(app.back.getAttribute('aria-pressed'), 'true');
+  const model = app.renderers[0].scene.children.find(object => object.isGroup);
+  assert.ok(Math.abs(model.quaternion.y) > 0.99);
+});
+
 test('handles pinch zoom, cancellation, wheel zoom and keyboard controls', async () => {
   const app = fixture();
   app.open.fire('click'); await app.settle();
@@ -256,13 +303,12 @@ test('keeps front, engraving and close behavior available when 3D cannot initial
   assert.equal(app.stage.classList.contains('is-ready'), false);
   assert.match(app.loading.textContent, /Image view/);
   app.back.fire('click'); await app.settle();
-  assert.ok(app.flat.src.startsWith('data:image/svg+xml'));
-  const svg = decodeURIComponent(app.flat.src.split(',').slice(1).join(','));
-  assert.match(svg, /2025/); assert.match(svg, /SMOKE SPAMMERS/); assert.match(svg, /JAYRIES/);
+  assert.ok(app.flat.src.startsWith('data:image/png'));
+  assert.match(app.flat.alt, /2025/); assert.match(app.flat.alt, /Smoke Spammers/); assert.match(app.flat.alt, /JAYRIES/);
   app.dialog.close();
   assert.equal(app.dialog.open, false);
   assert.equal(app.document.activeElement, app.open);
   app.open.fire('click'); await app.settle();
-  assert.ok(app.flat.src.endsWith('assets/trophy-front.svg'));
+  assert.ok(app.flat.src.includes('data:image/png'));
   assert.match(app.flat.alt, /Front/);
 });
