@@ -71,7 +71,7 @@
             <article class="event-slide champions-slide" id="champions-slide" role="group" aria-roledescription="slide" aria-label="2 of 2: 2025 champions, Smoke Spammers">
               <img class="tournament-art champions-art" src="assets/smokespammers-background.png" width="1024" height="1536" alt="" loading="lazy">
               <div class="champions-header"><div><p class="champions-kicker section-label">Last year’s champions</p><p class="champions-competition">Year-End Civil War · Dota 2</p></div><span class="champions-year">2025</span></div>
-              <div class="champions-main"><div class="champions-logo"><img src="assets/smokespammers.png" width="1007" height="938" alt="Smoke Spammers team logo: a purple smoke bottle and team name." loading="lazy"></div><div class="champions-copy"><p class="champions-victory section-label">All hail the champions.</p><h3>Smoke <br>Spammers</h3><p class="champions-callout"><strong>Season 1 Champs</strong><br>Binalagbag lahat ng sumubok.</p></div></div>
+              <div class="champions-main"><div class="champions-logo"><img src="assets/smokespammers.png" width="1007" height="938" alt="Smoke Spammers team logo: a purple smoke bottle and team name." loading="lazy"></div><div class="champions-copy"><p class="champions-victory section-label">All hail the champions.</p><h3>Smoke <br>Spammers</h3><p class="champions-title-year">2025 Champions</p><p class="champions-callout"><strong>Season 1 Champs</strong><br>Binalagbag lahat ng sumubok.</p></div></div>
               <div class="champions-lineup"><p class="lineup-label section-label">The winning five</p><ul class="champions-roster"><li>BRYAN</li><li>JAYRIES</li><li>JHIM</li><li>LLOYD</li><li>DEN</li></ul></div>
             </article>
           </div>
@@ -278,10 +278,9 @@
         <div class="trophy-intro reveal">
           <p class="section-label trophy-eyebrow">The trophy room · <span data-trophy-year>2025</span></p>
           <h2 id="trophy-title">The champions’<br><span>trophy.</span></h2>
-          <p class="trophy-team" data-trophy-team>Smoke Spammers</p>
-          <p class="trophy-team" data-trophy-team>2026 Champions in progress...</p>
+          <p class="trophy-team"><span data-trophy-team>Smoke Spammers</span> · <span data-trophy-year>2025</span> Champions</p>
+          <p class="trophy-team trophy-next-champions">2026 Champions Incoming</p>
           <button class="button button-outline trophy-open-button" type="button" data-trophy-open>Inspect the trophy</button>
-          <div class="trophy-roll-call"><p class="section-label">Names in the silver</p><ul data-trophy-players><li>Bryan</li><li>Jayries</li><li>Jhim</li><li>Lloyd</li><li>Den</li></ul></div>
         </div>
         <div class="trophy-showcase reveal">
           <button class="trophy-preview" type="button" data-trophy-open aria-label="Open the Smoke Spammers trophy in a full-screen viewer">
@@ -318,15 +317,18 @@
       <button class="dialog-close trophy-close" type="button" aria-label="Close trophy viewer">×</button>
     </header>
     <div id="trophy-stage" class="trophy-stage" tabindex="0" role="group" aria-label="Interactive championship trophy" aria-describedby="trophy-controls-help trophy-accessible-engraving">
-      <img id="trophy-flat-image" class="trophy-flat-image" src="assets/aegis-front-detailed.png" width="1254" height="1254" alt="Front of a bronze championship shield with silver swirls.">
+      <div id="trophy-image-model" class="trophy-image-model" aria-hidden="true">
+        <img id="trophy-flat-image" class="trophy-flat-image" src="assets/aegis-front-detailed.png" width="1254" height="1254" draggable="false" alt="Front of a bronze championship shield with silver swirls.">
+        <img id="trophy-back-image" class="trophy-flat-image trophy-image-back" src="assets/aegis-back-detailed.png" width="1254" height="1254" draggable="false" alt="Back of the championship trophy.">
+      </div>
       <p id="trophy-loading" class="trophy-loading" role="status">Opening the trophy…</p>
     </div>
     <footer class="trophy-viewer-footer">
       <div class="trophy-toolbar">
-        <div class="trophy-view-controls" role="group" aria-label="Trophy views"><button type="button" data-trophy-view="front" aria-pressed="true">Front</button><button type="button" data-trophy-view="back" aria-pressed="false">Engraving</button><button type="button" id="trophy-reset">Reset view</button></div>
+        <div class="trophy-view-controls" role="group" aria-label="Trophy views"><button type="button" data-trophy-view="front" aria-pressed="true">Front</button><button type="button" data-trophy-view="back" aria-pressed="false">Engraving</button><button type="button" id="trophy-pan" aria-pressed="false" title="Drag to move instead of rotate">Move</button><button type="button" id="trophy-reset">Reset view</button></div>
         <div class="trophy-zoom-controls" role="group" aria-label="Trophy zoom"><button type="button" id="trophy-zoom-out" aria-label="Zoom out">−</button><output id="trophy-zoom-value" aria-live="off">100%</output><button type="button" id="trophy-zoom-in" aria-label="Zoom in">+</button></div>
       </div>
-      <p id="trophy-controls-help">Drag to rotate · Scroll or pinch to zoom · Arrow keys to turn · Esc to close</p>
+      <p id="trophy-controls-help">Drag to rotate · Select Move or shift-drag to reposition · Scroll or pinch to zoom · Two fingers to move · Esc to close</p>
       <p id="trophy-view-status" class="visually-hidden" role="status" aria-live="polite">Front view</p>
       <p id="trophy-accessible-engraving" class="visually-hidden">Engraved: 2025, Smoke Spammers, Bryan, Jayries, Jhim, Lloyd, and Den.</p>
     </footer>

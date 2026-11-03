@@ -10,7 +10,7 @@ const source = fs.readFileSync(path.join(root, 'trophy.js'), 'utf8');
 const library = fs.readFileSync(path.join(root, 'assets/vendor/three-trophy.min.js'), 'utf8');
 const shapeSource = fs.readFileSync(path.join(root, 'assets/aegis-shape.js'), 'utf8');
 
-function fixture({ noWebGL = false, protocol = 'file' } = {}) {
+function fixture({ noWebGL = false, protocol = 'file', omitRollCall = false } = {}) {
   const nodes = new Map(), allNodes = [], contexts = [], renderers = [], frames = new Map(), resizeCallbacks = [];
   let frameId = 0, time = 0, context;
   let stageSize = { width: 1200, height: 600 };
@@ -51,18 +51,30 @@ function fixture({ noWebGL = false, protocol = 'file' } = {}) {
       const height = this.id === 'trophy-stage' ? stageSize.height : 600;
       return { width, height, left: 0, top: 0, right: width, bottom: height };
     }
-    querySelector(selector) { return this === section && selector === '[data-trophy-players]' ? players : null; }
+    querySelector(selector) { return this === section && selector === '[data-trophy-players]' && !omitRollCall ? players : null; }
   }
   class Canvas extends Element {
     constructor() {
       super('canvas');
+      let transform = [1, 0, 0, 1, 0, 0];
+      const stack = [];
       const ctx = {
-        texts: [], drawnImages: [], drawImage(image) { this.drawnImages.push(image); }, fillRect() {}, beginPath() {}, moveTo() {}, lineTo() {}, stroke() {},
-        bezierCurveTo() {}, arc() {}, translate() {}, rotate() {}, save() {}, restore() {},
+        texts: [], textRuns: [], drawnImages: [], drawImage(image) { this.drawnImages.push(image); }, fillRect() {}, beginPath() {}, moveTo() {}, lineTo() {}, stroke() {},
+        bezierCurveTo() {}, arc() {},
+        translate(x, y) { transform[4] += transform[0] * x + transform[2] * y; transform[5] += transform[1] * x + transform[3] * y; },
+        rotate(angle) {
+          const [a, b, c, d, e, f] = transform, cos = Math.cos(angle), sin = Math.sin(angle);
+          transform = [a * cos + c * sin, b * cos + d * sin, c * cos - a * sin, d * cos - b * sin, e, f];
+        },
+        save() { stack.push({ transform: [...transform], font: this.font }); },
+        restore() { const saved = stack.pop(); transform = saved.transform; this.font = saved.font; },
         putImageData() {}, createPattern() { return {}; }, createImageData(w, h) { return { data: new Uint8ClampedArray(w * h * 4) }; },
         createRadialGradient() { return { addColorStop() {} }; },
-        measureText(text) { return { width: String(text).length * parseFloat(this.font || '10') * 0.55 }; },
-        fillText(text) { this.texts.push(text); }
+        measureText(text) { return { width: String(text).length * parseFloat((this.font || '10px').match(/[\d.]+px/)[0]) * 0.55 }; },
+        fillText(text, x, y, maxWidth) {
+          this.texts.push(text);
+          this.textRuns.push({ text, x: transform[0] * x + transform[2] * y + transform[4], y: transform[1] * x + transform[3] * y + transform[5], font: this.font, maxWidth });
+        }
       };
       this.getContext = () => ctx;
       this.toDataURL = () => 'data:image/png;base64,' + Buffer.from(ctx.texts.join('')).toString('base64');
@@ -74,6 +86,11 @@ function fixture({ noWebGL = false, protocol = 'file' } = {}) {
   const preview = new Element('span', 'trophy-preview-stage');
   const stage = new Element('div', 'trophy-stage');
   const flat = new Element('img', 'trophy-flat-image');
+  flat.alt = 'Front of a bronze championship shield with silver swirls.';
+  const backImage = new Element('img', 'trophy-back-image');
+  const imageModel = new Element('div', 'trophy-image-model');
+  imageModel.append(flat, backImage);
+  stage.append(imageModel);
   const loading = new Element('p', 'trophy-loading');
   const zoom = new Element('output', 'trophy-zoom-value');
   const status = new Element('p', 'trophy-view-status');
@@ -82,6 +99,7 @@ function fixture({ noWebGL = false, protocol = 'file' } = {}) {
   const plus = new Element('button', 'trophy-zoom-in');
   const minus = new Element('button', 'trophy-zoom-out');
   const reset = new Element('button', 'trophy-reset');
+  const move = new Element('button', 'trophy-pan');
   const front = new Element('button'); front.dataset.trophyView = 'front';
   const back = new Element('button'); back.dataset.trophyView = 'back';
   const open = new Element('button');
@@ -144,7 +162,7 @@ function fixture({ noWebGL = false, protocol = 'file' } = {}) {
     await new Promise(resolve => setImmediate(resolve));
   }
   function resize(width, height) { stageSize = { width, height }; resizeCallbacks.forEach(callback => callback()); }
-  return { document, nodes, contexts, renderers, preview, stage, dialog, open, front, back, plus, minus, reset, zoom, status, loading, flat, settle, resize };
+  return { document, nodes, contexts, renderers, preview, stage, dialog, open, front, back, plus, minus, reset, move, zoom, status, loading, flat, backImage, imageModel, settle, resize };
 }
 
 test('fits the default trophy view into portrait, landscape and desktop camera frames', async () => {
@@ -170,7 +188,7 @@ test('fits the default trophy view into portrait, landscape and desktop camera f
 });
 
 test('builds finite, dimensional geometry and paints the champion engraving', async () => {
-  const app = fixture();
+  const app = fixture({ omitRollCall: true });
   app.open.fire('click');
   await app.settle();
   assert.equal(app.stage.classList.contains('is-ready'), true, 'the 3D engine should initialize');
@@ -202,8 +220,19 @@ test('builds finite, dimensional geometry and paints the champion engraving', as
   const face = meshes.find(mesh => mesh.name === 'Aegis front relief');
   assert.ok(face.material.map.image.src.includes('data:image/png'), 'the detailed artwork must be used on the visible front');
   assert.ok(face.material.alphaTest > 0, 'the trophy image must not render as a rectangular card');
-  const paintedText = app.contexts.map(ctx => ctx.texts.join('').replace(/\s+/g, ' '));
-  assert.ok(paintedText.some(text => text.includes('2025 / SMOKE SPAMMERS') && ['BRYAN', 'JAYRIES', 'JHIM', 'LLOYD', 'DEN'].every(name => text.includes(name))), 'the engraved texture should contain the year, team and all five names');
+  const expected = ['2025', 'Smoke Spammers', 'BRYAN', 'JAYRIES', 'JHIM', 'LLOYD', 'DEN'];
+  const engravedSurfaces = app.contexts.filter(ctx => expected.every(text => ctx.texts.includes(text)));
+  assert.equal(engravedSurfaces.length, 2, 'both the color and bump maps must engrave the complete winning team');
+  for (const surface of engravedSurfaces) {
+    for (const row of surface.textRuns) {
+      const radius = Math.hypot(row.x - 1024, row.y - 984);
+      assert.ok(radius >= 370 && radius <= 548, 'engraving must stay inside the silver annulus');
+      assert.ok(Math.abs(row.x - 1024) < 2 && row.y < 984, 'the roster must occupy one panel, leaving the rest blank');
+    }
+    assert.equal(new Set(surface.texts).size, 7, 'there should be no filler text in future champion spaces');
+    const rows = surface.textRuns.filter((row, index, runs) => runs.findIndex(other => other.text === row.text) === index);
+    for (let i = 1; i < rows.length; i++) assert.ok(rows[i].y - rows[i - 1].y >= 20, 'year, team and five names must have separate rows');
+  }
 });
 
 test('HTTP pages load local PNG artwork while direct-file copies preserve the original pixels', async () => {
@@ -230,9 +259,13 @@ test('opens, turns, zooms within limits, resets and restores the preview on clos
   assert.equal(renderer.domElement.parentElement, app.stage);
   const model = renderer.scene.children.find(object => object.isGroup);
   const original = model.quaternion.toArray();
-  app.stage.fire('pointerdown', { pointerId: 1, clientX: 100, clientY: 100 });
+  const down = app.stage.fire('pointerdown', { pointerId: 1, clientX: 100, clientY: 100 });
+  assert.equal(down.defaultPrevented, true, 'native image dragging must not take over the gesture');
+  assert.equal(app.stage.classList.contains('is-dragging'), true);
+  assert.equal(app.stage.fire('dragstart').defaultPrevented, true);
   app.stage.fire('pointermove', { pointerId: 1, clientX: 180, clientY: 140 });
   app.stage.fire('pointerup', { pointerId: 1 });
+  assert.equal(app.stage.classList.contains('is-dragging'), false);
   await app.settle();
   assert.notDeepEqual(model.quaternion.toArray(), original);
   assert.equal(app.status.textContent, 'Free rotation');
@@ -262,7 +295,7 @@ test('selecting the engraved back during loading keeps that view when 3D becomes
   const app = fixture();
   app.open.fire('click');
   app.back.fire('click');
-  assert.ok(app.flat.src.endsWith('assets/aegis-back-detailed.png'));
+  assert.match(app.imageModel.style.transform, /rotateY\(3\.14159/);
   await app.settle();
   assert.equal(app.stage.classList.contains('is-ready'), true);
   assert.equal(app.back.getAttribute('aria-pressed'), 'true');
@@ -296,19 +329,95 @@ test('handles pinch zoom, cancellation, wheel zoom and keyboard controls', async
   assert.equal(app.front.getAttribute('aria-pressed'), 'true');
 });
 
-test('keeps front, engraving and close behavior available when 3D cannot initialize', async () => {
+test('keeps mouse and touch rotation, both faces, zoom, reset and closing available without WebGL', async () => {
   const app = fixture({ noWebGL: true });
   app.open.fire('click'); await app.settle();
   assert.equal(app.dialog.open, true);
   assert.equal(app.stage.classList.contains('is-ready'), false);
-  assert.match(app.loading.textContent, /Image view/);
+  assert.equal(app.stage.classList.contains('is-image-ready'), true);
+  assert.equal(app.flat.draggable, false);
+  assert.equal(app.backImage.draggable, false);
+  const frontPose = app.imageModel.style.transform;
+  app.stage.fire('pointerdown', { pointerId: 1, clientX: 100, clientY: 100 });
+  app.stage.fire('pointermove', { pointerId: 1, clientX: 500, clientY: 180 });
+  app.stage.fire('pointerup', { pointerId: 1 });
+  assert.notEqual(app.imageModel.style.transform, frontPose);
+  assert.equal(app.status.textContent, 'Free rotation');
+  assert.equal(app.front.getAttribute('aria-pressed'), 'false');
+  app.stage.fire('pointerdown', { pointerId: 2, pointerType: 'touch', clientX: 200, clientY: 200 });
+  const dragPose = app.imageModel.style.transform;
+  app.stage.fire('pointermove', { pointerId: 2, pointerType: 'touch', clientX: 180, clientY: 350 });
+  assert.notEqual(app.imageModel.style.transform, dragPose);
+  app.stage.fire('pointercancel', { pointerId: 2 });
+  const cancelledPose = app.imageModel.style.transform;
+  app.stage.fire('pointermove', { pointerId: 2, clientX: 700, clientY: 700 });
+  assert.equal(app.imageModel.style.transform, cancelledPose);
   app.back.fire('click'); await app.settle();
-  assert.ok(app.flat.src.startsWith('data:image/png'));
-  assert.match(app.flat.alt, /2025/); assert.match(app.flat.alt, /Smoke Spammers/); assert.match(app.flat.alt, /JAYRIES/);
+  assert.ok(app.backImage.src.startsWith('data:image/png'));
+  assert.match(app.backImage.alt, /2025/); assert.match(app.backImage.alt, /Smoke Spammers/); assert.match(app.backImage.alt, /JAYRIES/);
+  assert.match(app.imageModel.style.transform, /rotateY\(3\.14159/);
+  app.stage.fire('keydown', { key: 'ArrowDown' });
+  assert.match(app.imageModel.style.transform, /rotateX\(0\.192rad\)/);
+  app.plus.fire('click');
+  assert.match(app.imageModel.style.transform, /scale\(1\.2\)/);
+  app.resize(320, 500);
+  assert.equal(app.imageModel.style.width, '284px');
+  app.reset.fire('click');
+  assert.equal(app.imageModel.style.transform, frontPose);
   app.dialog.close();
   assert.equal(app.dialog.open, false);
   assert.equal(app.document.activeElement, app.open);
   app.open.fire('click'); await app.settle();
   assert.ok(app.flat.src.includes('data:image/png'));
   assert.match(app.flat.alt, /Front/);
+});
+
+test('dragging while artwork loads carries the rotation into the ready 3D view', async () => {
+  const app = fixture();
+  app.open.fire('click');
+  app.back.fire('click');
+  app.stage.fire('pointerdown', { pointerId: 1, clientX: 100, clientY: 100 });
+  app.stage.fire('pointermove', { pointerId: 1, clientX: 160, clientY: 125 });
+  const photoPose = app.imageModel.style.transform;
+  assert.equal(app.status.textContent, 'Free rotation');
+  await app.settle();
+  const model = app.renderers[0].scene.children.find(object => object.isGroup);
+  assert.ok(Math.abs(model.quaternion.y) < 0.99 && Math.abs(model.quaternion.y) > 0.9, 'loading must preserve the back view plus the user drag');
+  assert.equal(app.imageModel.style.transform, photoPose);
+  assert.equal(app.status.textContent, 'Free rotation');
+  app.dialog.close();
+  assert.equal(app.stage.classList.contains('is-dragging'), false);
+});
+
+test('Move mode, shift-drag and two-finger gestures reposition zoomed trophies in both renderers', async () => {
+  for (const noWebGL of [false, true]) {
+    const app = fixture({ noWebGL });
+    app.open.fire('click'); await app.settle();
+    const model = app.renderers[0]?.scene.children.find(object => object.isGroup);
+    const position = () => model ? model.position.toArray() : [app.imageModel.style.left, app.imageModel.style.top];
+    const original = position();
+    const rotation = model ? model.quaternion.toArray() : app.imageModel.style.transform;
+    app.move.fire('click');
+    assert.equal(app.move.getAttribute('aria-pressed'), 'true');
+    app.stage.fire('pointerdown', { pointerId: 1, clientX: 100, clientY: 100 });
+    app.stage.fire('pointermove', { pointerId: 1, clientX: 175, clientY: 160 });
+    app.stage.fire('pointerup', { pointerId: 1 });
+    assert.notDeepEqual(position(), original);
+    assert.deepEqual(model ? model.quaternion.toArray() : app.imageModel.style.transform, rotation, 'Move mode must pan without rotating');
+    app.reset.fire('click');
+    assert.deepEqual(position(), original);
+    assert.equal(app.move.getAttribute('aria-pressed'), 'false');
+    app.plus.fire('click');
+    app.stage.fire('pointerdown', { pointerId: 2, clientX: 100, clientY: 100, shiftKey: true });
+    app.stage.fire('pointermove', { pointerId: 2, clientX: 150, clientY: 180, shiftKey: true });
+    app.stage.fire('pointerup', { pointerId: 2 });
+    assert.notDeepEqual(position(), original, 'shift-drag must reposition the zoomed view');
+    app.front.fire('click');
+    assert.deepEqual(position(), original, 'view buttons must recenter the trophy');
+    for (const [pointerId, clientX] of [[3, 100], [4, 200]]) app.stage.fire('pointerdown', { pointerId, pointerType: 'touch', clientX, clientY: 100 });
+    for (const [pointerId, clientX] of [[3, 130], [4, 230]]) app.stage.fire('pointermove', { pointerId, pointerType: 'touch', clientX, clientY: 150 });
+    assert.notDeepEqual(position(), original, 'two-finger movement must pan as well as pinch');
+    app.dialog.close(); await app.settle();
+    assert.deepEqual(position(), original, 'closing must recenter the preview');
+  }
 });

@@ -7,6 +7,8 @@
   const preview = document.querySelector('#trophy-preview-stage');
   const stage = document.querySelector('#trophy-stage');
   const flatImage = document.querySelector('#trophy-flat-image');
+  const backImage = document.querySelector('#trophy-back-image');
+  const imageModel = document.querySelector('#trophy-image-model');
   const loading = document.querySelector('#trophy-loading');
   const zoomValue = document.querySelector('#trophy-zoom-value');
   const status = document.querySelector('#trophy-view-status');
@@ -23,7 +25,7 @@
   document.querySelectorAll('[data-trophy-team]').forEach(el => { el.textContent = identity.team; });
   document.querySelectorAll('[data-trophy-year]').forEach(el => { el.textContent = identity.year; });
   const rollCall = section.querySelector('[data-trophy-players]');
-  rollCall.replaceChildren(...identity.players.map(name => {
+  if (rollCall) rollCall.replaceChildren(...identity.players.map(name => {
     const item = document.createElement('li');
     item.textContent = name;
     return item;
@@ -36,38 +38,85 @@
   let fallback = false;
   let artwork = null;
   let lastFocus = null;
-  let currentSide = 'front';
   let zoom = 1;
+  let moveMode = false;
+  const offset = { x: 0, y: 0 };
+  const moveButton = document.querySelector('#trophy-pan');
+  const imagePose = { x: -0.08, y: -0.2 };
+  let selectedSide = 'front';
+  let pendingTurns = [];
   const pointers = new Map();
   let pinchDistance = 0;
 
+  // Keep the photo view interactive while WebGL loads, and on devices without WebGL.
+  function updateImagePose() {
+    imageModel.style.left = 'calc(50% + ' + offset.x + 'px)';
+    imageModel.style.top = 'calc(50% + ' + offset.y + 'px)';
+    imageModel.style.transform = 'translate(-50%, -50%) scale(' + zoom + ') rotateX(' + imagePose.x + 'rad) rotateY(' + imagePose.y + 'rad)';
+  }
+  function setMoveMode(value) {
+    moveMode = value;
+    moveButton.setAttribute('aria-pressed', String(value));
+    stage.classList[value ? 'add' : 'remove']('is-pan-mode');
+  }
+  function setPan(x, y) {
+    const bounds = stage.getBoundingClientRect();
+    offset.x = Math.max(-bounds.width / 2, Math.min(bounds.width / 2, x));
+    offset.y = Math.max(-bounds.height / 2, Math.min(bounds.height / 2, y));
+    if (engine) engine.setPan(offset.x, offset.y);
+    else updateImagePose();
+  }
+  function pan(dx, dy) {
+    setPan(offset.x + dx, offset.y + dy);
+  }
+  function resizeImage() {
+    const bounds = stage.getBoundingClientRect();
+    if (!bounds.width || !bounds.height) return;
+    const size = Math.max(1, Math.min(bounds.width, bounds.height) - 36);
+    imageModel.style.width = imageModel.style.height = size + 'px';
+  }
   function updateZoom() {
     zoomValue.textContent = Math.round(zoom * 100) + '%';
     document.querySelector('#trophy-zoom-out').disabled = zoom <= 0.75;
     document.querySelector('#trophy-zoom-in').disabled = zoom >= 2.5;
   }
   function announceSide(side) {
-    currentSide = side;
     viewButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.trophyView === side)));
     status.textContent = side === 'front' ? 'Front view' : side === 'back' ? 'Engraving view. ' + identity.players.join(', ') + '.' : 'Free rotation';
   }
   function setZoom(value) {
     zoom = Math.max(0.75, Math.min(2.5, value));
     if (engine) engine.setZoom(zoom);
-    else flatImage.style.transform = 'scale(' + zoom + ')';
+    else updateImagePose();
     updateZoom();
   }
   function backImageURL() {
     return artwork ? artwork.backSurface.toDataURL('image/png') : new URL('assets/aegis-back-detailed.png', baseURL).href;
   }
   function showSide(side, animate = true) {
+    selectedSide = side;
+    pendingTurns = [];
+    setPan(0, 0);
     announceSide(side);
     if (engine) engine.setView(side, animate && !reducedMotion.matches);
     else {
-      flatImage.src = side === 'back' ? backImageURL() : artwork ? artwork.front.src : new URL('assets/aegis-front-detailed.png', baseURL).href;
-      flatImage.alt = side === 'back' ? 'Back of the trophy, engraved with ' + identity.year + ', ' + identity.team + ', ' + identity.players.join(', ') + '.' : 'Front of the bronze and silver championship trophy.';
+      imagePose.x = side === 'back' ? 0 : -0.08;
+      imagePose.y = side === 'back' ? Math.PI : -0.2;
+      updateImagePose();
     }
   }
+  function rotate(dx, dy) {
+    if (engine) engine.rotate(dx, dy);
+    else {
+      imagePose.x += dy * 0.008;
+      imagePose.y += dx * 0.008;
+      if (!fallback) pendingTurns.push([dx, dy]);
+      updateImagePose();
+    }
+    announceSide('free');
+  }
+  flatImage.draggable = backImage.draggable = false;
+  backImage.alt = 'Back of the trophy, engraved with ' + identity.year + ', ' + identity.team + ', ' + identity.players.join(', ') + '.';
   function loadThree() {
     if (window.FTAPThree) return Promise.resolve(window.FTAPThree);
     return new Promise((resolve, reject) => {
@@ -102,28 +151,55 @@
     const ctx = surface.getContext('2d');
     if (!ctx) throw new Error('Canvas unavailable');
     ctx.drawImage(image, 0, 0, 2048, 2048);
-    function arc(text, radius, fontSize, bottom) {
-      ctx.font = fontSize + 'px Georgia, "Times New Roman", serif';
-      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-      const letters = [...text], widths = letters.map(letter => ctx.measureText(letter).width + 1.4);
-      const span = widths.reduce((sum, width) => sum + width, 0) / radius;
-      let angle = bottom ? Math.PI / 2 + span / 2 : -Math.PI / 2 - span / 2;
-      const direction = bottom ? -1 : 1;
-      letters.forEach((letter, index) => {
-        angle += direction * widths[index] / radius / 2;
-        ctx.save();
-        ctx.translate(1024 + Math.cos(angle) * radius, 984 + Math.sin(angle) * radius);
-        ctx.rotate(angle + (bottom ? -Math.PI / 2 : Math.PI / 2));
-        if (!bump) { ctx.fillStyle = '#dfd5c2'; ctx.fillText(letter, 0.8, 1.1); }
-        ctx.fillStyle = bump ? '#171717' : '#41372d';
-        ctx.fillText(letter, 0, 0);
-        ctx.restore();
-        angle += direction * widths[index] / radius / 2;
-      });
+    // A single radial panel, like the real Aegis. Leave the rest of the ring bare
+    // for future seasons instead of stretching one winning roster around it.
+    const center = { x: 1024, y: 984 };
+    const panelAngle = -Math.PI / 2;
+    const halfPanel = Math.PI / 10;
+    function cut(draw) {
+      if (!bump) {
+        ctx.save(); ctx.translate(0.8, 1.1);
+        ctx.fillStyle = ctx.strokeStyle = '#eee1c5';
+        draw(); ctx.restore();
+      }
+      ctx.fillStyle = ctx.strokeStyle = bump ? '#171717' : '#574b3f';
+      draw();
     }
-    arc(identity.year + '  /  ' + identity.team.toUpperCase(), 505, 52, false);
-    arc(identity.players.join('  ·  ').toUpperCase(), 435, 39, false);
-    arc('YEAR-END CIVIL WAR', 505, 36, true);
+    ctx.save();
+    ctx.translate(center.x, center.y);
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    for (const angle of [panelAngle - halfPanel, panelAngle + halfPanel]) {
+      ctx.save(); ctx.rotate(angle + Math.PI / 2);
+      ctx.lineWidth = 1.25; ctx.lineCap = 'round';
+      cut(() => {
+        ctx.beginPath();
+        for (const x of [-1.8, 1.8]) { ctx.moveTo(x, -518); ctx.lineTo(x, -371); }
+        // Small forked flourishes at the ends of each engraved divider.
+        for (const [y, direction] of [[-518, 1], [-371, -1]]) {
+          ctx.moveTo(-8, y + 10 * direction);
+          ctx.bezierCurveTo(-12, y - 3 * direction, 0, y + 3 * direction, 0, y - 3 * direction);
+          ctx.bezierCurveTo(0, y + 3 * direction, 12, y - 3 * direction, 8, y + 10 * direction);
+        }
+        ctx.stroke();
+      });
+      ctx.restore();
+    }
+    ctx.rotate(panelAngle + Math.PI / 2);
+    const rows = [
+      { text: identity.year, radius: 501, size: 24, weight: 'bold ' },
+      { text: identity.team, radius: 476, size: 22, weight: 'italic ' },
+      ...identity.players.map((name, index) => ({
+        text: name, radius: 452 - index * (80 / Math.max(1, identity.players.length - 1)), size: 20, weight: ''
+      }))
+    ];
+    for (const row of rows) {
+      const availableWidth = 2 * (row.radius - row.size) * Math.tan(halfPanel) - 24;
+      let size = row.size;
+      do { ctx.font = row.weight + size + 'px Georgia, "Times New Roman", serif'; size -= 0.5; }
+      while (ctx.measureText(row.text).width > availableWidth && size >= 12);
+      cut(() => ctx.fillText(row.text, 0, -row.radius, availableWidth));
+    }
+    ctx.restore();
     return surface;
   }
   async function loadArtwork() {
@@ -141,7 +217,8 @@
     artwork = { shape: window.FTAPAegisShape, front, back, backSurface: paintEngraving(back), backBump: paintEngraving(back, true) };
     const previewImage = preview.querySelector('img');
     if (previewImage) previewImage.src = front.src;
-    if (fallback && dialog.open) showSide(currentSide, false);
+    flatImage.src = front.src;
+    backImage.src = backImageURL();
     return artwork;
   }
   function mountEngine() {
@@ -157,16 +234,18 @@
     initialization = Promise.all([loadThree(), loadArtwork()]).then(([THREE, art]) => {
       engine = createEngine(THREE, art);
       mountEngine();
-      engine.setView(currentSide, false);
+      engine.setView(selectedSide, false);
+      pendingTurns.forEach(turn => engine.rotate(...turn));
+      pendingTurns = [];
       engine.setZoom(zoom);
+      engine.setPan(offset.x, offset.y);
       return engine;
     }).catch(() => {
       fallback = true;
-      loading.textContent = 'Image view · 3D is unavailable on this device.';
-      document.querySelector('#trophy-controls-help').textContent = 'Use Front and Engraving to turn the trophy · Zoom controls · Esc to close';
-      const label = document.querySelector('.trophy-preview-label');
-      if (label) label.textContent = 'Championship trophy';
-      showSide(currentSide, false);
+      pendingTurns = [];
+      stage.classList.add('is-image-ready');
+      loading.textContent = 'Interactive image view';
+      updateImagePose();
       return null;
     });
     return initialization;
@@ -177,8 +256,9 @@
     document.querySelectorAll('dialog[open]').forEach(item => item.close());
     zoom = 1;
     updateZoom();
-    flatImage.style.transform = '';
     dialog.showModal();
+    resizeImage();
+    setMoveMode(false);
     stage.focus({ preventScroll: true });
     if (engine) {
       mountEngine();
@@ -191,17 +271,22 @@
   dialog.addEventListener('close', () => {
     pointers.clear();
     pinchDistance = 0;
+    stage.classList.remove('is-dragging');
+    setMoveMode(false);
+    setZoom(1);
+    showSide('front', false);
     if (engine) {
-      engine.cancelAnimation();
       preview.append(engine.canvas);
-      engine.setView('front', false);
-      engine.setZoom(1);
       engine.resize(preview);
     }
     if (lastFocus?.isConnected) lastFocus.focus({ preventScroll: true });
   });
   viewButtons.forEach(button => button.addEventListener('click', () => showSide(button.dataset.trophyView)));
-  document.querySelector('#trophy-reset').addEventListener('click', () => { setZoom(1); showSide('front'); });
+  document.querySelector('#trophy-reset').addEventListener('click', () => { setZoom(1); showSide('front'); setMoveMode(false); });
+  moveButton.addEventListener('click', () => {
+    setMoveMode(!moveMode);
+    status.textContent = moveMode ? 'Move mode. Drag to reposition the trophy.' : 'Rotate mode. Drag to turn the trophy.';
+  });
   document.querySelector('#trophy-zoom-in').addEventListener('click', () => setZoom(zoom + 0.2));
   document.querySelector('#trophy-zoom-out').addEventListener('click', () => setZoom(zoom - 0.2));
   stage.addEventListener('wheel', event => {
@@ -212,10 +297,14 @@
     const values = [...pointers.values()];
     return values.length < 2 ? 0 : Math.hypot(values[0].x - values[1].x, values[0].y - values[1].y);
   }
+  stage.addEventListener('dragstart', event => event.preventDefault());
   stage.addEventListener('pointerdown', event => {
     if (event.button !== 0 && event.pointerType === 'mouse') return;
+    // Prevent the browser's native image drag from cancelling our pointer stream.
+    event.preventDefault();
     pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
     stage.setPointerCapture(event.pointerId);
+    stage.classList.add('is-dragging');
     pinchDistance = pointerDistance();
     stage.focus({ preventScroll: true });
   });
@@ -228,30 +317,33 @@
       const distance = pointerDistance();
       if (pinchDistance > 0) setZoom(zoom * distance / pinchDistance);
       pinchDistance = distance;
-    } else if (engine && (Math.abs(dx) + Math.abs(dy) > 0)) {
-      engine.rotate(dx, dy);
-      announceSide('free');
+      pan(dx / 2, dy / 2);
+    } else if (Math.abs(dx) + Math.abs(dy) > 0) {
+      if (moveMode || event.shiftKey) pan(dx, dy);
+      else rotate(dx, dy);
     }
   });
   function releasePointer(event) {
     pointers.delete(event.pointerId);
     pinchDistance = pointerDistance();
+    if (!pointers.size) stage.classList.remove('is-dragging');
   }
   ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(type => stage.addEventListener(type, releasePointer));
   stage.addEventListener('keydown', event => {
     const rotations = { ArrowLeft: [-24, 0], ArrowRight: [24, 0], ArrowUp: [0, -24], ArrowDown: [0, 24] };
     if (rotations[event.key]) {
       event.preventDefault();
-      if (engine) { engine.rotate(...rotations[event.key]); announceSide('free'); }
-      else if (fallback) showSide(currentSide === 'front' ? 'back' : 'front', false);
+      if (moveMode || event.shiftKey) pan(...rotations[event.key]);
+      else rotate(...rotations[event.key]);
     } else if (['+', '=', '-', '0', 'Home'].includes(event.key)) {
       event.preventDefault();
-      if (event.key === '0' || event.key === 'Home') { setZoom(1); showSide('front'); }
+      if (event.key === '0' || event.key === 'Home') { setZoom(1); showSide('front'); setMoveMode(false); }
       else setZoom(zoom + (event.key === '-' ? -0.2 : 0.2));
     }
   });
   const resizeObserver = new ResizeObserver(() => {
     if (engine) engine.resize(dialog.open ? stage : preview);
+    if (dialog.open) { resizeImage(); setPan(offset.x, offset.y); }
   });
   resizeObserver.observe(preview);
   resizeObserver.observe(stage);
@@ -280,7 +372,17 @@
     const frontQuaternion = new T.Quaternion().setFromEuler(new T.Euler(-0.08, -0.2, 0.02));
     const backQuaternion = new T.Quaternion().setFromEuler(new T.Euler(0, Math.PI, 0));
     trophy.quaternion.copy(frontQuaternion);
-    let animation = 0, renderFrame = 0, baseDistance = 9, modelZoom = 1;
+    let animation = 0, renderFrame = 0, baseDistance = 9, modelZoom = 1, viewportHeight = 1;
+    const modelOffset = { x: 0, y: 0 };
+    function applyPan() {
+      const unitsPerPixel = 2 * (baseDistance / modelZoom) * Math.tan(camera.fov * Math.PI / 360) / viewportHeight;
+      trophy.position.x = modelOffset.x * unitsPerPixel;
+      trophy.position.y = -0.03 - modelOffset.y * unitsPerPixel;
+    }
+    function setPan(x, y) {
+      modelOffset.x = x; modelOffset.y = y;
+      applyPan(); scheduleRender();
+    }
     function render() { renderer.render(scene, camera); }
     function scheduleRender() {
       if (!renderFrame) renderFrame = requestAnimationFrame(() => { renderFrame = 0; render(); });
@@ -304,17 +406,20 @@
     function setZoom(value) {
       modelZoom = value;
       camera.position.z = baseDistance / modelZoom;
+      applyPan();
       scheduleRender();
     }
     function resize(target) {
       const bounds = target.getBoundingClientRect();
       if (!bounds.width || !bounds.height) return;
       camera.aspect = bounds.width / bounds.height;
+      viewportHeight = bounds.height;
       camera.updateProjectionMatrix();
       const span = Math.max(art.shape.height, art.shape.width / camera.aspect);
       baseDistance = span * 1.18 / (2 * Math.tan(camera.fov * Math.PI / 360)) + 0.2;
       camera.position.set(0, 0.06, baseDistance / modelZoom);
       camera.lookAt(0, 0, 0);
+      applyPan();
       renderer.setSize(Math.round(bounds.width), Math.round(bounds.height));
       scheduleRender();
     }
@@ -436,7 +541,7 @@
     const fill = new T.DirectionalLight(0xc4cddd, 1.3); fill.position.set(5, 1, 5); scene.add(fill);
     const rim = new T.DirectionalLight(0xc1b5ce, 1.4); rim.position.set(2, 4, -5); scene.add(rim);
     return {
-      canvas: renderer.domElement, resize, setZoom, setView, cancelAnimation,
+      canvas: renderer.domElement, resize, setZoom, setView, setPan, cancelAnimation,
       rotate(dx, dy) {
         cancelAnimation();
         const rotation = new T.Quaternion().setFromEuler(new T.Euler(dy * 0.008, dx * 0.008, 0));

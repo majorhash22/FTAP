@@ -5,6 +5,8 @@
 #trophy-title{font-size:clamp(34px,4vw,60px);line-height:1.08}
 #trophy-title>span{color:var(--trophy-gold)}
 .trophy-team{color:#9974ae;font-family:var(--serif);font-size:26px;margin-top:24px}
+.trophy-team.trophy-next-champions{color:var(--muted);font-family:var(--sans);font-size:15px;margin-top:12px}
+.champions-title-year{color:#d0b077;font-size:11px;line-height:1.6;text-transform:uppercase;letter-spacing:.12em;margin-top:12px}
 .trophy-description{font-size:15px;line-height:1.9;margin-top:14px;max-width:40ch}
 .trophy-open-button{margin-top:28px;border-color:#a78a5c;color:#e3d3b8}
 .trophy-roll-call{margin-top:34px;padding-top:23px;border-top:1px solid #c3a26c33}
@@ -30,14 +32,17 @@
 .trophy-viewer-header .trophy-eyebrow{margin-bottom:5px;font-size:9px}
 .trophy-viewer-header h2{font-size:27px;text-transform:none;color:#b093c1;margin:0;line-height:1.25}
 .trophy-dialog .trophy-close{position:static;width:48px;height:48px;flex-shrink:0;border:1px solid var(--border);font-size:30px}
-.trophy-stage{position:relative;min-width:0;min-height:0;overflow:hidden;touch-action:none;overscroll-behavior:contain;cursor:grab;outline:none;background:radial-gradient(ellipse at 50% 48%,#25303880,transparent 70%)}
-.trophy-stage:active{cursor:grabbing}
+.trophy-stage{position:relative;min-width:0;min-height:0;overflow:hidden;touch-action:none;overscroll-behavior:contain;user-select:none;-webkit-user-select:none;perspective:1500px;cursor:grab;outline:none;background:radial-gradient(ellipse at 50% 48%,#25303880,transparent 70%)}
+.trophy-stage.is-dragging{cursor:grabbing}
+.trophy-stage.is-pan-mode{cursor:move}
 .trophy-stage:focus-visible{box-shadow:inset 0 0 0 2px #c3a26c}
-.trophy-stage .trophy-canvas{position:absolute;inset:0}
-.trophy-flat-image{display:block;width:100%;height:100%;object-fit:contain;padding:18px;transform-origin:center}
-.trophy-stage.is-ready .trophy-flat-image{display:none}
+.trophy-stage .trophy-canvas{position:absolute;inset:0;pointer-events:none}
+.trophy-image-model{position:absolute;left:50%;top:50%;width:80%;aspect-ratio:1;transform:translate(-50%,-50%);transform-style:preserve-3d;pointer-events:none}
+.trophy-flat-image{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:contain;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:translateZ(2px);pointer-events:none;-webkit-user-drag:none}
+.trophy-image-back{transform:rotateY(180deg) translateZ(2px)}
+.trophy-stage.is-ready .trophy-image-model{display:none}
 .trophy-loading{position:absolute;bottom:20px;left:20px;right:20px;text-align:center;pointer-events:none;font-size:12px;color:#c3a26c}
-.trophy-stage.is-ready .trophy-loading{display:none}
+.trophy-stage.is-ready .trophy-loading,.trophy-stage.is-image-ready .trophy-loading{display:none}
 .trophy-viewer-footer{padding:18px 36px calc(18px + env(safe-area-inset-bottom));background:#0c1114;border-top:1px solid #c3a26c25;z-index:1}
 .trophy-toolbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
 .trophy-view-controls,.trophy-zoom-controls{display:flex;align-items:center;gap:8px}
