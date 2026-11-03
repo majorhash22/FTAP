@@ -226,6 +226,45 @@
     carousel.addEventListener('pointercancel', () => { touchStart = null; });
   }
 
+  // One team at a time; all lineups remain available without JavaScript.
+  const teamsCarousel = $('#teams-carousel');
+  if (teamsCarousel) {
+    const slides = [...teamsCarousel.querySelectorAll('.team-slide')];
+    const tabs = [...teamsCarousel.querySelectorAll('.team-tab')];
+    let current = 0;
+    function showTeam(index) {
+      current = (index + slides.length) % slides.length;
+      slides.forEach((slide, i) => {
+        slide.hidden = i !== current;
+        slide.classList.toggle('is-active', i === current);
+      });
+      tabs.forEach((tab, i) => tab.setAttribute('aria-pressed', String(i === current)));
+      teamsCarousel.querySelector('.team-carousel-position').textContent = `${String(current + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')} · Team ${String.fromCharCode(65 + current)}`;
+    }
+    teamsCarousel.classList.add('is-ready');
+    showTeam(0);
+    tabs.forEach((tab, i) => tab.addEventListener('click', () => showTeam(i)));
+    teamsCarousel.querySelector('[data-team-previous]').addEventListener('click', () => showTeam(current - 1));
+    teamsCarousel.querySelector('[data-team-next]').addEventListener('click', () => showTeam(current + 1));
+    teamsCarousel.addEventListener('keydown', event => {
+      if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+      event.preventDefault();
+      showTeam(event.key === 'Home' ? 0 : event.key === 'End' ? slides.length - 1 : current + (event.key === 'ArrowRight' ? 1 : -1));
+      if (event.target.closest('.team-tab')) tabs[current].focus();
+    });
+    let touchStart;
+    teamsCarousel.addEventListener('pointerdown', event => {
+      touchStart = event.pointerType === 'touch' && !event.target.closest('button') ? { x: event.clientX, y: event.clientY } : null;
+    });
+    teamsCarousel.addEventListener('pointerup', event => {
+      if (!touchStart) return;
+      const dx = event.clientX - touchStart.x, dy = event.clientY - touchStart.y;
+      touchStart = null;
+      if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) showTeam(current + (dx < 0 ? 1 : -1));
+    });
+    teamsCarousel.addEventListener('pointercancel', () => { touchStart = null; });
+  }
+
   const gallery = list(config.gallery).filter(item => item && safeImage(item.src));
   let galleryIndex = 0;
   function displayGallery(index) {

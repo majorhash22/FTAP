@@ -15,3 +15,11 @@ FTAP supplied `gamingbg.png`, `vault.jpg`, `icefrogdota.jpg`, and `smokespammers
 
 
 The Smoke Spammers asset was replaced with FTAP’s follow-up image. The replacement is copied unchanged; the website only scales it to fit the champion slide.
+
+## Tournament player cards
+
+`assets/player-locked.svg` is an original, code-drawn black silhouette with a padlock. It represents a locked character portrait and does not depict an actual player. The portrait panels follow FTAP's supplied team-presentation reference; player names, captain labels, lanes, champion badges, and medals remain native website elements.
+
+The six PNG files in `assets/medals/` are Dota 2 medal artwork by Valve, downloaded unchanged from OpenDota's asset collection. They match the medal styles in the supplied rank reference. Sources: [Crusader](https://www.opendota.com/assets/images/dota2/rank_icons/rank_icon_3.png), [Archon](https://www.opendota.com/assets/images/dota2/rank_icons/rank_icon_4.png), [Legend](https://www.opendota.com/assets/images/dota2/rank_icons/rank_icon_5.png), [Ancient](https://www.opendota.com/assets/images/dota2/rank_icons/rank_icon_6.png), [Divine](https://www.opendota.com/assets/images/dota2/rank_icons/rank_icon_7.png), and [Immortal](https://www.opendota.com/assets/images/dota2/rank_icons/rank_icon_8.png). The site serves local copies and does not request these sources when visitors open it.
+
+Medals follow the supplied roster key: navy = Crusader, green = Archon, brown = Legend, blue = Ancient, purple = Divine, red = Immortal. Star divisions and leaderboard positions are not assigned. The population percentages in the reference are not used.
