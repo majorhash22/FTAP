@@ -176,7 +176,7 @@
       const date = node('span', 'event-date');
       date.append(node('strong', '', start.getDate()), node('span', '', start.toLocaleDateString(undefined, { month: 'short' })));
       const content = node('span'); content.append(node('h3', '', event.title), paragraph(localEventDate(start)));
-      const arrow = node('span', 'event-arrow', '↗'); arrow.setAttribute('aria-hidden', 'true'); button.append(date, content, arrow);
+      button.append(date, content);
       button.addEventListener('click', () => {
         const dialog = openContent(event.type || 'Community event', event.title);
         $('#content-dialog-body').append(paragraph(`${localEventDate(start)}\nUntil ${localEventDate(end)}\n${event.location || 'Discord'}`, 'profile-games'), paragraph(event.description || 'Find the party in Discord.'));
@@ -287,7 +287,7 @@
       const image = node('img', 'gallery-image'); image.src = item.src; image.alt = item.alt || item.title || 'FTAP community image'; image.loading = 'lazy'; image.width = 1672; image.height = 941;
       const caption = node('span', 'gallery-item-caption'); const title = node('span');
       title.append(paragraph(item.category || 'Community gallery', 'section-label'), node('h3', '', item.title || 'Community memory'));
-      caption.append(title, node('span', 'gallery-open', 'View image ↗')); button.append(image, caption);
+      caption.append(title, node('span', 'gallery-open', 'View image')); button.append(image, caption);
       button.addEventListener('click', () => { displayGallery(index); showDialog($('#gallery-dialog')); }); galleryTarget.append(button);
     });
   } else {
