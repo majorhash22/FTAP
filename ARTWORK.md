@@ -16,6 +16,8 @@ FTAP supplied `gamingbg.png`, `vault.jpg`, `icefrogdota.jpg`, and `smokespammers
 
 The Smoke Spammers asset was replaced with FTAP’s follow-up image. The replacement is copied unchanged; the website only scales it to fit the champion slide.
 
+`assets/smokespammers-background.png` is the supplied “Dota 2_ Heroes of the Ashen Battlefield.png”, copied unchanged at 1024 × 1536 pixels. It forms the Smoke Spammers slide's decorative background, using the same image opacity and dark gradient overlays as the Year-End Civil War poster. CSS scales and crops it to cover the slide at each screen size.
+
 ## Tournament player cards
 
 `assets/player-locked.svg` is an original, code-drawn black silhouette and does not depict an actual player. The padlock has been removed from the shared asset. The portrait panels follow FTAP's supplied team-presentation reference; player names, captain labels, lanes, champion badges, and medals remain native website elements.

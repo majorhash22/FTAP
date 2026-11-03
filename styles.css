@@ -32,7 +32,7 @@
 .event-slide{height:400px;min-height:400px;position:relative;overflow:hidden;isolation:isolate}
 .event-slide.is-active{animation:event-slide-enter .4s ease-out}
 .tournament-art{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;opacity:.36;z-index:-2}
-.tournament-slide:after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#10161def,transparent),linear-gradient(0deg,#111619,transparent 80%);z-index:-1}
+.tournament-slide:after,.champions-slide:after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#10161def,transparent),linear-gradient(0deg,#111619,transparent 80%);z-index:-1}
 .tournament-copy{padding:36px 40px}
 .tournament-copy>.section-label{color:#d7c6aa;font-size:10px}
 .event-slide h3{font-family:var(--serif);font-size:clamp(32px,3.3vw,49px);font-weight:500;line-height:1.04;text-transform:uppercase;letter-spacing:-.02em;margin-top:17px}
@@ -57,7 +57,8 @@
 
 /* Natural image proportions and content-sized rows keep the logo above its divider. */
 .event-slide{height:auto;min-height:540px}
-.champions-slide{--champion-gold:#d0b077;display:grid;grid-template-columns:1fr;grid-template-rows:auto 1fr auto;align-items:stretch;justify-items:stretch;align-content:stretch;gap:24px;padding:28px;background:radial-gradient(ellipse at 20% 45%,#d0b0770f,transparent 65%),#15191d;box-shadow:inset 0 3px 0 #d0b077}
+.champions-slide{--champion-gold:#d0b077;display:grid;grid-template-columns:1fr;grid-template-rows:auto 1fr auto;align-items:stretch;justify-items:stretch;align-content:stretch;gap:24px;padding:28px;background:#15191d;box-shadow:inset 0 3px 0 #d0b077}
+.champions-art{object-position:50% 40%}
 .champions-header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-bottom:15px;border-bottom:1px solid #d0b07730;text-align:left}
 .champions-kicker{color:var(--champion-gold);font-size:10px;letter-spacing:.16em}
 .champions-competition{font-size:11px;color:var(--muted);margin-top:4px}
