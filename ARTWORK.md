@@ -32,10 +32,10 @@ The Smoke Spammers asset was replaced with FTAP’s follow-up image. The replace
 
 ## Tournament player cards
 
-`assets/player-locked.svg` is an original, code-drawn black silhouette and does not depict an actual player. The padlock has been removed from the shared asset. The portrait panels follow FTAP's supplied team-presentation reference; player names, captain labels, lanes, champion badges, and medals remain native website elements.
+`assets/player-man.png` and `assets/player-woman.png` are FTAP's supplied headset-and-jersey portraits, copied unchanged from `men.png` and `women.png`. Both are transparent PNGs at 1086 × 1448 pixels. Bunbun and Kat use the female portrait, and the other 30 tournament players use the male portrait. The portrait panels follow FTAP's supplied team-presentation reference; player names, captain labels, lanes, champion badges, and medals remain native website elements.
 
-`assets/player-silhouette-woman.svg` is the matching silhouette used for Bunbun and Kat. It adds shoulder-length hair while keeping the same faceless style, dark palette, hoodie, 320 × 440 view box, and responsive portrait sizing.
+`assets/player-locked.svg` and `assets/player-silhouette-woman.svg` are the earlier code-drawn silhouettes, retained as legacy assets. The roster now uses the supplied PNG portraits with the existing responsive card sizing.
 
 The six PNG files in `assets/medals/` are Dota 2 medal artwork by Valve, downloaded unchanged from OpenDota's asset collection. They match the medal styles in the supplied rank reference. Sources: [Crusader](https://www.opendota.com/assets/images/dota2/rank_icons/rank_icon_3.png), [Archon](https://www.opendota.com/assets/images/dota2/rank_icons/rank_icon_4.png), [Legend](https://www.opendota.com/assets/images/dota2/rank_icons/rank_icon_5.png), [Ancient](https://www.opendota.com/assets/images/dota2/rank_icons/rank_icon_6.png), [Divine](https://www.opendota.com/assets/images/dota2/rank_icons/rank_icon_7.png), and [Immortal](https://www.opendota.com/assets/images/dota2/rank_icons/rank_icon_8.png). The site serves local copies and does not request these sources when visitors open it.
 
-Medals follow the supplied roster key: navy = Crusader, green = Archon, brown = Legend, blue = Ancient, purple = Divine, red = Immortal. Star divisions and leaderboard positions are not assigned. The population percentages in the reference are not used.
+Medals follow the supplied roster key and subsequent rank corrections: navy = Crusader, green = Archon, brown = Legend, blue = Ancient, purple = Divine, red = Immortal. JL (JLPQ) and Jing have been updated to Legend. Star divisions and leaderboard positions are not assigned. The population percentages in the reference are not used.
