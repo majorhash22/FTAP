@@ -136,12 +136,24 @@
 .team-slide-header{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:30px}
 .team-slide-header .section-label{font-size:9px;letter-spacing:.2em;color:var(--muted);margin-bottom:5px}
 .team-slide-header h3{font-family:var(--serif);font-weight:400;font-size:44px;text-transform:uppercase;line-height:1.1}
+.team-baddiengan,.team-baddiengan-tab{--background:#000000;--accent:#C50B14;--text:#E0D3D1}
+.team-baddiengan-tab{overflow-wrap:anywhere}
+.team-baddiengan{--muted:#E0D3D1;--border:#C50B1455;background:var(--background);color:var(--text);border-top-color:var(--accent)}
+.team-baddiengan .team-slide-header>div{min-width:0}
+.team-baddiengan .team-slide-header h3{font-size:clamp(26px,4vw,44px);overflow-wrap:anywhere}
+.team-baddiengan .team-logo{width:clamp(76px,12vw,140px);height:auto;flex-shrink:0;object-fit:contain}
+.team-baddiengan .player-portrait{border-color:var(--accent)}
+.team-baddiengan .captain-badge{background:var(--accent);color:var(--text)}
+.team-baddiengan .player-medal>span{color:var(--text)}
+.team-baddiengan-tab:hover{border-color:var(--accent)}
+.team-baddiengan-tab[aria-pressed=true]{color:var(--text)}
 .team-player-count{font-size:12px}
 .team-lineup{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px;list-style:none;margin:0;padding:0}
 .player-card{min-width:0;position:relative}
 .player-portrait{position:relative;isolation:isolate;aspect-ratio:3/4;overflow:hidden;border:1px solid #626a6e;background:radial-gradient(ellipse at 50% 35%,#46545a,#252e33 50%,#0c1013);clip-path:polygon(7% 0,100% 0,93% 100%,0 100%)}
 .player-portrait:before{content:'';position:absolute;inset:auto 0 0;height:45%;background:linear-gradient(transparent,#020405d9);z-index:1;pointer-events:none}
 .locked-character{position:absolute;width:110%;max-width:none;height:100%;left:-5%;bottom:0;object-fit:contain;object-position:center bottom}
+.player-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}
 .captain-badge{position:absolute;z-index:2;top:14px;left:17px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.13em;color:#fff;background:#9d3529;padding:3px 7px}
 .player-medal{position:absolute;z-index:2;bottom:12px;right:18px;display:flex;align-items:center;flex-direction:column;gap:2px}
 .player-medal img{width:70px;height:70px;object-fit:contain;filter:drop-shadow(0 3px 5px #0009)}
