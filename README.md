@@ -4,9 +4,9 @@ The interactive trophy room is documented in [TROPHY.md](TROPHY.md), including c
 
 ## Image optimization
 
-The site serves WebP copies from `assets/optimized/`. The complete optimized image set, including mobile hero and trophy preview variants, is 6.94 MB versus 76.95 MB of original artwork (91.0% fewer image bytes). Originals remain available in `assets/` for future edits. Portraits and backgrounds use high-quality compression; full-resolution trophy textures retain identical pixels and transparent edges.
+The site serves WebP copies from `assets/optimized/`. The complete optimized image set, including mobile hero and trophy preview variants, is 7.20 MB versus 86.97 MB of original artwork (91.7% fewer image bytes). Originals remain available in `assets/` for future edits. Portraits and backgrounds use high-quality compression; full-resolution trophy textures retain identical pixels and transparent edges.
 
-All 22 supplied player photos use WebP at up to 640 pixels wide and quality 82, about 23–70 KB per photo. Default portraits use 600 × 800 WebP at quality 84. These sizes cover the player cards at twice their display resolution. All 32 cards use lazy loading and asynchronous image decoding. The unique portraits used by the roster total about 0.88 MB, down from 2.93 MB before this compression update (70% fewer image bytes). The optimizer applies these settings to future player photos too.
+All 26 supplied player photos use WebP at up to 640 pixels wide and quality 82, about 23–70 KB per photo. Default portraits use 600 × 800 WebP at quality 84. These sizes cover the player cards at twice their display resolution. All 32 cards use lazy loading and asynchronous image decoding. The unique portraits used by the roster total about 1.01 MB. The optimizer applies these settings to future player photos too.
 
 The hero uses a smaller responsive image on phones, with matching preload settings to avoid a duplicate download. Other images decode asynchronously, and images inside closed dialogs load lazily. Full trophy textures and the 3D library load when the trophy approaches the screen or the viewer opens. HTTP pages never download the embedded direct-file texture script.
 
@@ -146,7 +146,9 @@ Chrome browser checks covered rendered widths of 320, 390, approximately 768 and
 
 ## Team portrait carousel and medal update
 
-The tournament team section now shows one team at a time. Select Teams A–F with the team buttons, previous/next arrows, left/right arrow keys, or Home/End keys. Touch-swipe handling is included. The carousel does not advance automatically. Without JavaScript, all six team presentations remain stacked and readable.
+The tournament team section shows one team at a time. Select a team with its named button, previous/next arrows, left/right arrow keys, or Home/End keys. The status label includes the selected team's name. Touch-swipe handling is included. The carousel does not advance automatically. Without JavaScript, all six team presentations remain stacked and readable.
+
+Apex (Team 4, formerly Restarted Noobs) uses its supplied logo and jersey portraits for Haru, Zen (formerly Yeeet), RueQiea, and Suneyo; choongiii retains the default portrait. The logo and four photos total 266 KB in WebP, down from 10.02 MB of source PNGs. Apex uses primary `#00E5F5`, secondary `#E4EAF2`, and background `#050E15`. Team Wraith uses primary `#B89B72`, secondary `#00D9FF`, and background `#080D11`, with the secondary blue for tab hover.
 
 Each lineup uses five angled portrait panels with a black silhouette, the player's name and lane, and a local Dota 2 rank medal. “Captain” is a separate role label on the portrait. Zoro, Den, and Yeeeeez retain gold names and “2025 Champ” badges. Natnat and Pardun appear as separate sixth-man cards beneath their respective starting lineups. The medals follow the supplied roster's color key; see `ARTWORK.md` for asset sources. To edit the lineup, update the relevant `.team-slide` article in `index.html`, including its names, roles, medal filenames, and rank labels.
 

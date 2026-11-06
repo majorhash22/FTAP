@@ -139,8 +139,8 @@
 .team-baddiengan,.team-baddiengan-tab{--background:#000000;--accent:#C50B14;--text:#E0D3D1}
 .team-baddiengan-tab{overflow-wrap:anywhere}
 .team-baddiengan{--muted:#E0D3D1;--border:#C50B1455;background:var(--background);color:var(--text);border-top-color:var(--accent)}
-:is(.team-baddiengan,.team-kat-and-friends,.team-scourge,.team-kneegrow,.team-wraith) .team-slide-header>div{min-width:0}
-:is(.team-baddiengan,.team-kat-and-friends,.team-scourge,.team-kneegrow,.team-wraith) .team-slide-header h3{font-size:clamp(26px,4vw,44px);overflow-wrap:anywhere}
+:is(.team-baddiengan,.team-kat-and-friends,.team-scourge,.team-kneegrow,.team-wraith,.team-apex) .team-slide-header>div{min-width:0}
+:is(.team-baddiengan,.team-kat-and-friends,.team-scourge,.team-kneegrow,.team-wraith,.team-apex) .team-slide-header h3{font-size:clamp(26px,4vw,44px);overflow-wrap:anywhere}
 .team-slide-header .team-logo{width:clamp(76px,12vw,140px);max-height:140px;height:auto;flex-shrink:0;object-fit:contain}
 .team-baddiengan .player-portrait{border-color:var(--accent)}
 .team-baddiengan .captain-badge{background:var(--accent);color:var(--text)}
@@ -169,13 +169,20 @@
 .team-kneegrow .player-medal>span{color:var(--text)}
 .team-kneegrow-tab:hover{border-color:var(--accent)}
 .team-kneegrow-tab[aria-pressed=true]{color:var(--accent-ink)}
-.team-wraith,.team-wraith-tab{--background:#07111B;--accent:#B99462;--accent-bright:#2BD4EF;--text:#EDE6D9;--accent-ink:#07111B}
-.team-wraith{--muted:#B9C2CC;--border:#B9946255;background:var(--background);color:var(--text);border-top-color:var(--accent)}
+.team-wraith,.team-wraith-tab{--primary:#B89B72;--secondary:#00D9FF;--background:#080D11;--accent:var(--primary);--accent-bright:var(--secondary);--text:#EDE6D9;--accent-ink:var(--background)}
+.team-wraith{--muted:#B9C2CC;--border:#B89B7255;background:var(--background);color:var(--text);border-top-color:var(--accent)}
 .team-wraith .player-portrait{border-color:var(--accent);background:var(--background)}
 .team-wraith .captain-badge{background:var(--accent);color:var(--accent-ink)}
 .team-wraith .player-medal>span{color:var(--text)}
 .team-wraith-tab:hover{background:var(--accent-bright);border-color:var(--accent-bright);color:var(--accent-ink)}
 .team-wraith-tab[aria-pressed=true]{color:var(--accent-ink)}
+.team-apex,.team-apex-tab{--primary:#00E5F5;--secondary:#E4EAF2;--background:#050E15;--accent:var(--primary);--accent-bright:var(--secondary);--text:var(--secondary)}
+.team-apex{--muted:var(--secondary);--border:#00E5F555;background:var(--background);color:var(--text);border-top-color:var(--primary)}
+.team-apex .player-portrait{border-color:var(--primary);background:var(--background)}
+.team-apex .captain-badge{background:var(--primary);color:var(--background)}
+.team-apex .player-medal>span{color:var(--secondary)}
+.team-apex-tab:hover{border-color:var(--primary);color:var(--secondary)}
+.team-apex-tab[aria-pressed=true]{color:var(--background)}
 .team-player-count{font-size:12px}
 .team-lineup{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px;list-style:none;margin:0;padding:0}
 .player-card{min-width:0;position:relative}

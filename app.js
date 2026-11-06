@@ -240,7 +240,7 @@
         slide.classList.toggle('is-active', i === current);
       });
       tabs.forEach((tab, i) => tab.setAttribute('aria-pressed', String(i === current)));
-      teamsCarousel.querySelector('.team-carousel-position').textContent = `${String(current + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')} · Team ${String.fromCharCode(65 + current)}`;
+      teamsCarousel.querySelector('.team-carousel-position').textContent = `${String(current + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')} · ${tabs[current].textContent.trim()}`;
     }
     teamsCarousel.classList.add('is-ready');
     showTeam(0);
