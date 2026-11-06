@@ -222,8 +222,8 @@
   },
   {
     "source": "assets/teams/apex/haru.png",
-    "sourceBytes": 2071441,
-    "sourceSHA256": "ae0ff6a228827c75e48859ce7e0b64fa7eec5a6432d054af74bbdfd4acda87f1",
+    "sourceBytes": 2103283,
+    "sourceSHA256": "453a6c8034b826f99259d652e7d98770a5ec4a8a8d22efc7cad18d0bd4a2893c",
     "sourceWidth": 1254,
     "sourceHeight": 1254,
     "hasAlpha": false,
@@ -231,7 +231,7 @@
     "path": "assets/optimized/teams/apex/haru.webp",
     "width": 640,
     "height": 640,
-    "bytes": 36148
+    "bytes": 34684
   },
   {
     "source": "assets/teams/apex/rueqiea.png",
@@ -247,9 +247,9 @@
     "bytes": 39388
   },
   {
-    "source": "assets/teams/apex/suneyo.png",
-    "sourceBytes": 1872525,
-    "sourceSHA256": "ac1c6899673036b340c887eeacf868d24c076686fbc7ec4f44af286133248de6",
+    "source": "assets/teams/apex/suneyo.jpg",
+    "sourceBytes": 71013,
+    "sourceSHA256": "8ef42a36ef690538b944f70144af3cdc5c73be3b2b0f327ca94ed32075fd1f26",
     "sourceWidth": 1254,
     "sourceHeight": 1254,
     "hasAlpha": false,
@@ -257,12 +257,12 @@
     "path": "assets/optimized/teams/apex/suneyo.webp",
     "width": 640,
     "height": 640,
-    "bytes": 27302
+    "bytes": 30326
   },
   {
     "source": "assets/teams/apex/zen.png",
-    "sourceBytes": 1991999,
-    "sourceSHA256": "ee7ac47afb69faa85bc7e65241ef1a8aadf9b611dd7082d8135ecbe5ed9be1de",
+    "sourceBytes": 2078098,
+    "sourceSHA256": "163d1e291bdbe94abef90d18fd4d7150a12c57ec05e1c3ee497189a281a98efe",
     "sourceWidth": 1254,
     "sourceHeight": 1254,
     "hasAlpha": false,
@@ -270,7 +270,7 @@
     "path": "assets/optimized/teams/apex/zen.webp",
     "width": 640,
     "height": 640,
-    "bytes": 33572
+    "bytes": 34358
   },
   {
     "source": "assets/teams/kat-and-friends/dream.png",
