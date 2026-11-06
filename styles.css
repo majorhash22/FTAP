@@ -194,9 +194,11 @@
 .team-reserves{list-style:none;margin:0;padding:0;width:min(100%,360px)}
 .reserve-player{display:grid;grid-template-columns:88px minmax(0,1fr);gap:12px;align-items:center}
 .reserve-player .player-portrait{aspect-ratio:1/1.2}
-.reserve-player .player-card-copy{padding:0}
+.reserve-player .player-card-copy{grid-template-columns:minmax(0,max-content) auto;justify-content:start;padding:0}
 .reserve-player .player-name{font-size:18px}
+.reserve-player .player-medal{grid-row:1}
 .reserve-player .player-medal img{width:38px;height:38px}
+.reserve-player .player-lane{grid-column:1 / -1}
 .teams-closing{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:18px;margin-top:28px;font-size:14px}
 .teams-closing a{display:inline-flex;gap:18px;align-items:center;min-height:44px;font-size:12px;color:var(--text)}
 .teams-closing a:hover{color:var(--accent-bright)}
