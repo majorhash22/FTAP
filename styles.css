@@ -174,7 +174,7 @@
 .team-wraith .player-portrait{border-color:var(--accent);background:var(--background)}
 .team-wraith .captain-badge{background:var(--accent);color:var(--accent-ink)}
 .team-wraith .player-medal>span{color:var(--text)}
-.team-wraith-tab:hover{border-color:var(--accent-bright)}
+.team-wraith-tab:hover{background:var(--accent-bright);border-color:var(--accent-bright);color:var(--accent-ink)}
 .team-wraith-tab[aria-pressed=true]{color:var(--accent-ink)}
 .team-player-count{font-size:12px}
 .team-lineup{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px;list-style:none;margin:0;padding:0}

@@ -25,9 +25,10 @@ function settings(relative) {
   if (relative.startsWith('teams/')) {
     const parts = relative.split('/');
     const logo = path.parse(parts.at(-1)).name === parts.at(-2);
-    return logo ? { width: 420, height: 420, lossless: true } : { width: 960, height: 1280, quality: 90 };
+    // Player panels top out near 255 CSS pixels; 640px covers sharp 2x displays.
+    return logo ? { width: 420, height: 420, lossless: true } : { width: 640, height: 854, quality: 82 };
   }
-  if (/^player-(man|woman)\.png$/.test(relative)) return { width: 720, height: 960, quality: 92 };
+  if (/^player-(man|woman)\.png$/.test(relative)) return { width: 600, height: 800, quality: 84 };
   if (relative === 'smokespammers.png') return { width: 840, height: 840, lossless: true };
   if (relative === 'smokespammers-background.png') return { width: 1024, height: 1280, quality: 88 };
   return { width: 2048, height: 1536, quality: 90 };

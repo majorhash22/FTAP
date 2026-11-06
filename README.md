@@ -4,7 +4,9 @@ The interactive trophy room is documented in [TROPHY.md](TROPHY.md), including c
 
 ## Image optimization
 
-The site serves WebP copies from `assets/optimized/`. The complete optimized image set, including mobile hero and trophy preview variants, is 8.75 MB versus 72.49 MB of original artwork (87.9% fewer image bytes). Originals remain available in `assets/` for future edits. Portraits and backgrounds use high-quality compression; full-resolution trophy textures retain identical pixels and transparent edges.
+The site serves WebP copies from `assets/optimized/`. The complete optimized image set, including mobile hero and trophy preview variants, is 6.94 MB versus 76.95 MB of original artwork (91.0% fewer image bytes). Originals remain available in `assets/` for future edits. Portraits and backgrounds use high-quality compression; full-resolution trophy textures retain identical pixels and transparent edges.
+
+All 22 supplied player photos use WebP at up to 640 pixels wide and quality 82, about 23–70 KB per photo. Default portraits use 600 × 800 WebP at quality 84. These sizes cover the player cards at twice their display resolution. All 32 cards use lazy loading and asynchronous image decoding. The unique portraits used by the roster total about 0.88 MB, down from 2.93 MB before this compression update (70% fewer image bytes). The optimizer applies these settings to future player photos too.
 
 The hero uses a smaller responsive image on phones, with matching preload settings to avoid a duplicate download. Other images decode asynchronously, and images inside closed dialogs load lazily. Full trophy textures and the 3D library load when the trophy approaches the screen or the viewer opens. HTTP pages never download the embedded direct-file texture script.
 

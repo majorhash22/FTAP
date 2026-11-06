@@ -164,9 +164,9 @@
     "hasAlpha": true,
     "lossless": false,
     "path": "assets/optimized/player-man.webp",
-    "width": 720,
-    "height": 960,
-    "bytes": 48212
+    "width": 600,
+    "height": 800,
+    "bytes": 31150
   },
   {
     "source": "assets/player-woman.png",
@@ -177,9 +177,9 @@
     "hasAlpha": true,
     "lossless": false,
     "path": "assets/optimized/player-woman.webp",
-    "width": 720,
-    "height": 960,
-    "bytes": 51660
+    "width": 600,
+    "height": 800,
+    "bytes": 33260
   },
   {
     "source": "assets/smokespammers-background.png",
@@ -216,9 +216,22 @@
     "hasAlpha": false,
     "lossless": false,
     "path": "assets/optimized/teams/kat-and-friends/dream.webp",
-    "width": 960,
-    "height": 960,
-    "bytes": 168534
+    "width": 640,
+    "height": 640,
+    "bytes": 53144
+  },
+  {
+    "source": "assets/teams/kat-and-friends/hanamichi.png",
+    "sourceBytes": 2378350,
+    "sourceSHA256": "9f62843a9cd12eb83538009e1b47179c79bdbe5c9affce4f52e515956e0a0d84",
+    "sourceWidth": 1254,
+    "sourceHeight": 1254,
+    "hasAlpha": false,
+    "lossless": false,
+    "path": "assets/optimized/teams/kat-and-friends/hanamichi.webp",
+    "width": 640,
+    "height": 640,
+    "bytes": 53446
   },
   {
     "source": "assets/teams/kat-and-friends/kat-and-friends.png",
@@ -242,9 +255,9 @@
     "hasAlpha": false,
     "lossless": false,
     "path": "assets/optimized/teams/kat-and-friends/kat.webp",
-    "width": 960,
-    "height": 960,
-    "bytes": 168596
+    "width": 640,
+    "height": 640,
+    "bytes": 48940
   },
   {
     "source": "assets/teams/kat-and-friends/makoy.png",
@@ -255,9 +268,9 @@
     "hasAlpha": false,
     "lossless": false,
     "path": "assets/optimized/teams/kat-and-friends/makoy.webp",
-    "width": 960,
-    "height": 960,
-    "bytes": 159240
+    "width": 640,
+    "height": 640,
+    "bytes": 53370
   },
   {
     "source": "assets/teams/kat-and-friends/yokai.png",
@@ -268,9 +281,9 @@
     "hasAlpha": false,
     "lossless": false,
     "path": "assets/optimized/teams/kat-and-friends/yokai.webp",
-    "width": 960,
-    "height": 960,
-    "bytes": 134122
+    "width": 640,
+    "height": 640,
+    "bytes": 45000
   },
   {
     "source": "assets/teams/kneegrow/den.png",
@@ -281,9 +294,9 @@
     "hasAlpha": false,
     "lossless": false,
     "path": "assets/optimized/teams/kneegrow/den.webp",
-    "width": 960,
-    "height": 960,
-    "bytes": 93474
+    "width": 640,
+    "height": 640,
+    "bytes": 24918
   },
   {
     "source": "assets/teams/kneegrow/ivan.png",
@@ -294,9 +307,9 @@
     "hasAlpha": false,
     "lossless": false,
     "path": "assets/optimized/teams/kneegrow/ivan.webp",
-    "width": 960,
-    "height": 960,
-    "bytes": 77842
+    "width": 640,
+    "height": 640,
+    "bytes": 25216
   },
   {
     "source": "assets/teams/kneegrow/jing.png",
@@ -307,9 +320,9 @@
     "hasAlpha": false,
     "lossless": false,
     "path": "assets/optimized/teams/kneegrow/jing.webp",
-    "width": 960,
-    "height": 960,
-    "bytes": 71680
+    "width": 640,
+    "height": 640,
+    "bytes": 22940
   },
   {
     "source": "assets/teams/kneegrow/kneegrow.png",
@@ -333,9 +346,9 @@
     "hasAlpha": false,
     "lossless": false,
     "path": "assets/optimized/teams/scourge/desync.webp",
-    "width": 960,
-    "height": 960,
-    "bytes": 87334
+    "width": 640,
+    "height": 640,
+    "bytes": 23236
   },
   {
     "source": "assets/teams/scourge/majorhash.png",
@@ -346,9 +359,9 @@
     "hasAlpha": false,
     "lossless": false,
     "path": "assets/optimized/teams/scourge/majorhash.webp",
-    "width": 960,
-    "height": 960,
-    "bytes": 96016
+    "width": 640,
+    "height": 640,
+    "bytes": 25178
   },
   {
     "source": "assets/teams/scourge/pookie.png",
@@ -359,9 +372,9 @@
     "hasAlpha": false,
     "lossless": false,
     "path": "assets/optimized/teams/scourge/pookie.webp",
-    "width": 960,
-    "height": 960,
-    "bytes": 93052
+    "width": 640,
+    "height": 640,
+    "bytes": 23456
   },
   {
     "source": "assets/teams/scourge/scourge.png",
@@ -377,6 +390,19 @@
     "bytes": 99926
   },
   {
+    "source": "assets/teams/scourge/shi.png",
+    "sourceBytes": 2082456,
+    "sourceSHA256": "43176ed8d332fcd1b8ab3034758792ce5749e1728c9dce7e42145a4d0a2be164",
+    "sourceWidth": 1254,
+    "sourceHeight": 1254,
+    "hasAlpha": false,
+    "lossless": false,
+    "path": "assets/optimized/teams/scourge/shi.webp",
+    "width": 640,
+    "height": 640,
+    "bytes": 22906
+  },
+  {
     "source": "assets/teams/team-baddiengan/archieezy.png",
     "sourceBytes": 2286421,
     "sourceSHA256": "f2d125b516bcfa76cb3f8866efe5d097a996a7e485ee5a6c8c319a210dc57c14",
@@ -385,9 +411,9 @@
     "hasAlpha": false,
     "lossless": false,
     "path": "assets/optimized/teams/team-baddiengan/archieezy.webp",
-    "width": 960,
-    "height": 960,
-    "bytes": 127824
+    "width": 640,
+    "height": 640,
+    "bytes": 36840
   },
   {
     "source": "assets/teams/team-baddiengan/jlpq.png",
@@ -398,9 +424,9 @@
     "hasAlpha": false,
     "lossless": false,
     "path": "assets/optimized/teams/team-baddiengan/jlpq.webp",
-    "width": 960,
-    "height": 960,
-    "bytes": 180976
+    "width": 640,
+    "height": 640,
+    "bytes": 54554
   },
   {
     "source": "assets/teams/team-baddiengan/mori.png",
@@ -411,9 +437,9 @@
     "hasAlpha": false,
     "lossless": false,
     "path": "assets/optimized/teams/team-baddiengan/mori.webp",
-    "width": 960,
-    "height": 1241,
-    "bytes": 232642
+    "width": 640,
+    "height": 827,
+    "bytes": 70014
   },
   {
     "source": "assets/teams/team-baddiengan/nyokie.png",
@@ -424,9 +450,9 @@
     "hasAlpha": false,
     "lossless": false,
     "path": "assets/optimized/teams/team-baddiengan/nyokie.webp",
-    "width": 960,
-    "height": 960,
-    "bytes": 146860
+    "width": 640,
+    "height": 640,
+    "bytes": 42684
   },
   {
     "source": "assets/teams/team-baddiengan/team-baddiengan.png",
@@ -450,9 +476,9 @@
     "hasAlpha": false,
     "lossless": false,
     "path": "assets/optimized/teams/team-baddiengan/yeeeeez.webp",
-    "width": 960,
-    "height": 960,
-    "bytes": 179682
+    "width": 640,
+    "height": 640,
+    "bytes": 52288
   },
   {
     "source": "assets/teams/team-wraith/bosh.png",
@@ -463,9 +489,9 @@
     "hasAlpha": false,
     "lossless": false,
     "path": "assets/optimized/teams/team-wraith/bosh.webp",
-    "width": 960,
-    "height": 960,
-    "bytes": 132206
+    "width": 640,
+    "height": 640,
+    "bytes": 36974
   },
   {
     "source": "assets/teams/team-wraith/bunbun.png",
@@ -476,9 +502,9 @@
     "hasAlpha": false,
     "lossless": false,
     "path": "assets/optimized/teams/team-wraith/bunbun.webp",
-    "width": 960,
-    "height": 960,
-    "bytes": 142436
+    "width": 640,
+    "height": 640,
+    "bytes": 38886
   },
   {
     "source": "assets/teams/team-wraith/kobe.png",
@@ -489,9 +515,9 @@
     "hasAlpha": false,
     "lossless": false,
     "path": "assets/optimized/teams/team-wraith/kobe.webp",
-    "width": 960,
-    "height": 960,
-    "bytes": 121550
+    "width": 640,
+    "height": 640,
+    "bytes": 32582
   },
   {
     "source": "assets/teams/team-wraith/natnat.png",
@@ -502,9 +528,9 @@
     "hasAlpha": false,
     "lossless": false,
     "path": "assets/optimized/teams/team-wraith/natnat.webp",
-    "width": 960,
-    "height": 720,
-    "bytes": 74404
+    "width": 640,
+    "height": 480,
+    "bytes": 23160
   },
   {
     "source": "assets/teams/team-wraith/team-wraith.png",
@@ -528,9 +554,9 @@
     "hasAlpha": false,
     "lossless": false,
     "path": "assets/optimized/teams/team-wraith/zoro.webp",
-    "width": 960,
-    "height": 960,
-    "bytes": 136526
+    "width": 640,
+    "height": 640,
+    "bytes": 37512
   },
   {
     "source": "assets/vault.jpg",
