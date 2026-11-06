@@ -221,6 +221,19 @@
     "bytes": 129854
   },
   {
+    "source": "assets/teams/apex/choongii.png",
+    "sourceBytes": 2071922,
+    "sourceSHA256": "44f5792d5f8fb624c27f25896f78a44431942be56cf1307fb2dd651ca57ab81c",
+    "sourceWidth": 1254,
+    "sourceHeight": 1254,
+    "hasAlpha": false,
+    "lossless": false,
+    "path": "assets/optimized/teams/apex/choongii.webp",
+    "width": 640,
+    "height": 640,
+    "bytes": 34320
+  },
+  {
     "source": "assets/teams/apex/haru.png",
     "sourceBytes": 2103283,
     "sourceSHA256": "453a6c8034b826f99259d652e7d98770a5ec4a8a8d22efc7cad18d0bd4a2893c",
