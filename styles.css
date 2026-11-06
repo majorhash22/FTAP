@@ -152,8 +152,8 @@
 .team-kat-and-friends .player-portrait{border-color:var(--secondary);background:radial-gradient(ellipse at 50% 35%,var(--background),#f5def0 50%,var(--secondary))}
 .team-kat-and-friends .captain-badge{background:var(--primary);color:var(--text)}
 .team-kat-and-friends .player-medal>span{color:var(--background)}
-.team-kat-and-friends-tab{overflow-wrap:anywhere;color:var(--primary);border-color:#FD81AF66}
-.team-kat-and-friends-tab:hover{background:var(--secondary);border-color:var(--secondary);color:var(--text)}
+.team-kat-and-friends-tab{overflow-wrap:anywhere}
+.team-kat-and-friends-tab:hover{border-color:var(--secondary);color:inherit}
 .team-kat-and-friends-tab[aria-pressed=true]{color:var(--text)}
 .team-scourge,.team-scourge-tab{--background:#020102;--accent:#03D549;--accent-bright:var(--accent);--text:#F0EDE3}
 .team-scourge{--muted:var(--text);--border:#03D54955;background:var(--background);color:var(--text);border-top-color:var(--accent)}
