@@ -573,8 +573,8 @@
   },
   {
     "source": "assets/teams/team-wraith/bunbun.png",
-    "sourceBytes": 2375226,
-    "sourceSHA256": "d71f739249476a674cd379a1b013c274fff597cdc63a391ad58d686362a67d32",
+    "sourceBytes": 2303447,
+    "sourceSHA256": "fd81a09156c934bc1bbe199f880939a550af37fff279091e6a241b63358a0157",
     "sourceWidth": 1254,
     "sourceHeight": 1254,
     "hasAlpha": false,
@@ -582,7 +582,33 @@
     "path": "assets/optimized/teams/team-wraith/bunbun.webp",
     "width": 640,
     "height": 640,
-    "bytes": 38886
+    "bytes": 33764
+  },
+  {
+    "source": "assets/teams/team-wraith/desync.png",
+    "sourceBytes": 2182851,
+    "sourceSHA256": "f2c4ee1a9db871677860b4850ddab1303de662644b7a495c6ce1050c2941d6c4",
+    "sourceWidth": 1254,
+    "sourceHeight": 1254,
+    "hasAlpha": false,
+    "lossless": false,
+    "path": "assets/optimized/teams/team-wraith/desync.webp",
+    "width": 640,
+    "height": 640,
+    "bytes": 32480
+  },
+  {
+    "source": "assets/teams/team-wraith/ivan.png",
+    "sourceBytes": 2266457,
+    "sourceSHA256": "0923b9139870e63fa461605052ae8c2a0f710ac7dddef3f1cd2dc600ed651dc5",
+    "sourceWidth": 1254,
+    "sourceHeight": 1254,
+    "hasAlpha": false,
+    "lossless": false,
+    "path": "assets/optimized/teams/team-wraith/ivan.webp",
+    "width": 640,
+    "height": 640,
+    "bytes": 36266
   },
   {
     "source": "assets/teams/team-wraith/kobe.png",
@@ -609,6 +635,19 @@
     "width": 640,
     "height": 480,
     "bytes": 23160
+  },
+  {
+    "source": "assets/teams/team-wraith/pookie.png",
+    "sourceBytes": 2203531,
+    "sourceSHA256": "2d9ec080c85ea6749f50a6d6491c0cc9bce5ecdc0e932e868e678987ef4462f3",
+    "sourceWidth": 1254,
+    "sourceHeight": 1254,
+    "hasAlpha": false,
+    "lossless": false,
+    "path": "assets/optimized/teams/team-wraith/pookie.webp",
+    "width": 640,
+    "height": 640,
+    "bytes": 30926
   },
   {
     "source": "assets/teams/team-wraith/team-wraith.png",
