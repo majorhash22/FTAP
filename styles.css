@@ -139,9 +139,9 @@
 .team-baddiengan,.team-baddiengan-tab{--background:#000000;--accent:#C50B14;--text:#E0D3D1}
 .team-baddiengan-tab{overflow-wrap:anywhere}
 .team-baddiengan{--muted:#E0D3D1;--border:#C50B1455;background:var(--background);color:var(--text);border-top-color:var(--accent)}
-:is(.team-baddiengan,.team-kat-and-friends) .team-slide-header>div{min-width:0}
-:is(.team-baddiengan,.team-kat-and-friends) .team-slide-header h3{font-size:clamp(26px,4vw,44px);overflow-wrap:anywhere}
-:is(.team-baddiengan,.team-kat-and-friends) .team-logo{width:clamp(76px,12vw,140px);height:auto;flex-shrink:0;object-fit:contain}
+:is(.team-baddiengan,.team-kat-and-friends,.team-scourge) .team-slide-header>div{min-width:0}
+:is(.team-baddiengan,.team-kat-and-friends,.team-scourge) .team-slide-header h3{font-size:clamp(26px,4vw,44px);overflow-wrap:anywhere}
+:is(.team-baddiengan,.team-kat-and-friends,.team-scourge) .team-logo{width:clamp(76px,12vw,140px);height:auto;flex-shrink:0;object-fit:contain}
 .team-baddiengan .player-portrait{border-color:var(--accent)}
 .team-baddiengan .captain-badge{background:var(--accent);color:var(--text)}
 .team-baddiengan .player-medal>span{color:var(--text)}
@@ -155,6 +155,13 @@
 .team-kat-and-friends-tab{overflow-wrap:anywhere;color:var(--primary);border-color:#FD81AF66}
 .team-kat-and-friends-tab:hover{background:var(--secondary);border-color:var(--secondary);color:var(--text)}
 .team-kat-and-friends-tab[aria-pressed=true]{color:var(--text)}
+.team-scourge,.team-scourge-tab{--background:#020102;--accent:#03D549;--accent-bright:var(--accent);--text:#F0EDE3}
+.team-scourge{--muted:var(--text);--border:#03D54955;background:var(--background);color:var(--text);border-top-color:var(--accent)}
+.team-scourge .player-portrait{border-color:var(--accent);background:radial-gradient(ellipse at 50% 35%,#123c25,#071c10 50%,var(--background))}
+.team-scourge .captain-badge{background:var(--accent);color:var(--background)}
+.team-scourge .player-medal>span{color:var(--text)}
+.team-scourge-tab:hover{border-color:var(--accent)}
+.team-scourge-tab[aria-pressed=true]{color:var(--background)}
 .team-player-count{font-size:12px}
 .team-lineup{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px;list-style:none;margin:0;padding:0}
 .player-card{min-width:0;position:relative}
