@@ -32,7 +32,9 @@ The Smoke Spammers asset was replaced with FTAP’s follow-up image. The replace
 
 ## Tournament player cards
 
-`assets/player-man.png` and `assets/player-woman.png` are FTAP's supplied headset-and-jersey portraits, copied unchanged from `men.png` and `women.png`. Both are transparent PNGs at 1086 × 1448 pixels. Bunbun and Kat use the female portrait, and the other 30 tournament players use the male portrait. The portrait panels follow FTAP's supplied team-presentation reference; player names, captain labels, lanes, champion badges, and medals remain native website elements.
+`assets/player-man.png` and `assets/player-woman.png` are FTAP's supplied default headset-and-jersey portraits, copied unchanged from `men.png` and `women.png`. Both are transparent PNGs at 1086 × 1448 pixels. Players without individual photos retain these defaults. The portrait panels follow FTAP's supplied team-presentation reference; player names, captain labels, lanes, champion badges, and medals remain native website elements.
+
+`assets/teams/kat-and-friends/` contains the supplied Kat and Friends logo at 1402 × 1122 pixels and unchanged 1254 × 1254 jersey portraits for Makoy, Dream, Kat, and Yokai. The original player filenames were matched to the uploaded images by SHA-256 hashes. Hanamichi has no supplied photo and retains the default male silhouette. The team's presentation uses the supplied pink `#FD81AF`, lavender `#D499FC`, and off-white `#FEFBFC` palette.
 
 `assets/player-locked.svg` and `assets/player-silhouette-woman.svg` are the earlier code-drawn silhouettes, retained as legacy assets. The roster now uses the supplied PNG portraits with the existing responsive card sizing.
 

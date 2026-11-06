@@ -139,14 +139,22 @@
 .team-baddiengan,.team-baddiengan-tab{--background:#000000;--accent:#C50B14;--text:#E0D3D1}
 .team-baddiengan-tab{overflow-wrap:anywhere}
 .team-baddiengan{--muted:#E0D3D1;--border:#C50B1455;background:var(--background);color:var(--text);border-top-color:var(--accent)}
-.team-baddiengan .team-slide-header>div{min-width:0}
-.team-baddiengan .team-slide-header h3{font-size:clamp(26px,4vw,44px);overflow-wrap:anywhere}
-.team-baddiengan .team-logo{width:clamp(76px,12vw,140px);height:auto;flex-shrink:0;object-fit:contain}
+:is(.team-baddiengan,.team-kat-and-friends) .team-slide-header>div{min-width:0}
+:is(.team-baddiengan,.team-kat-and-friends) .team-slide-header h3{font-size:clamp(26px,4vw,44px);overflow-wrap:anywhere}
+:is(.team-baddiengan,.team-kat-and-friends) .team-logo{width:clamp(76px,12vw,140px);height:auto;flex-shrink:0;object-fit:contain}
 .team-baddiengan .player-portrait{border-color:var(--accent)}
 .team-baddiengan .captain-badge{background:var(--accent);color:var(--text)}
 .team-baddiengan .player-medal>span{color:var(--text)}
 .team-baddiengan-tab:hover{border-color:var(--accent)}
 .team-baddiengan-tab[aria-pressed=true]{color:var(--text)}
+.team-kat-and-friends,.team-kat-and-friends-tab{--primary:#FD81AF;--secondary:#D499FC;--background:#FEFBFC;--accent:var(--primary);--accent-bright:var(--secondary);--text:#35243D}
+.team-kat-and-friends{color-scheme:light;--muted:#655269;--border:#D499FC66;background:var(--background);color:var(--text);border-top-color:var(--primary)}
+.team-kat-and-friends .player-portrait{border-color:var(--secondary);background:radial-gradient(ellipse at 50% 35%,var(--background),#f5def0 50%,var(--secondary))}
+.team-kat-and-friends .captain-badge{background:var(--primary);color:var(--text)}
+.team-kat-and-friends .player-medal>span{color:var(--background)}
+.team-kat-and-friends-tab{overflow-wrap:anywhere;color:var(--primary);border-color:#FD81AF66}
+.team-kat-and-friends-tab:hover{background:var(--secondary);border-color:var(--secondary);color:var(--text)}
+.team-kat-and-friends-tab[aria-pressed=true]{color:var(--text)}
 .team-player-count{font-size:12px}
 .team-lineup{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px;list-style:none;margin:0;padding:0}
 .player-card{min-width:0;position:relative}
