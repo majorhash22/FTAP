@@ -24,9 +24,9 @@
     fallback.setAttribute('aria-hidden', 'true');
     if (!source) return fallback;
     const image = node('img', 'member-avatar');
+    image.loading = 'lazy'; image.decoding = 'async';
     image.src = source;
     image.alt = '';
-    image.loading = 'lazy';
     image.addEventListener('error', () => image.replaceWith(fallback), { once: true });
     return image;
   }
@@ -88,7 +88,8 @@
       const button = node('button', 'announcement');
       button.type = 'button';
       const image = node('img', 'announcement-art');
-      image.src = safeImage(item.image) || 'assets/hero.png'; image.alt = ''; image.loading = 'lazy';
+      image.loading = 'lazy'; image.decoding = 'async';
+      image.src = safeImage(item.image) || 'assets/optimized/hero.webp'; image.alt = '';
       image.style.objectPosition = item.imagePosition || (index % 2 ? '48% 45%' : '78% 56%');
       const content = node('div');
       content.append(paragraph(item.category || 'Community', 'section-label'), node('h3', '', item.title), paragraph(item.summary || ''));
@@ -284,7 +285,7 @@
     gallery.forEach((item, index) => {
       const button = node('button', 'gallery-item'); button.type = 'button';
       button.setAttribute('aria-label', `View ${item.title || 'community image'}`);
-      const image = node('img', 'gallery-image'); image.src = item.src; image.alt = item.alt || item.title || 'FTAP community image'; image.loading = 'lazy'; image.width = 1672; image.height = 941;
+      const image = node('img', 'gallery-image'); image.loading = 'lazy'; image.decoding = 'async'; image.src = item.src; image.alt = item.alt || item.title || 'FTAP community image'; image.width = 1672; image.height = 941;
       const caption = node('span', 'gallery-item-caption'); const title = node('span');
       title.append(paragraph(item.category || 'Community gallery', 'section-label'), node('h3', '', item.title || 'Community memory'));
       caption.append(title, node('span', 'gallery-open', 'View image')); button.append(image, caption);

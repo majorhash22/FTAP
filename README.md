@@ -2,6 +2,16 @@
 
 The interactive trophy room is documented in [TROPHY.md](TROPHY.md), including controls, engraving edits, local assets, tests, and verification limits.
 
+## Image optimization
+
+The site serves WebP copies from `assets/optimized/`. The complete optimized image set, including mobile hero and trophy preview variants, is 7.99 MB versus 59.06 MB of original artwork (86.5% fewer image bytes). Originals remain available in `assets/` for future edits. Portraits and backgrounds use high-quality compression; full-resolution trophy textures retain identical pixels and transparent edges.
+
+The hero uses a smaller responsive image on phones, with matching preload settings to avoid a duplicate download. Other images decode asynchronously, and images inside closed dialogs load lazily. Full trophy textures and the 3D library load when the trophy approaches the screen or the viewer opens. HTTP pages never download the embedded direct-file texture script.
+
+To regenerate copies after editing original images, install `sharp` in your development tooling and run `node tools/optimize-images.cjs`. An optional second argument accepts the absolute path to that package. This is a maintenance command; the website still needs no installation or build step. If the original trophy artwork changes, run `node tools/build-aegis-art.cjs` before the image optimizer. `assets/optimized/manifest.json` records source hashes, dimensions, and output sizes. Commit the optimized folder and regenerated embedded textures together with any reference changes.
+
+Verification for this update: all nine Node trophy tests passed. Playwright Chromium checks passed at 1440, 390, and 320 pixels, including all six team tabs and their images, event switching, announcement and gallery dialogs, application generation, mobile navigation, and the live WebGL trophy controls. Direct `index.html` opening also initialized the WebGL trophy from embedded WebP textures. Network checks found no missing assets, runtime errors, original PNG/JPEG requests, or full trophy textures during initial loading. Desktop and phone screenshots were inspected. The software GPU produced ReadPixels performance warnings; other browsers, physical touch gestures, and production hosting were not tested. The image-byte reduction does not imply an equivalent reduction in total page load time.
+
 ## Open the website
 
 Extract the entire ZIP first. Open `index.html` in a modern browser. No installation, build step, account, or internet connection is needed for the website itself. Keep the files and folders together.

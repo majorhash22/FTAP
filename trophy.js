@@ -91,7 +91,7 @@
     updateZoom();
   }
   function backImageURL() {
-    return artwork ? artwork.backSurface.toDataURL('image/png') : new URL('assets/aegis-back-detailed.png', baseURL).href;
+    return artwork ? artwork.backSurface.toDataURL('image/png') : new URL('assets/optimized/aegis-back-detailed.webp', baseURL).href;
   }
   function showSide(side, animate = true) {
     selectedSide = side;
@@ -204,10 +204,10 @@
   }
   async function loadArtwork() {
     await loadScript('assets/aegis-shape.js', () => !!window.FTAPAegisShape);
-    let frontURL = new URL('assets/aegis-front-detailed.png', baseURL).href;
-    let backURL = new URL('assets/aegis-back-detailed.png', baseURL).href;
+    let frontURL = new URL('assets/optimized/aegis-front-detailed.webp', baseURL).href;
+    let backURL = new URL('assets/optimized/aegis-back-detailed.webp', baseURL).href;
     // File-origin images cannot be uploaded to WebGL in every browser.
-    // Embedded, unchanged copies avoid that restriction for direct index.html opening.
+    // Embedded copies of the lossless WebP files support direct index.html opening.
     if (baseURL.protocol === 'file:') {
       await loadScript('assets/aegis-local-textures.js', () => !!window.FTAPAegisTextures);
       frontURL = window.FTAPAegisTextures.front;

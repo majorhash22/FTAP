@@ -143,7 +143,7 @@ function fixture({ noWebGL = false, protocol = 'file', omitRollCall = false } = 
   context.devicePixelRatio = 1;
   context.matchMedia = () => ({ matches: true });
   vm.runInContext(shapeSource, context, { filename: 'aegis-shape.js' });
-  context.FTAPAegisTextures = { front: 'data:image/png;base64,front', back: 'data:image/png;base64,back' };
+  context.FTAPAegisTextures = { front: 'data:image/webp;base64,front', back: 'data:image/webp;base64,back' };
   vm.runInContext(library, context, { filename: 'three-trophy.min.js' });
   context.FTAPThree = {
     ...context.FTAPThree,
@@ -218,7 +218,7 @@ test('builds finite, dimensional geometry and paints the champion engraving', as
   assert.ok(maxZ - minZ > 0.1, 'the trophy should have physical depth');
   assert.ok((maxZ - minZ) / (maxX - minX) < 0.08, 'the edge and relief should keep the reference thin profile');
   const face = meshes.find(mesh => mesh.name === 'Aegis front relief');
-  assert.ok(face.material.map.image.src.includes('data:image/png'), 'the detailed artwork must be used on the visible front');
+  assert.ok(face.material.map.image.src.includes('data:image/webp'), 'the detailed artwork must be used on the visible front');
   assert.ok(face.material.alphaTest > 0, 'the trophy image must not render as a rectangular card');
   const expected = ['2025', 'Smoke Spammers', 'BRYAN', 'JAYRIES', 'JHIM', 'LLOYD', 'DEN'];
   const engravedSurfaces = app.contexts.filter(ctx => expected.every(text => ctx.texts.includes(text)));
@@ -235,19 +235,22 @@ test('builds finite, dimensional geometry and paints the champion engraving', as
   }
 });
 
-test('HTTP pages load local PNG artwork while direct-file copies preserve the original pixels', async () => {
+test('HTTP pages load lossless WebP artwork while direct-file copies preserve the same bytes', async () => {
   const app = fixture({ protocol: 'http' });
   app.open.fire('click'); await app.settle();
   const meshes = [];
   app.renderers[0].scene.traverse(mesh => { if (mesh.isMesh) meshes.push(mesh); });
   const face = meshes.find(mesh => mesh.name === 'Aegis front relief');
-  assert.equal(face.material.map.image.src, 'http://localhost/assets/aegis-front-detailed.png');
+  assert.equal(face.material.map.image.src, 'http://localhost/assets/optimized/aegis-front-detailed.webp');
   const embedded = { window: {} };
   vm.runInNewContext(fs.readFileSync(path.join(root, 'assets/aegis-local-textures.js'), 'utf8'), embedded);
   for (const side of ['front', 'back']) {
-    const original = fs.readFileSync(path.join(root, 'assets/aegis-' + side + '-detailed.png'));
-    const copy = Buffer.from(embedded.window.FTAPAegisTextures[side].split(',')[1], 'base64');
-    assert.deepEqual(copy, original, 'file-view artwork must preserve the original PNG bytes');
+    const dataURL = embedded.window.FTAPAegisTextures[side];
+    assert.ok(dataURL.startsWith('data:image/webp;base64,'), 'direct-file textures must use the lossless WebP files');
+    const filename = 'assets/optimized/aegis-' + side + '-detailed.webp';
+    const original = fs.readFileSync(path.join(root, filename));
+    const copy = Buffer.from(dataURL.split(',')[1], 'base64');
+    assert.ok(copy.equals(original), 'file-view artwork must use identical texture bytes');
   }
 });
 
@@ -368,7 +371,7 @@ test('keeps mouse and touch rotation, both faces, zoom, reset and closing availa
   assert.equal(app.dialog.open, false);
   assert.equal(app.document.activeElement, app.open);
   app.open.fire('click'); await app.settle();
-  assert.ok(app.flat.src.includes('data:image/png'));
+  assert.ok(app.flat.src.includes('data:image/webp'));
   assert.match(app.flat.alt, /Front/);
 });
 

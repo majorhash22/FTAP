@@ -139,8 +139,8 @@
 .team-baddiengan,.team-baddiengan-tab{--background:#000000;--accent:#C50B14;--text:#E0D3D1}
 .team-baddiengan-tab{overflow-wrap:anywhere}
 .team-baddiengan{--muted:#E0D3D1;--border:#C50B1455;background:var(--background);color:var(--text);border-top-color:var(--accent)}
-:is(.team-baddiengan,.team-kat-and-friends,.team-scourge) .team-slide-header>div{min-width:0}
-:is(.team-baddiengan,.team-kat-and-friends,.team-scourge) .team-slide-header h3{font-size:clamp(26px,4vw,44px);overflow-wrap:anywhere}
+:is(.team-baddiengan,.team-kat-and-friends,.team-scourge,.team-kneegrow) .team-slide-header>div{min-width:0}
+:is(.team-baddiengan,.team-kat-and-friends,.team-scourge,.team-kneegrow) .team-slide-header h3{font-size:clamp(26px,4vw,44px);overflow-wrap:anywhere}
 .team-slide-header .team-logo{width:clamp(76px,12vw,140px);max-height:140px;height:auto;flex-shrink:0;object-fit:contain}
 .team-baddiengan .player-portrait{border-color:var(--accent)}
 .team-baddiengan .captain-badge{background:var(--accent);color:var(--text)}
@@ -151,7 +151,7 @@
 .team-kat-and-friends{color-scheme:light;--muted:#655269;--border:#D499FC66;background:var(--background);color:var(--text);border-top-color:var(--primary)}
 .team-kat-and-friends .player-portrait{border-color:var(--secondary);background:radial-gradient(ellipse at 50% 35%,var(--background),#f5def0 50%,var(--secondary))}
 .team-kat-and-friends .captain-badge{background:var(--primary);color:var(--text)}
-.team-kat-and-friends .player-medal>span{color:var(--background)}
+.team-kat-and-friends .player-medal>span{color:var(--muted)}
 .team-kat-and-friends-tab{overflow-wrap:anywhere}
 .team-kat-and-friends-tab:hover{border-color:var(--secondary);color:inherit}
 .team-kat-and-friends-tab[aria-pressed=true]{color:var(--text)}
@@ -162,6 +162,13 @@
 .team-scourge .player-medal>span{color:var(--text)}
 .team-scourge-tab:hover{border-color:var(--accent)}
 .team-scourge-tab[aria-pressed=true]{color:var(--background)}
+.team-kneegrow,.team-kneegrow-tab{--background:#33323C;--accent:#A57B6E;--accent-bright:var(--accent);--text:#E3E5E3;--accent-ink:#111619}
+.team-kneegrow{--muted:var(--text);--border:#A57B6E55;background:var(--background);color:var(--text);border-top-color:var(--accent)}
+.team-kneegrow .player-portrait{border-color:var(--accent);background:var(--background)}
+.team-kneegrow .captain-badge{background:var(--accent);color:var(--accent-ink)}
+.team-kneegrow .player-medal>span{color:var(--text)}
+.team-kneegrow-tab:hover{border-color:var(--accent)}
+.team-kneegrow-tab[aria-pressed=true]{color:var(--accent-ink)}
 .team-player-count{font-size:12px}
 .team-lineup{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px;list-style:none;margin:0;padding:0}
 .player-card{min-width:0;position:relative}
@@ -170,13 +177,14 @@
 .locked-character{position:absolute;width:110%;max-width:none;height:100%;left:-5%;bottom:0;object-fit:contain;object-position:center bottom}
 .player-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}
 .captain-badge{position:absolute;z-index:2;top:14px;left:17px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.13em;color:#fff;background:#9d3529;padding:3px 7px}
-.player-medal{position:absolute;z-index:2;bottom:12px;right:18px;display:flex;align-items:center;flex-direction:column;gap:2px}
-.player-medal img{width:70px;height:70px;object-fit:contain;filter:drop-shadow(0 3px 5px #0009)}
-.player-medal>span{font-size:9px;line-height:1.5;letter-spacing:.08em;text-transform:uppercase;color:#e8e3d9}
-.player-card-copy{padding:15px 4px 0}
-.player-card-tags{min-height:25px;display:flex;align-items:flex-start;gap:8px;margin-bottom:6px}
-.player-name{font-size:clamp(15px,1.5vw,22px);font-weight:750;line-height:1.3;overflow-wrap:anywhere;margin:0;color:var(--text)}
-.player-lane{font-size:12px;line-height:1.6;margin-top:5px}
+.player-medal{grid-column:2;grid-row:1 / span 2;display:flex;align-items:center;align-self:center;flex-direction:column;gap:0}
+.player-medal img{width:40px;height:40px;object-fit:contain;filter:drop-shadow(0 2px 3px #0006)}
+.player-medal>span{font-size:8px;line-height:1.4;letter-spacing:.03em;text-transform:uppercase;color:var(--muted)}
+.player-card-copy{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:6px;row-gap:2px;align-items:center;padding:6px 2px 0}
+.player-card-tags{grid-column:1 / -1;grid-row:3;display:flex;align-items:flex-start;gap:8px;margin-top:3px}
+.player-card-tags:empty{display:none}
+.player-name{grid-column:1;grid-row:1;font-size:clamp(15px,1.5vw,22px);font-weight:750;line-height:1.3;overflow-wrap:anywhere;margin:0;color:var(--text)}
+.player-lane{grid-column:1;grid-row:2;font-size:12px;line-height:1.6;margin:0}
 .returning-champion .player-portrait{border-color:var(--champion-gold)}
 .returning-champion .player-name{color:var(--champion-gold)}
 .reserve-badge{color:var(--muted);font-size:10px;font-weight:600;line-height:1.7;letter-spacing:.13em;text-transform:uppercase}
@@ -184,17 +192,15 @@
 .team-bench>.section-label{font-size:9px;flex-shrink:0}
 .team-bench-note{font-size:13px}
 .team-reserves{list-style:none;margin:0;padding:0;width:min(100%,360px)}
-.reserve-player{display:grid;grid-template-columns:88px minmax(0,1fr);gap:18px;align-items:center}
+.reserve-player{display:grid;grid-template-columns:88px minmax(0,1fr);gap:12px;align-items:center}
 .reserve-player .player-portrait{aspect-ratio:1/1.2}
 .reserve-player .player-card-copy{padding:0}
 .reserve-player .player-name{font-size:18px}
-.reserve-player .player-medal{right:9px;bottom:6px}
 .reserve-player .player-medal img{width:38px;height:38px}
-.reserve-player .player-medal>span{font-size:7px}
 .teams-closing{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:18px;margin-top:28px;font-size:14px}
 .teams-closing a{display:inline-flex;gap:18px;align-items:center;min-height:44px;font-size:12px;color:var(--text)}
 .teams-closing a:hover{color:var(--accent-bright)}
-@media(max-width:1100px){.teams-intro{gap:32px}.teams-date{padding-left:28px}.team-slide{padding:24px}.team-lineup{gap:12px}.player-medal img{width:58px;height:58px}.captain-badge{font-size:8px;left:13px;padding-inline:5px}.player-medal{right:12px;bottom:10px}.player-lane{font-size:11px}}
-@media(max-width:800px){.tournament-teams-section{padding-block:80px}.teams-intro{grid-template-columns:1fr;gap:30px}.teams-date{border-left:2px solid var(--accent);padding:0 0 0 22px}.teams-date-days{font-size:60px;line-height:1.15;margin-top:5px}.teams-date>p:last-child{margin-top:8px}.teams-bar{margin-top:32px;gap:14px}.team-carousel-controls{gap:16px;margin-bottom:22px}.team-tabs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));width:100%;gap:6px}.team-tab{min-width:0;padding-inline:8px;font-size:10px}.team-carousel-navigation{justify-content:flex-end;width:100%}.team-lineup{grid-template-columns:repeat(3,minmax(0,1fr));gap:24px 16px}.player-name{font-size:18px}.player-lane{font-size:12px}.player-card-copy{display:flex;flex-direction:column;padding-top:6px}.player-medal img{width:64px;height:64px}.player-card-tags{order:1;min-height:0;margin:6px 0 0}.player-card-tags:empty{display:none}.team-slide-header h3{font-size:36px}}
-@media(max-width:600px){.team-lineup{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 14px}.team-lineup>.player-card:last-child{grid-column:1/-1;width:calc((100% - 14px)/2);justify-self:center}.team-slide{padding:22px 16px}.team-slide-header{margin-bottom:24px;gap:14px}.team-slide-header h3{font-size:34px}.team-player-count{font-size:10px;text-align:right}.team-tabs{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.team-tab{font-size:11px;min-height:44px}.player-name{font-size:16px}.player-lane{font-size:11px}.captain-badge{font-size:9px;letter-spacing:.1em;top:10px;left:12px}.player-medal{right:12px;bottom:9px}.player-medal img{width:52px;height:52px}.player-medal>span{font-size:9px}.player-card-copy{padding-inline:0}.player-card-tags .champion-badge{font-size:9px;padding-inline:5px;letter-spacing:0}.team-bench{gap:14px;flex-wrap:wrap;min-height:162px;margin-top:26px;padding-top:20px}.team-bench>.section-label{width:100%;font-size:8px}.team-reserves{width:100%}.reserve-player{grid-template-columns:78px minmax(0,1fr);gap:16px}.reserve-player .player-card-tags{min-height:20px}.reserve-player .player-name{font-size:17px}.teams-closing{margin-top:22px}}
-@media(max-width:480px){.community-teams-link{padding:18px;gap:16px}.community-teams-link .section-label{font-size:8px;letter-spacing:.15em}.community-teams-link strong{font-size:20px}.quick-link-arrow{font-size:26px}.teams-intro .red-label{font-size:9px;max-width:30ch;line-height:1.9}.teams-bar>.section-label{font-size:9px}.teams-bar>.section-label>span{margin-inline:9px}.champions-legend{font-size:11px;gap:8px}.teams-closing{font-size:13px}.tournament-teams-section{padding-block:70px}.tournament-schedule{font-size:clamp(25px,7vw,32px)}.tournament-copy{padding:30px 22px}.player-name{font-size:14px}.player-medal img{width:44px;height:44px}.player-medal>span{font-size:9px}.player-lane{font-size:11px}.player-card-tags .champion-badge{font-size:9px;gap:4px}.player-card-tags .champion-badge:before{font-size:10px}}
+@media(max-width:1100px){.teams-intro{gap:32px}.teams-date{padding-left:28px}.team-slide{padding:24px}.team-lineup{gap:12px}.player-medal img{width:36px;height:36px}.captain-badge{font-size:8px;left:13px;padding-inline:5px}.player-lane{font-size:11px}}
+@media(max-width:800px){.tournament-teams-section{padding-block:80px}.teams-intro{grid-template-columns:1fr;gap:30px}.teams-date{border-left:2px solid var(--accent);padding:0 0 0 22px}.teams-date-days{font-size:60px;line-height:1.15;margin-top:5px}.teams-date>p:last-child{margin-top:8px}.teams-bar{margin-top:32px;gap:14px}.team-carousel-controls{gap:16px;margin-bottom:22px}.team-tabs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));width:100%;gap:6px}.team-tab{min-width:0;padding-inline:8px;font-size:10px}.team-carousel-navigation{justify-content:flex-end;width:100%}.team-lineup{grid-template-columns:repeat(3,minmax(0,1fr));gap:24px 16px}.player-name{font-size:18px}.player-lane{font-size:12px}.player-medal img{width:34px;height:34px}.team-slide-header h3{font-size:36px}}
+@media(max-width:600px){.team-lineup{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 14px}.team-lineup>.player-card:last-child{grid-column:1/-1;width:calc((100% - 14px)/2);justify-self:center}.team-slide{padding:22px 16px}.team-slide-header{margin-bottom:24px;gap:14px}.team-slide-header h3{font-size:34px}.team-player-count{font-size:10px;text-align:right}.team-tabs{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.team-tab{font-size:11px;min-height:44px}.player-name{font-size:16px}.player-lane{font-size:11px}.captain-badge{font-size:9px;letter-spacing:.1em;top:10px;left:12px}.player-medal img{width:32px;height:32px}.player-medal>span{font-size:7px}.player-card-copy{padding-inline:0}.player-card-tags .champion-badge{font-size:9px;padding-inline:5px;letter-spacing:0}.team-bench{gap:14px;flex-wrap:wrap;min-height:162px;margin-top:26px;padding-top:20px}.team-bench>.section-label{width:100%;font-size:8px}.team-reserves{width:100%}.reserve-player{grid-template-columns:78px minmax(0,1fr);gap:10px}.reserve-player .player-name{font-size:17px}.teams-closing{margin-top:22px}}
+@media(max-width:480px){.community-teams-link{padding:18px;gap:16px}.community-teams-link .section-label{font-size:8px;letter-spacing:.15em}.community-teams-link strong{font-size:20px}.quick-link-arrow{font-size:26px}.teams-intro .red-label{font-size:9px;max-width:30ch;line-height:1.9}.teams-bar>.section-label{font-size:9px}.teams-bar>.section-label>span{margin-inline:9px}.champions-legend{font-size:11px;gap:8px}.teams-closing{font-size:13px}.tournament-teams-section{padding-block:70px}.tournament-schedule{font-size:clamp(25px,7vw,32px)}.tournament-copy{padding:30px 22px}.player-name{font-size:14px}.player-medal img{width:28px;height:28px}.player-medal>span{font-size:7px}.player-lane{font-size:11px}.player-card-tags .champion-badge{font-size:9px;gap:4px}.player-card-tags .champion-badge:before{font-size:10px}}

@@ -10,7 +10,7 @@ window.FTAP_CONFIG = {
     {
       category: 'Community',
       title: 'Welcome to FTAP',
-      image: 'assets/vault.jpg',
+      image: 'assets/optimized/vault.webp',
       imagePosition: '80% 50%',
       summary: 'Pag umay ka na sa buhay sa labas, tara! pasok agad sa disc.',
       body: 'Welcome to Full-Time Adulting, Part-Time Gaming. We are a community for competitive games, social hangouts, and friendships that go beyond the screen. Real life comes first. Drop into voice when you can, find a party, and make yourself at home.'
@@ -18,7 +18,7 @@ window.FTAP_CONFIG = {
     {
       category: 'Around the server',
       title: 'Your community, in one place',
-      image: 'assets/icefrogdota.jpg',
+      image: 'assets/optimized/icefrogdota.webp',
       imagePosition: '48% 50%',
       summary: "Meet the crew, find the next event, and catch up on what's latest.",
       body: 'This is the FTAP community hub. Member spotlights, event dates, staff introductions, and community memories will live here as they are shared. Until then, Discord is the place to find the latest conversations and plans.'
@@ -48,7 +48,7 @@ window.FTAP_CONFIG = {
   */
   gallery: [
     {
-      src: 'assets/hero.png',
+      src: 'assets/optimized/hero.webp',
       alt: 'An armored adventurer facing a red portal in a ruined stone arena.',
       title: 'Into the next game',
       category: 'FTAP community artwork',
