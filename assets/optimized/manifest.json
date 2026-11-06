@@ -364,6 +364,19 @@
     "bytes": 45000
   },
   {
+    "source": "assets/teams/kneegrow/bosh.png",
+    "sourceBytes": 2021070,
+    "sourceSHA256": "fb0978a48eb9c6173f1524a3d564d8b840a7d8b2b3f67969e37dbbfd2c9664d1",
+    "sourceWidth": 1254,
+    "sourceHeight": 1254,
+    "hasAlpha": false,
+    "lossless": false,
+    "path": "assets/optimized/teams/kneegrow/bosh.webp",
+    "width": 640,
+    "height": 640,
+    "bytes": 24052
+  },
+  {
     "source": "assets/teams/kneegrow/den.png",
     "sourceBytes": 2113122,
     "sourceSHA256": "7af617cd9824d1f83c28fb2d7ff266010524aa27999d6aabffb7797fa426147e",
@@ -388,6 +401,19 @@
     "width": 640,
     "height": 640,
     "bytes": 25216
+  },
+  {
+    "source": "assets/teams/kneegrow/jaja.png",
+    "sourceBytes": 2055867,
+    "sourceSHA256": "8f843cfe7915a71f3c09854e31488486a87931b0019e8aea9fe3b49ab3326ebd",
+    "sourceWidth": 1254,
+    "sourceHeight": 1254,
+    "hasAlpha": false,
+    "lossless": false,
+    "path": "assets/optimized/teams/kneegrow/jaja.webp",
+    "width": 640,
+    "height": 640,
+    "bytes": 24174
   },
   {
     "source": "assets/teams/kneegrow/jing.png",
