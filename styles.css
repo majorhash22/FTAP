@@ -141,7 +141,7 @@
 .team-baddiengan{--muted:#E0D3D1;--border:#C50B1455;background:var(--background);color:var(--text);border-top-color:var(--accent)}
 :is(.team-baddiengan,.team-kat-and-friends,.team-scourge) .team-slide-header>div{min-width:0}
 :is(.team-baddiengan,.team-kat-and-friends,.team-scourge) .team-slide-header h3{font-size:clamp(26px,4vw,44px);overflow-wrap:anywhere}
-:is(.team-baddiengan,.team-kat-and-friends,.team-scourge) .team-logo{width:clamp(76px,12vw,140px);height:auto;flex-shrink:0;object-fit:contain}
+.team-slide-header .team-logo{width:clamp(76px,12vw,140px);max-height:140px;height:auto;flex-shrink:0;object-fit:contain}
 .team-baddiengan .player-portrait{border-color:var(--accent)}
 .team-baddiengan .captain-badge{background:var(--accent);color:var(--text)}
 .team-baddiengan .player-medal>span{color:var(--text)}
