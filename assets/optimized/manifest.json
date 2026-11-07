@@ -455,6 +455,19 @@
     "bytes": 23236
   },
   {
+    "source": "assets/teams/scourge/lowell.png",
+    "sourceBytes": 1914288,
+    "sourceSHA256": "8468ee4ef2c40368f27f1ef22244dcaca42f35ae42544deb4f41eb0c4b7fd3d1",
+    "sourceWidth": 1068,
+    "sourceHeight": 1472,
+    "hasAlpha": false,
+    "lossless": false,
+    "path": "assets/optimized/teams/scourge/lowell.webp",
+    "width": 620,
+    "height": 854,
+    "bytes": 24070
+  },
+  {
     "source": "assets/teams/scourge/majorhash.png",
     "sourceBytes": 2141984,
     "sourceSHA256": "637206a78e7734c307b445ef360a8f6fabf31710d9df617ca8801d41e1f0dd53",
