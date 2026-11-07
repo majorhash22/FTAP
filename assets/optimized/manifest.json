@@ -468,6 +468,19 @@
     "bytes": 25178
   },
   {
+    "source": "assets/teams/scourge/natnat.png",
+    "sourceBytes": 1984908,
+    "sourceSHA256": "1cf1626c3aabca3528716449b990aaee448372125dc0830cb6b145527378008b",
+    "sourceWidth": 1448,
+    "sourceHeight": 1086,
+    "hasAlpha": false,
+    "lossless": false,
+    "path": "assets/optimized/teams/scourge/natnat.webp",
+    "width": 640,
+    "height": 480,
+    "bytes": 20042
+  },
+  {
     "source": "assets/teams/scourge/pookie.png",
     "sourceBytes": 2150253,
     "sourceSHA256": "fedd4b193b40e8998dc0411f2b5b90e4ec7389ad10cd9d11a597113ea99e0869",
@@ -505,6 +518,19 @@
     "width": 640,
     "height": 640,
     "bytes": 22906
+  },
+  {
+    "source": "assets/teams/scourge/zoro.png",
+    "sourceBytes": 2163424,
+    "sourceSHA256": "a0dd5eb822a6c15d8fb6bd30697d242f9b1df8d48c25f51f6b25fe0957fd57eb",
+    "sourceWidth": 1254,
+    "sourceHeight": 1254,
+    "hasAlpha": false,
+    "lossless": false,
+    "path": "assets/optimized/teams/scourge/zoro.webp",
+    "width": 640,
+    "height": 640,
+    "bytes": 26114
   },
   {
     "source": "assets/teams/team-baddiengan/archieezy.png",
