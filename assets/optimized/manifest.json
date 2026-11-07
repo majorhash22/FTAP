@@ -235,8 +235,8 @@
   },
   {
     "source": "assets/teams/apex/haru.png",
-    "sourceBytes": 2103283,
-    "sourceSHA256": "453a6c8034b826f99259d652e7d98770a5ec4a8a8d22efc7cad18d0bd4a2893c",
+    "sourceBytes": 2132208,
+    "sourceSHA256": "d097d4df0df7670401c95395e2dcee6b32a05e0abdb713879a8dd1c98a44bede",
     "sourceWidth": 1254,
     "sourceHeight": 1254,
     "hasAlpha": false,
@@ -244,7 +244,7 @@
     "path": "assets/optimized/teams/apex/haru.webp",
     "width": 640,
     "height": 640,
-    "bytes": 34684
+    "bytes": 38284
   },
   {
     "source": "assets/teams/apex/rueqiea.png",
