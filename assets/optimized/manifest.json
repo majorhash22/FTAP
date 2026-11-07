@@ -533,6 +533,19 @@
     "bytes": 22906
   },
   {
+    "source": "assets/teams/scourge/tree.png",
+    "sourceBytes": 2139528,
+    "sourceSHA256": "084d4cd122da2db3cdf48a4359236a9dd5e3bcbce38ec197c302e7135d1e1acd",
+    "sourceWidth": 1254,
+    "sourceHeight": 1254,
+    "hasAlpha": false,
+    "lossless": false,
+    "path": "assets/optimized/teams/scourge/tree.webp",
+    "width": 640,
+    "height": 640,
+    "bytes": 25276
+  },
+  {
     "source": "assets/teams/scourge/zoro.png",
     "sourceBytes": 2163424,
     "sourceSHA256": "a0dd5eb822a6c15d8fb6bd30697d242f9b1df8d48c25f51f6b25fe0957fd57eb",
