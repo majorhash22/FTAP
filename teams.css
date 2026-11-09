@@ -1,0 +1,19 @@
+/* Shared team palettes: roster banners, selection buttons and match panels. */
+.team-wraith,.team-wraith-tab,[data-team="wraith"]{--primary:#B89B72;--secondary:#00D9FF;--background:#080D11;--accent:var(--primary);--accent-bright:var(--secondary);--text:#EDE6D9;--muted:#B9C2CC;--border:#B89B7255;--accent-ink:#080D11;--team-button:var(--primary)}
+.team-kneegrow,.team-kneegrow-tab,[data-team="kneegrow"]{--background:#33323C;--accent:#A57B6E;--accent-bright:#CDA99C;--text:#E3E5E3;--muted:#E3E5E3;--border:#A57B6E88;--accent-ink:#111619;--team-button:#A57B6E}
+.team-kat-and-friends,.team-kat-and-friends-tab,[data-team="kat-and-friends"]{color-scheme:light;--primary:#FD81AF;--secondary:#D499FC;--background:#FEFBFC;--accent:var(--primary);--accent-bright:#804294;--text:#35243D;--muted:#655269;--border:var(--secondary);--accent-ink:#35243D;--team-button:var(--primary)}
+.team-apex,.team-apex-tab,[data-team="apex"]{--primary:#00E5F5;--secondary:#E4EAF2;--background:#050E15;--accent:var(--primary);--accent-bright:var(--primary);--text:var(--secondary);--muted:#B7C6D6;--border:#00E5F566;--accent-ink:#050E15;--team-button:var(--primary)}
+.team-baddiengan,.team-baddiengan-tab,[data-team="baddiengan"]{--background:#000;--accent:#C50B14;--accent-bright:#FF737A;--text:#E0D3D1;--muted:#D2BCBA;--border:#C50B1488;--accent-ink:#fff;--team-button:#B50B14}
+.team-scourge,.team-scourge-tab,[data-team="scourge"]{--background:#020102;--accent:#03D549;--accent-bright:#03D549;--text:#F0EDE3;--muted:#BDCEBD;--border:#03D54966;--accent-ink:#020102;--team-button:#03D549}
+
+/* An unselected button still belongs to its team; selection adds a solid fill. */
+.team-tab,.team-filter[data-team]{background:var(--background);border-color:var(--border);color:var(--text);border-bottom:3px solid var(--accent)}
+.team-tab:hover,.team-filter[data-team]:hover{background:var(--team-button);border-color:var(--accent);color:var(--accent-ink)}
+.team-tab[aria-pressed="true"],.team-filter[data-team][aria-pressed="true"]{background:var(--team-button);border-color:var(--accent);color:var(--accent-ink);box-shadow:inset 0 -3px 0 var(--accent-ink)}
+.team-tab:focus-visible,.team-filter[data-team]:focus-visible{outline-color:var(--accent-bright)}
+.team-carousel-navigation{padding:10px 12px;background:var(--background);border:1px solid var(--border);color:var(--text)}
+.team-carousel-navigation .carousel-arrow{background:var(--background);border-color:var(--accent);color:var(--text)}
+.team-carousel-navigation .carousel-arrow:hover{background:var(--team-button);border-color:var(--accent);color:var(--accent-ink)}
+.team-carousel-position{color:var(--text)}
+.site-nav>a[aria-current="page"]{color:var(--accent-bright)}
+@media(min-width:801px) and (max-width:1000px){.site-nav{gap:14px}.site-nav>a{font-size:10px;letter-spacing:.1em}.site-nav .nav-join{font-size:10px;padding:10px 14px;margin-left:0}.header-inner{gap:20px}}

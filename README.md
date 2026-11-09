@@ -20,6 +20,27 @@ Extract the entire ZIP first. Open `index.html` in a modern browser. No installa
 
 The extracted FTAP-Website folder is the complete website. To put it on static hosting later, upload its website files with `index.html` at the hosting root.
 
+## Round-robin matches
+
+Open `/matches` on your local or static server, or open `matches/index.html` directly. The main navigation and the tournament roster link to this page. It contains all 15 unique pairings for the six teams, arranged into five rounds with three matches each. Each team plays once per round. Match order and times remain unconfirmed.
+
+Expand a round, then a match to reveal its winner and MVP. Team filters show each team's five fixtures. Expand all and Collapse all control the rounds and match details. Native disclosures work with a keyboard and without JavaScript; filtering and configured results need JavaScript.
+
+Add confirmed results to `matchResults` in `community.js`. Match IDs appear beside the fixtures: `R1 · M1` corresponds to `r1-m1`. For example, the following illustrates the format only; no sample results are published:
+
+```js
+matchResults: {
+  'r1-m1': {
+    winner: 'wraith',
+    mvp: { name: 'Player display name', team: 'wraith' }
+  }
+},
+```
+
+Team IDs are `wraith`, `kneegrow`, `kat-and-friends`, `apex`, `baddiengan`, and `scourge`. Winner and MVP team IDs must belong to that fixture. Omit either field until confirmed. Results stay pending until supplied; they do not change automatically on the tournament date. There is no backend or live results feed.
+
+Shared team palettes live in `teams.css`, used by the homepage roster banners and controls, match banners, team filter buttons, and confirmed winner/MVP panels. Page-specific layout and interaction code are in `matches.css` and `matches.js`. This remains a buildless static site.
+
 ## Make it yours
 
 Open `community.js` in a plain text editor. This is the central content file, with examples next to each setting. Save your changes and refresh the browser. The file is JavaScript: preserve commas and quotation marks. Strings can use double quotes if they contain apostrophes.

@@ -1,0 +1,65 @@
+.matches-main{padding-top:var(--header-height);min-height:80dvh}
+.matches-intro{position:relative;isolation:isolate;overflow:hidden;border-bottom:1px solid var(--border);padding-block:52px 40px}
+.matches-intro:before{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#111619 20%,#111619d9 55%,#11161988),url('assets/optimized/civilwar-banner.webp') 80% 42%/cover}
+.matches-intro-inner{display:flex;align-items:end;justify-content:space-between;gap:32px}
+.matches-intro .red-label{font-size:10px;margin-bottom:16px}
+.matches-intro h1{font-size:clamp(42px,5.2vw,72px);line-height:1.02;max-width:13ch}
+.matches-intro h1 span{color:var(--accent-bright)}
+.matches-intro .intro-note{margin-top:18px;font-size:14px;max-width:48ch}
+.matches-event{text-align:right;flex-shrink:0;padding-bottom:5px}
+.matches-event>p:first-child{color:var(--text);font-size:17px;font-weight:600}
+.matches-event>p+p{font-size:12px;margin-top:8px}
+.matches-stats{display:flex;gap:24px;margin-top:24px;padding-top:20px;border-top:1px solid #ffffff26}
+.matches-stats p{font-size:11px;text-transform:uppercase;letter-spacing:.1em}
+.matches-stats strong{color:var(--text);font-size:20px;font-weight:500;margin-right:5px;font-variant-numeric:tabular-nums}
+.matches-workspace{padding-block:36px 72px}
+.match-filters{border:0;padding:0;margin:0 0 24px;min-width:0}
+.match-filters legend{font-size:10px;text-transform:uppercase;letter-spacing:.16em;color:var(--muted);margin-bottom:12px}
+.match-filter-buttons{display:grid;grid-template-columns:.8fr repeat(6,minmax(0,1fr));gap:8px}
+.team-filter{display:flex;align-items:center;justify-content:center;gap:9px;min-width:0;min-height:54px;padding:10px 12px;border:1px solid var(--border);border-bottom-width:3px;background:var(--bg);color:var(--text);font-size:11px;line-height:1.35;font-weight:600;text-align:center;transition:background .2s,color .2s,border-color .2s}
+.team-filter img{width:30px;height:30px;object-fit:contain;flex-shrink:0}
+.team-filter:not([data-team]):hover,.team-filter:not([data-team])[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:#fff}
+.matches-toolbar{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:16px 0;border-block:1px solid var(--border);margin-bottom:20px}
+.matches-toolbar>p{font-size:12px;color:var(--text)}
+.match-actions{display:flex;gap:8px}
+.match-actions .button{min-height:38px;padding:9px 13px;font-size:9px;letter-spacing:.12em;border-color:var(--border)}
+.match-actions .button:hover{border-color:var(--accent-bright);color:var(--accent-bright);transform:none}
+.round{border:1px solid var(--border);margin-top:14px;background:#13191d}
+.round-heading{display:flex;align-items:center;gap:20px;padding:18px 22px;cursor:pointer;list-style:none;min-height:78px;transition:background .2s}
+.round-heading::-webkit-details-marker,.match-summary::-webkit-details-marker{display:none}
+.round-heading:hover{background:#1c2328}
+.round-number{font-family:var(--serif);font-size:30px;line-height:1;color:var(--accent-bright);font-variant-numeric:tabular-nums}
+.round-title{color:var(--text);font-size:16px;font-weight:600;line-height:1.5}
+.round-title small{display:block;font-size:11px;font-weight:400;color:var(--muted)}
+.round-progress{margin-left:auto;font-size:11px;color:var(--muted)}
+.disclosure-icon{width:9px;height:9px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);margin:-4px 4px 0 8px;flex-shrink:0;transition:transform .2s}
+.round[open]>.round-heading>.disclosure-icon,.match[open]>.match-summary>.disclosure-icon{transform:rotate(225deg);margin-top:4px}
+.round-matches{padding:0 16px 16px}
+.matches-main summary:after{display:none}
+.match-result p{padding:0;animation:none}
+.match{border:1px solid var(--border);background:var(--bg);margin-top:10px}
+.match-summary{display:grid;grid-template-columns:62px minmax(0,1fr) 88px 14px;align-items:center;gap:14px;list-style:none;cursor:pointer;padding:12px}
+.match-summary:hover{background:#1d252a}
+.match-id{font-size:10px;color:var(--muted);letter-spacing:.05em;text-align:center;font-variant-numeric:tabular-nums}
+.match-teams{display:grid;grid-template-columns:minmax(0,1fr) 36px minmax(0,1fr);align-items:stretch;min-width:0}
+.match-team{display:flex;align-items:center;gap:14px;min-width:0;padding:12px 16px;background:var(--background);color:var(--text);border:1px solid var(--border);border-left:3px solid var(--accent)}
+.match-team img{width:46px;height:46px;object-fit:contain;flex-shrink:0}
+.match-team-name{font-size:clamp(12px,1.15vw,16px);font-weight:600;line-height:1.35;overflow-wrap:anywhere}
+.match-versus{display:grid;place-items:center;font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.06em}
+.match-status{font-size:10px;line-height:1.5;color:var(--muted);text-align:center}
+.match-status:before{content:'';display:block;width:5px;height:5px;border-radius:50%;background:currentColor;margin:0 auto 6px}
+.match[open] .match-status{color:var(--text)}
+.match-details{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 12px 12px;animation:match-reveal .2s ease-out}
+.match-result{padding:20px 22px;background:#1b2227;border:1px solid var(--border)}
+.match-result[data-team]{background:var(--background);border-color:var(--border);border-top:2px solid var(--accent);color:var(--text)}
+.match-result .section-label{font-size:9px;color:var(--muted);letter-spacing:.17em}
+.result-name{font-family:var(--serif);font-size:24px;line-height:1.3;color:var(--text);margin-top:8px;overflow-wrap:anywhere}
+.result-note{font-size:11px;color:var(--muted);margin-top:7px}
+.matches-footnote{font-size:12px;margin-top:24px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.matches-footnote a{color:var(--text);border-bottom:1px solid var(--accent)}
+.matches-noscript{padding:16px 0;font-size:13px;color:var(--text)}
+@keyframes match-reveal{from{opacity:0;transform:translateY(-3px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:1100px){.match-filter-buttons{grid-template-columns:repeat(4,minmax(0,1fr))}.match-summary{grid-template-columns:48px minmax(0,1fr) 66px 12px;gap:10px}.match-team{gap:10px;padding:12px}.match-team img{width:38px;height:38px}}
+@media(max-width:800px){.matches-intro{padding-block:36px 28px}.matches-intro-inner{align-items:start}.matches-event>p:first-child{font-size:14px}.matches-stats{gap:16px}.matches-stats p{font-size:9px}.matches-stats strong{font-size:18px}.match-filter-buttons{grid-template-columns:repeat(3,minmax(0,1fr))}.match-filter-buttons>.team-filter:first-child{grid-column:1/-1;min-height:40px}.team-filter{font-size:11px;padding:9px 7px}.team-filter img{width:24px;height:24px}.match-summary{grid-template-columns:1fr auto;gap:10px;padding:12px}.match-id{grid-column:1;grid-row:1;text-align:left}.match-status{grid-column:1;grid-row:1;justify-self:end;text-align:right}.match-status:before{display:none}.match-summary>.disclosure-icon{grid-column:2;grid-row:1;margin-right:4px}.match-teams{grid-column:1/-1;grid-row:2;grid-template-columns:minmax(0,1fr) 28px minmax(0,1fr)}.match-team{padding:12px 10px;gap:9px}.match-team-name{font-size:13px}.match-team img{width:32px;height:36px}.round-heading{padding:16px;gap:14px}.round-matches{padding:0 10px 10px}.match-result{padding:16px}.result-name{font-size:21px}}
+@media(max-width:600px){.matches-intro-inner{display:block}.matches-event{text-align:left;margin-top:24px;padding:0}.matches-event>p+p{margin-top:3px}.matches-stats{max-width:350px;margin-top:16px;padding-top:12px;justify-content:space-between}.matches-workspace{padding-block:24px 52px}.match-filters{margin-bottom:18px}.matches-toolbar{align-items:start;flex-direction:column;gap:12px}.match-actions{width:100%}.match-actions .button{flex:1}.round-heading{min-height:70px;gap:12px;padding:14px}.round-title{font-size:14px}.round-progress{font-size:10px}.round-number{font-size:26px}.match-team{flex-direction:column;align-items:center;text-align:center;gap:8px;padding:14px 7px}.match-team img{width:40px;height:40px}.match-team-name{font-size:12px}.match-teams{grid-template-columns:minmax(0,1fr) 24px minmax(0,1fr)}.team-filter{flex-direction:column;gap:6px;font-size:10px;min-height:76px}.team-filter img{height:26px;width:26px}.match-result{padding:14px}.result-name{font-size:20px}.result-note{font-size:10px}.match-details{gap:8px}.matches-footnote{font-size:11px}.matches-intro .intro-note{font-size:13px}}
+@media(prefers-reduced-motion:reduce){.match-details{animation:none}.disclosure-icon,.team-filter,.round-heading{transition:none}}

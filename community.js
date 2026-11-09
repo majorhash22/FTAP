@@ -6,6 +6,12 @@ window.FTAP_CONFIG = {
   fullName: 'Full-Time Adulting, Part-Time Gaming',
   discordInvite: '', // Add your https://discord.gg/... invite when ready.
   applicationChannel: '', // Optional: e.g. #introductions.
+  // Results on /matches. Keys are the match IDs printed beside each fixture.
+  // Team IDs: wraith, kneegrow, kat-and-friends, apex, baddiengan, scourge.
+  // Add confirmed results here, for example:
+  // 'r1-m1': { winner: 'wraith', mvp: { name: 'Kobe', team: 'wraith' } }
+  // Omit winner or mvp until confirmed. No result is assumed from the date.
+  matchResults: {},
   announcements: [
     {
       category: 'Community',

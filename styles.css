@@ -136,7 +136,6 @@
 .team-slide-header{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:30px}
 .team-slide-header .section-label{font-size:9px;letter-spacing:.2em;color:var(--muted);margin-bottom:5px}
 .team-slide-header h3{font-family:var(--serif);font-weight:400;font-size:44px;text-transform:uppercase;line-height:1.1}
-.team-baddiengan,.team-baddiengan-tab{--background:#000000;--accent:#C50B14;--text:#E0D3D1}
 .team-baddiengan-tab{overflow-wrap:anywhere}
 .team-baddiengan{--muted:#E0D3D1;--border:#C50B1455;background:var(--background);color:var(--text);border-top-color:var(--accent)}
 :is(.team-baddiengan,.team-kat-and-friends,.team-scourge,.team-kneegrow,.team-wraith,.team-apex) .team-slide-header>div{min-width:0}
@@ -147,7 +146,6 @@
 .team-baddiengan .player-medal>span{color:var(--text)}
 .team-baddiengan-tab:hover{border-color:var(--accent)}
 .team-baddiengan-tab[aria-pressed=true]{color:var(--text)}
-.team-kat-and-friends,.team-kat-and-friends-tab{--primary:#FD81AF;--secondary:#D499FC;--background:#FEFBFC;--accent:var(--primary);--accent-bright:var(--secondary);--text:#35243D}
 .team-kat-and-friends{color-scheme:light;--muted:#655269;--border:#D499FC66;background:var(--background);color:var(--text);border-top-color:var(--primary)}
 .team-kat-and-friends .player-portrait{border-color:var(--secondary);background:radial-gradient(ellipse at 50% 35%,var(--background),#f5def0 50%,var(--secondary))}
 .team-kat-and-friends .captain-badge{background:var(--primary);color:var(--text)}
@@ -155,28 +153,24 @@
 .team-kat-and-friends-tab{overflow-wrap:anywhere}
 .team-kat-and-friends-tab:hover{border-color:var(--secondary);color:inherit}
 .team-kat-and-friends-tab[aria-pressed=true]{color:var(--text)}
-.team-scourge,.team-scourge-tab{--background:#020102;--accent:#03D549;--accent-bright:var(--accent);--text:#F0EDE3}
 .team-scourge{--muted:var(--text);--border:#03D54955;background:var(--background);color:var(--text);border-top-color:var(--accent)}
 .team-scourge .player-portrait{border-color:var(--accent);background:radial-gradient(ellipse at 50% 35%,#123c25,#071c10 50%,var(--background))}
 .team-scourge .captain-badge{background:var(--accent);color:var(--background)}
 .team-scourge .player-medal>span{color:var(--text)}
 .team-scourge-tab:hover{border-color:var(--accent)}
 .team-scourge-tab[aria-pressed=true]{color:var(--background)}
-.team-kneegrow,.team-kneegrow-tab{--background:#33323C;--accent:#A57B6E;--accent-bright:var(--accent);--text:#E3E5E3;--accent-ink:#111619}
 .team-kneegrow{--muted:var(--text);--border:#A57B6E55;background:var(--background);color:var(--text);border-top-color:var(--accent)}
 .team-kneegrow .player-portrait{border-color:var(--accent);background:var(--background)}
 .team-kneegrow .captain-badge{background:var(--accent);color:var(--accent-ink)}
 .team-kneegrow .player-medal>span{color:var(--text)}
 .team-kneegrow-tab:hover{border-color:var(--accent)}
 .team-kneegrow-tab[aria-pressed=true]{color:var(--accent-ink)}
-.team-wraith,.team-wraith-tab{--primary:#B89B72;--secondary:#00D9FF;--background:#080D11;--accent:var(--primary);--accent-bright:var(--secondary);--text:#EDE6D9;--accent-ink:var(--background)}
 .team-wraith{--muted:#B9C2CC;--border:#B89B7255;background:var(--background);color:var(--text);border-top-color:var(--accent)}
 .team-wraith .player-portrait{border-color:var(--accent);background:var(--background)}
 .team-wraith .captain-badge{background:var(--accent);color:var(--accent-ink)}
 .team-wraith .player-medal>span{color:var(--text)}
 .team-wraith-tab:hover{background:var(--primary);border-color:var(--primary);color:var(--accent-ink)}
 .team-wraith-tab[aria-pressed=true]{color:var(--accent-ink)}
-.team-apex,.team-apex-tab{--primary:#00E5F5;--secondary:#E4EAF2;--background:#050E15;--accent:var(--primary);--accent-bright:var(--secondary);--text:var(--secondary)}
 .team-apex{--muted:var(--secondary);--border:#00E5F555;background:var(--background);color:var(--text);border-top-color:var(--primary)}
 .team-apex .player-portrait{border-color:var(--primary);background:var(--background)}
 .team-apex .captain-badge{background:var(--primary);color:var(--background)}
