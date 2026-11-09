@@ -2,6 +2,8 @@
 
 The interactive trophy room is documented in [TROPHY.md](TROPHY.md), including controls, engraving edits, local assets, tests, and verification limits.
 
+The API-backed match portal is documented in [ADMIN.md](ADMIN.md). Run `npm run setup:admin` and `npm start` on Node.js 24+ for admin sign-in, saved match imports and public scoreboards. Static hosting alone continues to show the site but cannot run this backend.
+
 ## Image optimization
 
 The site serves WebP copies from `assets/optimized/`. The complete optimized image set, including mobile hero and trophy preview variants, is 7.38 MB versus 98.02 MB of original artwork (92.5% fewer image bytes). Originals remain available in `assets/` for future edits. Portraits and backgrounds use high-quality compression; full-resolution trophy textures retain identical pixels and transparent edges.
@@ -26,7 +28,7 @@ Open `/matches` on your local or static server, or open `matches/index.html` dir
 
 Expand a round, then a match to reveal its winner and MVP. Team filters show each team's five fixtures. Expand all and Collapse all control the rounds and match details. Native disclosures work with a keyboard and without JavaScript; filtering and configured results need JavaScript.
 
-Add confirmed results to `matchResults` in `community.js`. Match IDs appear beside the fixtures: `R1 · M1` corresponds to `r1-m1`. For example, the following illustrates the format only; no sample results are published:
+Use `/admin/` on the Node server to import and publish completed games. For a static/offline fallback, results can still be added to `matchResults` in `community.js`. Match IDs appear beside the fixtures: `R1 · M1` corresponds to `r1-m1`. The following illustrates the fallback format only; no sample results are published:
 
 ```js
 matchResults: {
@@ -37,7 +39,7 @@ matchResults: {
 },
 ```
 
-Team IDs are `wraith`, `kneegrow`, `kat-and-friends`, `apex`, `baddiengan`, and `scourge`. Winner and MVP team IDs must belong to that fixture. Omit either field until confirmed. Results stay pending until supplied; they do not change automatically on the tournament date. There is no backend or live results feed.
+Team IDs are `wraith`, `kneegrow`, `kat-and-friends`, `apex`, `baddiengan`, and `scourge`. Winner and MVP team IDs must belong to that fixture. Results remain pending until supplied and never change from the date alone. Published database results are authoritative when the backend is reachable; otherwise the page shows the static fallback and an availability message.
 
 The homepage roster palettes and controls keep their original styling in `styles.css`. Matches-specific palettes live in `teams.css`, used by match banners, team filter buttons, and confirmed winner/MVP panels. Each match banner has a pale logo plate, two diagonal ribbons in the team's colors, and its name on the team background. Opposing banners are mirrored, and the pair stacks vertically on phones. Page-specific layout and interaction code are in `matches.css` and `matches.js`. This remains a buildless static site.
 

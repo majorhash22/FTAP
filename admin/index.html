@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#111619">
+  <title>Match desk | FTAP Admin</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../match-data.css?v=1">
+  <link rel="stylesheet" href="admin.css?v=1">
+  <script defer src="../match-data.js?v=1"></script>
+  <script defer src="admin.js?v=1"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to admin controls</a>
+  <header class="admin-header container"><a class="brand" href="../index.html"><span class="brand-ft">FT</span><span class="brand-ap">AP</span></a><a href="../matches/">View public matches</a><button id="logout" class="button button-outline" type="button" hidden>Sign out</button></header>
+  <main id="main" class="admin-main container">
+    <p class="section-label red-label">Tournament administration</p>
+    <h1>Match desk.</h1>
+    <p class="admin-intro">Import a Dota match, check the teams, and publish its results.</p>
+    <p id="admin-status" class="admin-status" role="status" aria-live="polite"></p>
+    <section id="login-panel" class="admin-panel" aria-labelledby="login-title">
+      <h2 id="login-title">Admin sign-in</h2>
+      <form id="login-form">
+        <label>Username<input name="username" autocomplete="username" required maxlength="80" value="admin"></label>
+        <label>Password<input name="password" type="password" autocomplete="current-password" required maxlength="1024"></label>
+        <button class="button button-primary" type="submit">Sign in</button>
+      </form>
+    </section>
+    <div id="admin-workspace" hidden>
+      <section class="admin-panel" aria-labelledby="import-title">
+        <h2 id="import-title">Import match</h2>
+        <form id="import-form" class="admin-import-form">
+          <label for="dota-match-id">Dota match ID<input id="dota-match-id" name="matchId" inputmode="numeric" pattern="[1-9][0-9]{0,15}" placeholder="Enter the completed match ID" required maxlength="16"></label>
+          <button class="button button-primary" type="submit">Fetch match</button>
+        </form>
+        <p class="admin-help">Save roster account IDs below to identify fixtures automatically. Each current fixture represents one Dota game.</p>
+      </section>
+      <section id="preview-panel" class="admin-panel" aria-labelledby="preview-title" hidden>
+        <h2 id="preview-title">Review imported match</h2>
+        <p id="mapping-note" class="admin-help"></p>
+        <form id="publish-form">
+          <div class="admin-form-grid">
+            <label>Fixture<select id="fixture-select" required><option value="">Choose a fixture</option></select></label>
+            <label>Radiant team<select id="radiant-select" required disabled><option value="">Choose the Radiant team</option></select></label>
+            <label>MVP<select id="mvp-select"><option value="">Use FTAP calculated MVP</option></select></label>
+          </div>
+          <p id="side-note" class="admin-help"></p>
+          <p id="mvp-note" class="admin-help"></p>
+          <label id="replace-label" class="admin-checkbox" hidden><input id="replace-result" type="checkbox">Replace this fixture’s existing published result</label>
+          <div class="admin-actions"><button class="button button-primary" type="submit">Publish result</button><button id="request-parse" class="button button-outline" type="button">Request detailed analysis</button></div>
+        </form>
+        <div id="match-preview"></div>
+      </section>
+      <section class="admin-panel" aria-labelledby="published-title"><h2 id="published-title">Published results</h2><p class="admin-help">Unpublishing removes a result from the public page. You can import the match ID again to republish it.</p><div id="published-results"></div></section>
+      <details class="admin-panel admin-roster"><summary>Roster account IDs <span>One-time setup for automatic team matching</span></summary>
+        <p class="admin-help">Use a Dota Friend ID, Steam64 ID, or numeric steamcommunity.com/profiles/ link. Blank entries are allowed. A match is auto-matched when at least three known players on each side identify different teams.</p>
+        <form id="roster-form"><div id="roster-fields"></div><button class="button button-primary" type="submit">Save roster IDs</button></form>
+      </details>
+    </div>
+    <noscript><p>JavaScript is required for admin sign-in and importing matches. The public fixtures remain available without it.</p></noscript>
+  </main>
+</body>
+</html>

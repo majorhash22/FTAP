@@ -6,6 +6,10 @@ window.FTAP_CONFIG = {
   fullName: 'Full-Time Adulting, Part-Time Gaming',
   discordInvite: '', // Add your https://discord.gg/... invite when ready.
   applicationChannel: '', // Optional: e.g. #introductions.
+  // Leave blank when the Node server hosts this site. For a separately hosted
+  // static frontend, set the backend's HTTPS origin, e.g. https://ftap-api.example.com/.
+  // API keys and admin passwords belong only in server environment variables.
+  matchApiBaseUrl: '',
   // Results on /matches. Keys are the match IDs printed beside each fixture.
   // Team IDs: wraith, kneegrow, kat-and-friends, apex, baddiengan, scourge.
   // Add confirmed results here, for example:

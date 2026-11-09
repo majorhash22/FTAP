@@ -1,0 +1,11 @@
+{
+  "name": "ftap-match-portal",
+  "private": true,
+  "version": "1.0.0",
+  "engines": { "node": ">=24" },
+  "scripts": {
+    "start": "node --env-file-if-exists=.env server/index.mjs",
+    "setup:admin": "node tools/setup-admin.mjs",
+    "test": "node --test --test-isolation=none tests/*.test.cjs tests/*.test.mjs"
+  }
+}

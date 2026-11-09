@@ -10,8 +10,10 @@
   <link rel="stylesheet" href="../styles.css?v=matches-1">
   <link rel="stylesheet" href="../matches.css?v=geometric-banners-1">
   <link rel="stylesheet" href="../teams.css?v=matches-1">
-  <script defer src="../community.js?v=matches-1"></script>
-  <script defer src="../matches.js?v=matches-1"></script>
+  <link rel="stylesheet" href="../match-data.css?v=1">
+  <script defer src="../community.js?v=match-api-1"></script>
+  <script defer src="../match-data.js?v=1"></script>
+  <script defer src="../matches.js?v=match-api-1"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to matches</a>
@@ -46,7 +48,8 @@
         </div>
       </fieldset>
       <div class="matches-toolbar"><p id="matches-count" role="status" aria-live="polite" aria-atomic="true">All teams &middot; 15 matches &middot; 0 completed</p><div class="match-actions" data-js-control hidden><button class="button button-outline" type="button" data-expand-all aria-controls="match-rounds">Expand all</button><button class="button button-outline" type="button" data-collapse-all aria-controls="match-rounds">Collapse all</button></div></div>
-      <noscript><p class="matches-noscript">All pairings can be expanded below. Enable JavaScript for team filters and confirmed results.</p></noscript>
+      <p id="match-live-status" class="match-live-status" role="status" aria-live="polite"></p>
+      <noscript><p class="matches-noscript">All pairings can be expanded below. Enable JavaScript for team filters and imported match results.</p></noscript>
       <div id="match-rounds">
       <details class="round" id="round-1" open>
         <summary class="round-heading"><span class="round-number">01</span><span class="round-title">Round 1<small class="round-match-count">3 matches</small></span><span class="round-progress">Results pending</span><span class="disclosure-icon" aria-hidden="true"></span></summary>
@@ -179,7 +182,7 @@
         </div>
       </details>
       </div>
-      <div class="matches-footnote"><p>Results and MVPs will be posted once confirmed.</p><a href="../index.html#tournament-teams">Meet the six teams <span aria-hidden="true">&rarr;</span></a></div>
+      <div class="matches-footnote"><p>Results and MVPs will be posted once confirmed.</p><a href="../index.html#tournament-teams">Meet the six teams <span aria-hidden="true">&rarr;</span></a><a class="match-admin-link" href="../admin/" data-admin-link>Admin sign-in</a></div>
     </section>
   </main>
   <footer class="site-footer container"><div><a class="footer-brand" href="../index.html" aria-label="FTAP home"><span class="brand-ft">FT</span><span class="brand-ap">AP</span></a><p>Full-Time Adulting, Part-Time Gaming</p></div><nav aria-label="Footer navigation"><a href="../index.html">Home</a><a href="../index.html#tournament-teams">Teams</a><a href="../index.html#events">Events</a></nav><span class="footer-meta"><span class="footer-note">Clock-out. Login. G!</span><span class="developer-credit">Developed by <a href="https://waorigin.ca" target="_blank" rel="noopener noreferrer">WA Origin</a></span></span></footer>
