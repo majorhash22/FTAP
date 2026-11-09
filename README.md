@@ -39,7 +39,7 @@ matchResults: {
 
 Team IDs are `wraith`, `kneegrow`, `kat-and-friends`, `apex`, `baddiengan`, and `scourge`. Winner and MVP team IDs must belong to that fixture. Omit either field until confirmed. Results stay pending until supplied; they do not change automatically on the tournament date. There is no backend or live results feed.
 
-The homepage roster palettes and controls keep their original styling in `styles.css`. Matches-specific palettes live in `teams.css`, used by match banners, team filter buttons, and confirmed winner/MVP panels. Page-specific layout and interaction code are in `matches.css` and `matches.js`. This remains a buildless static site.
+The homepage roster palettes and controls keep their original styling in `styles.css`. Matches-specific palettes live in `teams.css`, used by match banners, team filter buttons, and confirmed winner/MVP panels. Each match banner has a pale logo plate, two diagonal ribbons in the team's colors, and its name on the team background. Opposing banners are mirrored, and the pair stacks vertically on phones. Page-specific layout and interaction code are in `matches.css` and `matches.js`. This remains a buildless static site.
 
 ## Make it yours
 
