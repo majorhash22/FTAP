@@ -243,7 +243,6 @@
         slide.classList.toggle('is-active', i === current);
       });
       tabs.forEach((tab, i) => tab.setAttribute('aria-pressed', String(i === current)));
-      teamsCarousel.dataset.team = ['wraith', 'kneegrow', 'kat-and-friends', 'apex', 'baddiengan', 'scourge'][current];
       teamsCarousel.querySelector('.team-carousel-position').textContent = `${String(current + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')} · ${tabs[current].textContent.trim()}`;
     }
     teamsCarousel.classList.add('is-ready');
