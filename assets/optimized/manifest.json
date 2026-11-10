@@ -351,6 +351,19 @@
     "bytes": 53370
   },
   {
+    "source": "assets/teams/kat-and-friends/tree.png",
+    "sourceBytes": 2272708,
+    "sourceSHA256": "8949eaebd847cd1df471b727c8a1b8fbf2129cb0192f5afd2120d0a8a897dac9",
+    "sourceWidth": 1254,
+    "sourceHeight": 1254,
+    "hasAlpha": false,
+    "lossless": false,
+    "path": "assets/optimized/teams/kat-and-friends/tree.webp",
+    "width": 640,
+    "height": 640,
+    "bytes": 46532
+  },
+  {
     "source": "assets/teams/kat-and-friends/yokai.png",
     "sourceBytes": 2244749,
     "sourceSHA256": "b01ee3a4711ceabbb0dc714411e749f84ead164c6649a8558056c37fa78563a4",
